@@ -3,3 +3,5 @@ services:
   app:
     volumes:
       - "./docker/php/config/php.ini-production:${PHP_INI_DIR}/php.ini:ro"
+    environment:
+      - APP_DEBUG=false

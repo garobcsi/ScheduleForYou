@@ -31,6 +31,8 @@ services:
     volumes:
       - ./:/www:rw
       # - ./docker/php/home:/home/phpdocker:rw
+    environment:
+      - APP_DEBUG=true
     networks:
       - webapp
 
