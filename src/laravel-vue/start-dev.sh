@@ -12,15 +12,12 @@ else
     cp .env.example .env
 fi
 
-if [ "$1" ]; then
-  MODE=$1
-else
-  MODE=dev
-fi
+MODE=dev
 
-# shopt -s expand_aliases
-
-$COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml  up -d
+$COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml up -d
 $COMPOSE exec app composer install
 $COMPOSE exec app php artisan key:generate
+$COMPOSE exec app php artisan storage:link
+$COMPOSE exec app php artisan migrate:fresh --seed
 $COMPOSE exec app npm install
+$COMPOSE exec app npm run dev

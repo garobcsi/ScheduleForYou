@@ -20,7 +20,8 @@ RUN apk update && apk add --no-cache \
     nodejs \
     npm \
     fish
-    
+
+RUN apk add --update nodejs npm
 
 RUN docker-php-ext-configure pdo && \
     docker-php-ext-configure pdo_mysql && \
