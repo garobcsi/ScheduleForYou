@@ -17,11 +17,8 @@ class RegisterController extends Controller
      */
     public function Register(Request $request) {
         $data = $request->all();
-        $validator = Validator::make($data, [
-            "name" => "required|max:255",
-            "email" => "required|max:255|unique:users,email|email",
-            "password" => "required|max:255",
-        ]);
+
+        $validator = Validator::make($data, (new RegisterRequest)->rules());
         if ($validator->fails())
         {
             return response()->json([
