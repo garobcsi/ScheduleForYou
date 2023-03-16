@@ -15,23 +15,10 @@ class RegisterController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function Register(Request $request) {
-        $data = $request->all();
-
-        $validator = Validator::make($data, (new RegisterRequest)->rules());
-        if ($validator->fails())
-        {
-            return response()->json([
-                "data" => [
-                    "message" => "A validation error has occurred.",
-                    "errors" => [
-                        $validator->errors()
-                    ]
-                ]
-            ],400);
-        }
+    public function Register(RegisterRequest $request) {
+        $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
         User::create($data);
-        return response()->json(["data" => ["message" => "Success Registration"]],200);
+        return response()->json(["message" => "Registration Success"],200);
     }
 }
