@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register',[RegisterController::class,'Register'])->name('user.register');
+Route::post('/register',[UserController::class,'Register'])->name('user.Register');
+Route::post('/login',[UserController::class,'Login'])->name('user.Login');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/login/valid',[UserController::class,'IsLoginValid'])->name('user.login.valid');
+    Route::get('/logout',[UserController::class,'Logout'])->name('user.logout');
+    Route::get('/logout/all',[UserController::class,'LogoutAll'])->name('user.logout.all');
+});
+
