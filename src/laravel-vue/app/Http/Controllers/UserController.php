@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\PersonalAccessToken;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +24,7 @@ class UserController extends Controller
         if(Auth::attempt($request->validated())) {
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
+            $this->SetTokenExpiresAt($token);
             return response()->json([
                 "data" => [ "token" => $token ]
             ],200);
@@ -33,8 +36,15 @@ class UserController extends Controller
     public function IsLoginValid(Request $request) {
         return response()->json(["message" => "Authenticated."],200);
     }
-    public function KeepTokenAlive() {
-
+    private function SetTokenExpiresAt($token) {
+        $thisToken = $token[1] === "|" ? mb_substr($token,2) : $token;
+        $data = PersonalAccessToken::all()->where('token',\hash('sha256',$thisToken))->first();
+        $data->expires_at = Carbon::now()->addDay();
+        $data->save();
+    }
+    public function KeepTokenAlive(Request $request) {
+        $this->SetTokenExpiresAt($request->bearerToken());
+        return response()->json(["message" => "Token Kept Alive"],200);
     }
     public function Logout(Request $request) {
         $request->user()->currentAccessToken()->delete();

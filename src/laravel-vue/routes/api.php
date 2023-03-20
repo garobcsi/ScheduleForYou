@@ -24,6 +24,7 @@ Route::post('/login',[UserController::class,'Login'])->name('user.Login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/login/valid',[UserController::class,'IsLoginValid'])->name('user.login.valid');
+    Route::get('/login/alive',[UserController::class, 'KeepTokenAlive'])->name('user.login.alive');
     Route::get('/logout',[UserController::class,'Logout'])->name('user.logout');
     Route::get('/logout/all',[UserController::class,'LogoutAll'])->name('user.logout.all');
 });
