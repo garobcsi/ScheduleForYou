@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use function PHPUnit\Framework\containsOnly;
 
 class UserController extends Controller
 {
@@ -37,8 +38,10 @@ class UserController extends Controller
         return response()->json(["message" => "Authenticated."],200);
     }
     private function SetTokenExpiresAt($token) {
-        $thisToken = $token[1] === "|" ? mb_substr($token,2) : $token;
-        $data = PersonalAccessToken::all()->where('token',\hash('sha256',$thisToken))->first();
+        $explode = explode('|',$token);
+        $thisToken = count($explode) == 2 ? $explode[1] : $token;
+        $tokenHash = \hash('sha256',$thisToken);
+        $data = PersonalAccessToken::all()->where('token',$tokenHash)->first();
         $data->expires_at = Carbon::now()->addDay();
         $data->save();
     }
