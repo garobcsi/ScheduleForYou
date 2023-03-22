@@ -14,7 +14,7 @@ fi
 
 MODE=prod
 
-$COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml up -d
+$COMPOSE -f docker-compose.yml -f docker-compose.$MODE.yml up -d --build
 $COMPOSE exec app composer install
 $COMPOSE exec app php artisan key:generate
 $COMPOSE exec app php artisan storage:link
