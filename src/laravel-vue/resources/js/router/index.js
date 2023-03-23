@@ -4,11 +4,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: () => import('@/pages/IndexPage.vue'),
-    meta: {
-      title: "Főoldal",
-      requiesAuth: false
-    }
+    component: () => import('@/pages/IndexPage.vue')
   }
 ]
 
