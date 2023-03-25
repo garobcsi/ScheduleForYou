@@ -1,9 +1,11 @@
 <template>
-    <Login></Login>
-    <Register class="mt-3"></Register>
+    <div class="container">
+        <div class="row">
+            <RouterLink :to="{name: 'login'}" class="btn btn-primary">To Login</RouterLink>
+            <RouterLink :to="{name: 'register'}" class="btn btn-primary mt-1">To Registration</RouterLink>
+        </div>
+    </div>
 </template>
 
 <script setup>
-import Login from "../components/auth/Login.vue";
-import Register from "../components/auth/Register.vue";
 </script>
