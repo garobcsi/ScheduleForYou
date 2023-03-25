@@ -3,8 +3,6 @@ import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import {api} from "../../utils/api";
 import {ref} from "vue";
-import {router} from "../../router";
-import {value} from "lodash/seq";
 
 const alert_success = ref(null);
 const alert_danger = ref(null);
@@ -23,7 +21,8 @@ const schema = yup.object({
         yup.string()
             .min(8,'A jelszó 8 betünél kisebb nem lehet !')
             .max(255,'Maxinum 255 karakter hosszú lehet.')
-            .required('Kötelező kitölteni !'),
+            .required('Kötelező kitölteni !')
+            .notOneOf([yup.ref('name')], 'A jelszó és felhazsnálónév nem lehet ugyan az !'),
     password_confirm:
         yup.string()
             .required('Kötelező kitölteni !')
