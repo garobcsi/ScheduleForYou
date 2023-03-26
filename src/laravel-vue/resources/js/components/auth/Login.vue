@@ -1,6 +1,11 @@
 <script setup>
 import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
+import {ref} from "vue";
+import {api} from "../../utils/api";
+
+const alert_success = ref(null);
+const alert_danger = ref(null);
 const schema = yup.object({
     email:
         yup.string()
@@ -10,13 +15,22 @@ const schema = yup.object({
         yup.string()
             .required('Kötelező kitölteni !'),
 })
-function onSubmit(values) {
-    console.log(values);
+async function onSubmit(values) {
+
+}
+function onChange() {
+    alert_success.value = null;
+    alert_danger.value = null;
 }
 </script>
-
 <template>
-    <VeeForm @submit="onSubmit" v-slot="{ values }" :validation-schema="schema">
+    <VeeForm @submit="onSubmit" @change="onChange" v-slot="{ values }" :validation-schema="schema">
+        <div v-if="alert_success !== null" class="alert alert-success mb-0" role="alert">
+            {{alert_success}}
+        </div>
+        <div v-if="alert_danger !== null" class="alert alert-danger mb-0" role="alert">
+            {{alert_danger}}
+        </div>
         <label for="email" class="mt-2">Email</label>
         <Field name="email" id="email" type="text" class="form-control mt-1" />
         <ErrorMessage name="email" as="div" class="alert alert-danger mt-2 mb-0" />
