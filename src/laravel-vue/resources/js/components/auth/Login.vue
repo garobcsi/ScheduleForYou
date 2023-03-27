@@ -2,8 +2,7 @@
 import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import {ref} from "vue";
-import {api} from "../../utils/api";
-
+import {useAuthStore} from "../../stores/AuthStore";
 const alert_success = ref(null);
 const alert_danger = ref(null);
 const schema = yup.object({
@@ -15,8 +14,8 @@ const schema = yup.object({
         yup.string()
             .required('Kötelező kitölteni !'),
 })
-async function onSubmit(values) {
-
+function onSubmit(values) {
+     useAuthStore().login(values);
 }
 function onChange() {
     alert_success.value = null;

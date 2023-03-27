@@ -1,10 +1,15 @@
 import axios from "axios";
+import {useAuthStore} from "../stores/AuthStore";
 const api = axios.create({
     baseURL: location.protocol+"//"+location.host+"/api",
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': "Bearer "+"TOKEN"
+        Authorization: {
+            toString () {
+                return useAuthStore().token !== null ? `Bearer ${useAuthStore().token}` : null;
+            }
+        }
     }
 });
 
