@@ -10,21 +10,22 @@ export const useAuthStore = defineStore('auth-store', {
     },
     actions: {
         async login(values) {
+            this.logout();
             let loginData = null;
             let loginError = null;
             await api.post('/login',values).then(x=>loginData =x.data).catch(x=>loginError= x.response.data);
             if (loginData !== null) {
                 this.token= loginData.data.token;
-                this.save();
-                // let userData = null;
-                // let userError = null;
-                // // await api.get('/user').then(x=>userData =x.data).catch(x=>userError= x.response.data);
-                // if (userData !== null) {
-                //     this.user = userData.data;
-                // }
-                // else {
-                //     this.error = userError;
-                // }
+                let userData = null;
+                let userError = null;
+                await api.get('/user').then(x=>userData =x.data).catch(x=>userError= x.response.data);
+                if (userData !== null) {
+                    this.user = userData.data;
+                    this.save();
+                }
+                else {
+                    this.error = userError;
+                }
             }
             else {
                 this.error = loginError;
@@ -37,7 +38,7 @@ export const useAuthStore = defineStore('auth-store', {
         },
         save() {
             localStorage.setItem('token',this.token);
-            localStorage.setItem('user',this.user);
+            localStorage.setItem('user',JSON.stringify(this.user));
         },
         delete() {
             localStorage.removeItem('token');
@@ -46,7 +47,7 @@ export const useAuthStore = defineStore('auth-store', {
     },
     getters: {
         isLogedIn() {
-            return this.token !== null;
+            return this.token !== null && this.user !== null;
         },
     },
 })
