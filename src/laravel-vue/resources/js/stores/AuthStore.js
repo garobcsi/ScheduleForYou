@@ -5,12 +5,11 @@ export const useAuthStore = defineStore('auth-store', {
         return {
             token: null,
             user:null,
-            error: null
+            errorMsg: null
         }
     },
     actions: {
         async login(values) {
-            this.logout();
             let loginData = null;
             let loginError = null;
             await api.post('/login',values).then(x=>loginData =x.data).catch(x=>loginError= x.response.data);
@@ -21,14 +20,15 @@ export const useAuthStore = defineStore('auth-store', {
                 await api.get('/user').then(x=>userData =x.data).catch(x=>userError= x.response.data);
                 if (userData !== null) {
                     this.user = userData.data;
+                    this.errorMsg = null;
                     this.save();
                 }
                 else {
-                    this.error = userError;
+                    this.errorMsg = userError;
                 }
             }
             else {
-                this.error = loginError;
+                this.errorMsg = loginError;
             }
         },
         logout() {
@@ -49,5 +49,8 @@ export const useAuthStore = defineStore('auth-store', {
         isLogedIn() {
             return this.token !== null && this.user !== null;
         },
+        gotErrors() {
+            return this.errorMsg !== null;
+        }
     },
 })

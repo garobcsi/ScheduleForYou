@@ -3,6 +3,7 @@ import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import {ref} from "vue";
 import {useAuthStore} from "../../stores/AuthStore";
+const authStore = useAuthStore();
 const alert_success = ref(null);
 const alert_danger = ref(null);
 const schema = yup.object({
@@ -14,8 +15,21 @@ const schema = yup.object({
         yup.string()
             .required('Kötelező kitölteni !'),
 })
-function onSubmit(values) {
-     useAuthStore().login(values);
+async function onSubmit(values) {
+     await authStore.login(values);
+     console.log(authStore.errorMsg);
+     if (authStore.isLogedIn && !authStore.gotErrors) {
+         alert_danger.value = null;
+         alert_success.value = "Sikeres bejelentkezés";
+     }
+     else if (authStore.errorMsg.message === "Login Unsuccessful.") {
+        alert_success.value = null;
+        alert_danger.value = "A felhasználónév vagy jelszó rossz !"
+     }
+     else {
+         alert_success.value = null;
+         alert_danger.value = "Váratlan hiba történt !"
+     }
 }
 function onChange() {
     alert_success.value = null;
