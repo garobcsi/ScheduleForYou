@@ -21,19 +21,21 @@ async function onSubmit(values) {
         alert_danger.value = "Már bevagy jelentkezve !";
         return;
     }
-     await authStore.login(values);
-     if (authStore.isLogedIn && !authStore.gotErrors) {
-         alert_danger.value = null;
-         alert_success.value = "Sikeres bejelentkezés";
-     }
-     else if (authStore.errorMsg.message === "Login Unsuccessful.") {
-        alert_success.value = null;
-        alert_danger.value = "A felhasználónév vagy jelszó rossz !"
-     }
-     else {
-         alert_success.value = null;
-         alert_danger.value = "Váratlan hiba történt !"
-     }
+    authStore.stayLogedIn = values.stayLogedIn === true;
+    delete values.stayLogedIn;
+    await authStore.login(values);
+    if (authStore.isLogedIn && !authStore.gotErrors) {
+     alert_danger.value = null;
+     alert_success.value = "Sikeres bejelentkezés";
+    }
+    else if (authStore.errorMsg.message === "Login Unsuccessful.") {
+    alert_success.value = null;
+    alert_danger.value = "A felhasználónév vagy jelszó rossz !"
+    }
+    else {
+     alert_success.value = null;
+     alert_danger.value = "Váratlan hiba történt !"
+    }
 }
 function onChange() {
     alert_success.value = null;
@@ -54,6 +56,12 @@ function onChange() {
         <label for="password" class="mt-2">Jelszó</label>
         <Field name="password" id="password" type="password" class="form-control mt-1" />
         <ErrorMessage name="password" as="div" class="alert alert-danger mt-2 mb-0" />
+        <div class="form-check mt-2">
+            <Field name="stayLogedIn" type="checkbox" :value="true" class="form-check-input"/>
+            <label class="form-check-label" for="stayLogedIn">
+                Bejelentkezve maradok.
+            </label>
+        </div>
         <button type="submit" class="btn btn-success mt-2">Bejelentkezés</button>
     </VeeForm>
 </template>

@@ -5,6 +5,7 @@ export const useAuthStore = defineStore('auth-store', {
         return {
             token: null,
             user:null,
+            stayLogedIn: false,
             errorMsg: null
         }
     },
@@ -34,15 +35,18 @@ export const useAuthStore = defineStore('auth-store', {
         logout() {
             this.token = null;
             this.user = null;
+            this.stayLogedIn = false;
             this.delete();
         },
         save() {
             localStorage.setItem('token',this.token);
             localStorage.setItem('user',JSON.stringify(this.user));
+            localStorage.setItem('stayLogedIn',this.stayLogedIn);
         },
         delete() {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
+            localStorage.removeItem('stayLogedIn');
         },
     },
     getters: {
