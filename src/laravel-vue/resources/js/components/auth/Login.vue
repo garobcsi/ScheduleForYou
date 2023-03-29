@@ -16,8 +16,12 @@ const schema = yup.object({
             .required('Kötelező kitölteni !'),
 })
 async function onSubmit(values) {
+    if (authStore.isLogedIn) {
+        alert_success.value = null;
+        alert_danger.value = "Már bevagy jelentkezve !";
+        return;
+    }
      await authStore.login(values);
-     console.log(authStore.errorMsg);
      if (authStore.isLogedIn && !authStore.gotErrors) {
          alert_danger.value = null;
          alert_success.value = "Sikeres bejelentkezés";
