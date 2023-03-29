@@ -1,6 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import {useAuthStore} from "../stores/AuthStore";
-
 const routes = [
     {
         path: '/',
@@ -21,7 +20,9 @@ const routes = [
         component: () => import('@/pages/RegisterPage.vue'),
         meta: {
             accessAfterLogin: false
-    }
+        }
+    },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('@/components/error/NotFound.vue') }, // 404 error not found
 ]
 
 export const router = createRouter({
