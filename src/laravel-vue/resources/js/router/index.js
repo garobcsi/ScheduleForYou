@@ -10,12 +10,17 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('@/pages/LoginPage.vue')
+        component: () => import('@/pages/LoginPage.vue'),
+        meta: {
+            accessAfterLogin: false
+        }
     },
     {
         path: '/register',
         name: 'register',
-        component: () => import('@/pages/RegisterPage.vue')
+        component: () => import('@/pages/RegisterPage.vue'),
+        meta: {
+            accessAfterLogin: false
     }
 ]
 
@@ -23,9 +28,9 @@ export const router = createRouter({
   history: createWebHashHistory(),
   routes
 });
-
 router.beforeEach((to, from, next)=>{
-    if ((to.name === "login" || to.name === "register") && useAuthStore().isLogedIn) {
+    const authStore= useAuthStore();
+    if ((to.meta.accessAfterLogin === false && authStore.isLogedIn) || (to.meta.accessAfterLogin === true && !authStore.isLogedIn)) {
         next({name: 'index'});
     }
     else {
