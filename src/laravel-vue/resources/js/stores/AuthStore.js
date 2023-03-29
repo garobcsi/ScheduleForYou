@@ -48,6 +48,11 @@ export const useAuthStore = defineStore('auth-store', {
             localStorage.removeItem('user');
             localStorage.removeItem('stayLogedIn');
         },
+        loadDataIn() {
+            this.token = localStorage.getItem('token');
+            this.user = JSON.parse(localStorage.getItem('user'));
+            this.stayLogedIn = JSON.parse(localStorage.getItem('stayLogedIn'));
+        }
     },
     getters: {
         isLogedIn() {
