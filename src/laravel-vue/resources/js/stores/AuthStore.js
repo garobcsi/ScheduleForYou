@@ -6,6 +6,7 @@ export const useAuthStore = defineStore('auth-store', {
             token: null,
             user:null,
             stayLogedIn: false,
+            //rewrite when Alert pinia done
             errorMsg: null
         }
     },
@@ -32,11 +33,35 @@ export const useAuthStore = defineStore('auth-store', {
                 this.errorMsg = loginError;
             }
         },
-        logout() {
+        logoutSession() {
             this.token = null;
             this.user = null;
             this.stayLogedIn = false;
             this.delete();
+        },
+        async logout() {
+            let logoutData = null;
+            let logoutError= null;
+            await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
+            this.logoutSession();
+            if (logoutData !== null) {
+                //success
+            }
+            else if (logoutError) {
+                //error
+            }
+        },
+        async logoutAll() {
+            let logoutAllData = null;
+            let logoutAllError= null;
+            await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
+            this.logoutSession();
+            if (logoutAllData !== null) {
+                //success
+            }
+            else if (logoutAllError !== null) {
+                //error
+            }
         },
         save() {
             localStorage.setItem('token',this.token);

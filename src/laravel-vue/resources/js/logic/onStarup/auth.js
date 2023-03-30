@@ -9,6 +9,6 @@ export function start() {
     }
     authStore.loadDataIn();
     if (!authStore.isLogedIn) {
-        authStore.logout();
+        authStore.logoutSession();
     }
 }
