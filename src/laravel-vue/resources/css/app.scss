@@ -1,2 +1,24 @@
 //$body-bg: #FFFFE0;
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+@media only screen and (min-width: 1800px) {
+    .basic-margo{
+        margin-left: 20%;
+        margin-right: 20%;
+        width: 60%;
+    }
+}
+@media only screen and (min-width: 1300px) and (max-width: 1800px) {
+    .basic-margo{
+        margin-left: 15%;
+        margin-right: 15%;
+        width: 70%;
+    }
+}
+@media only screen and (min-width: 900px) and (max-width: 1300px) {
+    .basic-margo{
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+}
