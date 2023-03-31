@@ -22,13 +22,10 @@ const authStore = useAuthStore();
 const alertStore = useAlertStore();
 function addAlertT() {
     alertStore.push("This is a msg !","warning");
-    console.log(alertStore.data);
 }
 function addAlertTT() {
     alertStore.push("TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT ","danger");
-    console.log(alertStore.data);
 }function addAlertTTT() {
     alertStore.push("Alert !","primary");
-    console.log(alertStore.data);
 }
 </script>

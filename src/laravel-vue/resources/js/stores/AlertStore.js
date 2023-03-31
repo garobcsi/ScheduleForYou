@@ -13,7 +13,6 @@ export const useAlertStore = defineStore('alert-store', {
         remove(index) {
             const findIndex = this.data.findIndex(x => x.id === index);
             this.data.splice(findIndex,1);
-            console.log(this.data);
         }
     },
     getters: {
