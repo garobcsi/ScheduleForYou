@@ -28,7 +28,7 @@ const cssCountDownTime = ref(countDownTime.value+"s");
             <slot></slot>
         </div>
         <button @click="dismiss" type="button" class="btn-close" aria-label="Close"></button>
-        <vue-countdown :time="countDownTime*1000" :emit-events="false" @end="dismiss">
+        <vue-countdown :time="countDownTime*1000" @end="dismiss">
             <div class="progress">
                 <div :class="'bg-'+this.color" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
