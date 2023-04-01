@@ -25,10 +25,12 @@ const routes = [
     {
         path: '/homepage',
         name: 'homepage',
-        component: () => import('@/pages/HomePage.vue'),
-        meta: {
-            accessAfterLogin: false
-        }
+        component: () => import('@/pages/HomePage.vue')
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: () => import('@/pages/TestPage.vue'),
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('@/components/error/NotFound.vue') }, // 404 error not found
 ]
