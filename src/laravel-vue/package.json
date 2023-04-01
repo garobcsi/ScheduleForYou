@@ -21,6 +21,7 @@
         "vitest": "^0.29.2"
     },
     "dependencies": {
+        "@chenfengyuan/vue-countdown": "^2.1.1",
         "@vee-validate/i18n": "4.8.3",
         "@vee-validate/rules": "4.8.3",
         "@vitejs/plugin-vue": "^4.0.0",
