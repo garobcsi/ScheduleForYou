@@ -2,6 +2,7 @@
     <div class="container basic-margo">
         <div class="row">
 
+        </div>
     </div>
 </template>
 
