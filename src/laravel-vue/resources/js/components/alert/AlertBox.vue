@@ -3,7 +3,8 @@
     col-12
     offset-sm-6 col-sm-6
     offset-md-8 col-md-4
-    offset-xl-9 col-xl-3 pb-3 pe-3 ps-sm-3"
+    offset-xl-9 col-xl-3
+    pb-3 pe-3 ps-3 ps-sm-0"
          id="AlertBox">
         <AlertPopup :color="item.color" v-for="(item, index) in alertStore.data" :key="item.id" :pkey="item.id">
             {{item.message}}
@@ -12,19 +13,9 @@
 </template>
 
 <script setup>
-import {watch} from "vue";
 import AlertPopup from "../bootstrap/AlertPopup.vue";
 import {useAlertStore} from "../../stores/AlertStore";
 const alertStore = useAlertStore();
-watch(alertStore.data,() =>{
-    const alert = document.getElementById('AlertBox');
-    setTimeout(function() {alert.scrollTo({
-        top: alert.scrollHeight,
-        left:0,
-        behavior: "smooth"
-    });}, 1);
-
-});
 </script>
 
 <style scoped>
