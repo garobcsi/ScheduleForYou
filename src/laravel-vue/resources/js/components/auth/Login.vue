@@ -3,8 +3,11 @@ import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import {ref} from "vue";
 import {useAuthStore} from "../../stores/AuthStore";
+import {useAlertStore} from "../../stores/AlertStore";
+import {router} from "../../router";
+
 const authStore = useAuthStore();
-const alert_success = ref(null);
+const alertStore = useAlertStore();
 const alert_danger = ref(null);
 const schema = yup.object({
     email:
@@ -17,7 +20,6 @@ const schema = yup.object({
 })
 async function onSubmit(values) {
     if (authStore.isLogedIn) {
-        alert_success.value = null;
         alert_danger.value = "Már bevagy jelentkezve !";
         return;
     }
@@ -25,28 +27,23 @@ async function onSubmit(values) {
     delete values.stayLogedIn;
     await authStore.login(values);
     if (authStore.isLogedIn && !authStore.gotErrors) {
-     alert_danger.value = null;
-     alert_success.value = "Sikeres bejelentkezés";
+        alert_danger.value = null;
+        router.push({name: 'index'});
+        alertStore.push('Sikeres bejelentkezés !','success');
     }
     else if (authStore.errorMsg.message === "Login Unsuccessful.") {
-    alert_success.value = null;
-    alert_danger.value = "A felhasználónév vagy jelszó rossz !"
+        alert_danger.value = "A felhasználónév vagy jelszó rossz !"
     }
     else {
-     alert_success.value = null;
-     alert_danger.value = "Váratlan hiba történt !"
+        alertStore.push('Váratlan hiba történt !','danger');
     }
 }
 function onChange() {
-    alert_success.value = null;
     alert_danger.value = null;
 }
 </script>
 <template>
     <VeeForm @submit="onSubmit" @change="onChange" v-slot="{ values }" :validation-schema="schema">
-        <div v-if="alert_success !== null" class="alert alert-success mb-0" role="alert">
-            {{alert_success}}
-        </div>
         <div v-if="alert_danger !== null" class="alert alert-danger mb-0" role="alert">
             {{alert_danger}}
         </div>

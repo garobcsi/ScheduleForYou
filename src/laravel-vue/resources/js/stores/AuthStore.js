@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import {api} from "../utils/api";
+import {useAlertStore} from "./AlertStore";
 export const useAuthStore = defineStore('auth-store', {
     state() {
         return {
             token: null,
             user:null,
             stayLogedIn: false,
-            //rewrite when Alert pinia done
             errorMsg: null
         }
     },
@@ -45,10 +45,10 @@ export const useAuthStore = defineStore('auth-store', {
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
             this.logoutSession();
             if (logoutData !== null) {
-                //success
+                useAlertStore().push('Sikeres kijelentkezés !','success');
             }
-            else if (logoutError) {
-                //error
+            else if (logoutError !== null) {
+                useAlertStore().push('Váratlan hiba történt !','danger');
             }
         },
         async logoutAll() {
@@ -57,10 +57,10 @@ export const useAuthStore = defineStore('auth-store', {
             await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
             this.logoutSession();
             if (logoutAllData !== null) {
-                //success
+                useAlertStore().push('Sikeres kijelentkezés összes fiókból !','success');
             }
             else if (logoutAllError !== null) {
-                //error
+                useAlertStore().push('Váratlan hiba történt !','danger');
             }
         },
         save() {

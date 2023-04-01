@@ -3,8 +3,10 @@ import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import {api} from "../../utils/api";
 import {ref} from "vue";
+import {router} from "../../router";
+import {useAlertStore} from "../../stores/AlertStore";
 
-const alert_success = ref(null);
+const alertStore = useAlertStore();
 const alert_danger = ref(null);
 const schema = yup.object({
     name:
@@ -36,43 +38,29 @@ async function onSubmit(values) {
     showAlert(data,error);
 }
 function onChange() {
-    alert_success.value = null;
     alert_danger.value = null;
 }
 function showAlert(data,error) {
     if (data !== null) {
         if (data.message === "Registration Success.") {
-            alertSuccessRegisterOnIndex();
+            alert_danger.value = null;
+            router.push({name: 'index'});
+            alertStore.push('Sikeres regisztráció !','success');
         }
     }
     if (error !== null) {
         if (error.message === "The email has already been taken.") {
-            alertDangerTaken();
+            alert_danger.value = "Ez az email már foglalva van !";
         }
         else {
-            alertDangerUnexpected();
+            alertStore.push('Váratlan hiba történt !','danger');
         }
     }
-}
-function alertSuccessRegisterOnIndex () {
-    alert_danger.value = null;
-    alert_success.value = 'Sikeres regisztráció !';
-}
-function alertDangerTaken() {
-    alert_success.value = null;
-    alert_danger.value = "Ez az email már foglalva van !";
-}
-function alertDangerUnexpected() {
-    alert_success.value = null;
-    alert_danger.value = "Váratlan hiba történt";
 }
 </script>
 
 <template>
     <VeeForm @submit="onSubmit" v-slot="{ values }" :validation-schema="schema" @change="onChange">
-        <div v-if="alert_success !== null" class="alert alert-success mb-0" role="alert">
-            {{alert_success}}
-        </div>
         <div v-if="alert_danger !== null" class="alert alert-danger mb-0" role="alert">
             {{alert_danger}}
         </div>
