@@ -6,9 +6,25 @@ export default {
         color: String,
         pkey: Number,
     },
+    data() {
+      return {
+          cssTimeBarVisibility: null,
+          isComponentHover: true
+      }
+    },
     methods: {
         dismiss() {
             useAlertStore().remove(this.pkey);
+        },
+        play() {
+            this.isComponentHover = true;
+            this.cssTimeBarVisibility = null;
+            this.$refs.countdown.restart();
+        },
+        pause() {
+            this.isComponentHover = false;
+            this.cssTimeBarVisibility = 0;
+            this.$refs.countdown.pause();
         }
     },
     components: {
@@ -23,14 +39,14 @@ const cssCountDownTime = ref(countDownTime.value+"s");
 </script>
 
 <template>
-    <div :class="'alert-'+this.color" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert">
+    <div :class="'alert-'+this.color" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert" @mouseover="pause" @mouseleave="play">
         <div class="m-3 me-5">
             <slot></slot>
         </div>
         <button @click="dismiss" type="button" class="btn-close" aria-label="Close"></button>
-        <vue-countdown :time="countDownTime*1000" @end="dismiss">
+        <vue-countdown ref="countdown" :time="countDownTime*1000" @end="dismiss">
             <div class="progress">
-                <div :class="'bg-'+this.color" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                <div :class="{[`bg-${color}`]:true,'animation':isComponentHover}"  class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </vue-countdown>
     </div>
@@ -42,8 +58,9 @@ const cssCountDownTime = ref(countDownTime.value+"s");
     }
     .progress {
         height: 8px;
+        opacity: v-bind(cssTimeBarVisibility);
     }
-    .progress-bar {
+    .animation {
         animation-name: bar;
         animation-duration: v-bind(cssCountDownTime);
         animation-timing-function: linear;
