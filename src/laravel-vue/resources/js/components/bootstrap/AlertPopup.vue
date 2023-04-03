@@ -18,7 +18,7 @@ export default {
 </script>
 <script setup>
 import {ref} from "vue";
-const countDownTime = ref(10); //set the time
+const countDownTime = ref(5); //set the time
 const cssCountDownTime = ref(countDownTime.value+"s");
 </script>
 
