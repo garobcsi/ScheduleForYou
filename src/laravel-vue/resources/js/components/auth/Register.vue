@@ -5,6 +5,8 @@ import {api} from "../../utils/api";
 import {ref} from "vue";
 import {router} from "../../router";
 import {useAlertStore} from "../../stores/AlertStore";
+import { IonIcon } from '@ionic/vue';
+import { eyeOutline,eyeOffOutline } from 'ionicons/icons';
 
 const alertStore = useAlertStore();
 const alert_danger = ref(null);
@@ -58,6 +60,32 @@ function showAlert(data,error) {
     }
 }
 </script>
+<script>
+export default {
+    data() {
+        return {
+            passwordVisibility: "password",
+            passwordConfirmVisibility: "password",
+        }
+    },
+    methods: {
+        changePasswordVisibility() {
+            this.passwordVisibility = this.passwordVisibility === "password" ? 'text':'password'
+        },
+        changePasswordConfirmVisibility() {
+            this.passwordConfirmVisibility = this.passwordConfirmVisibility === "password" ? 'text':'password'
+        },
+    },
+    computed: {
+        isPasswordVisible() {
+            return this.passwordVisibility === 'text';
+        },
+        isPasswordConfirmVisible() {
+            return this.passwordConfirmVisibility === 'text';
+        }
+    }
+}
+</script>
 
 <template>
     <VeeForm @submit="onSubmit" v-slot="{ values }" :validation-schema="schema" @change="onChange">
@@ -71,11 +99,28 @@ function showAlert(data,error) {
         <Field name="email" id="email" type="text" class="form-control mt-1" />
         <ErrorMessage name="email" as="div" class="alert alert-danger mt-2 mb-0" />
         <label for="password" class="mt-2">Jelszó</label>
-        <Field name="password" id="password" type="password" class="form-control mt-1" />
+        <div class="input-group">
+            <Field name="password" id="password" :type="passwordVisibility" class="form-control mt-1" />
+            <button type="button" class="btn mt-1 btn-outline-secondary d-flex align-items-center" :class="{'btn-secondary':isPasswordVisible,'IonIcon':isPasswordVisible,'IonIconSize':true}" @click="changePasswordVisibility"><IonIcon :icon="isPasswordVisible ? eyeOffOutline:eyeOutline"></IonIcon></button>
+        </div>
         <ErrorMessage name="password" as="div" class="alert alert-danger mt-2 mb-0" />
         <label for="password_confirm" class="mt-2">Jelszó Megerősítés</label>
-        <Field name="password_confirm" id="password_confirm" type="password" class="form-control mt-1" />
+        <div class="input-group">
+            <Field name="password_confirm" id="password_confirm" :type="passwordConfirmVisibility" class="form-control mt-1" />
+            <button type="button" class="btn mt-1 btn-outline-secondary d-flex align-items-center" :class="{'btn-secondary':isPasswordConfirmVisible,'IonIcon':isPasswordConfirmVisible,'IonIconSize':true}" @click="changePasswordConfirmVisibility"><IonIcon :icon="isPasswordConfirmVisible ? eyeOffOutline:eyeOutline"></IonIcon></button>
+        </div>
         <ErrorMessage name="password_confirm" as="div" class="alert alert-danger mt-2 mb-0" />
         <button type="submit" class="btn btn-success mt-2">Regisztráció</button>
     </VeeForm>
 </template>
+
+
+<style scoped>
+.IonIcon {
+    color:white;
+}
+.IonIconSize {
+    font-size: 22px;
+
+}
+</style>

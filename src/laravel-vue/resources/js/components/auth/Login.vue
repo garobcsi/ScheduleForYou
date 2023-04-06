@@ -6,6 +6,11 @@ import {useAuthStore} from "../../stores/AuthStore";
 import {useAlertStore} from "../../stores/AlertStore";
 import {router} from "../../router";
 
+
+
+import { IonIcon } from '@ionic/vue';
+import { eyeOutline,eyeOffOutline } from 'ionicons/icons';
+
 const authStore = useAuthStore();
 const alertStore = useAlertStore();
 const alert_danger = ref(null);
@@ -42,6 +47,25 @@ function onChange() {
     alert_danger.value = null;
 }
 </script>
+<script>
+export default {
+    data() {
+        return {
+            passwordVisibility: "password"
+        }
+    },
+    methods: {
+        changePasswordVisibility() {
+            this.passwordVisibility = this.passwordVisibility === "password" ? 'text':'password'
+        }
+    },
+    computed: {
+        isPasswordVisible() {
+            return this.passwordVisibility === 'text';
+        }
+    }
+}
+</script>
 <template>
     <VeeForm @submit="onSubmit" @change="onChange" v-slot="{ values }" :validation-schema="schema">
         <div v-if="alert_danger !== null" class="alert alert-danger mb-0" role="alert">
@@ -51,7 +75,10 @@ function onChange() {
         <Field name="email" id="email" type="text" class="form-control mt-1" />
         <ErrorMessage name="email" as="div" class="alert alert-danger mt-2 mb-0" />
         <label for="password" class="mt-2">Jelszó</label>
-        <Field name="password" id="password" type="password" class="form-control mt-1" />
+        <div class="input-group">
+            <Field name="password" id="password" :type="passwordVisibility" class="form-control mt-1" />
+            <button type="button" class="btn mt-1 btn-outline-secondary d-flex align-items-center" :class="{'btn-secondary':isPasswordVisible,'IonIcon':isPasswordVisible,'IonIconSize':true}" @click="changePasswordVisibility"><IonIcon :icon="isPasswordVisible ? eyeOffOutline:eyeOutline"></IonIcon></button>
+        </div>
         <ErrorMessage name="password" as="div" class="alert alert-danger mt-2 mb-0" />
         <div class="form-check mt-2">
             <Field name="stayLogedIn" type="checkbox" :value="true" class="form-check-input"/>
@@ -62,3 +89,13 @@ function onChange() {
         <button type="submit" class="btn btn-success mt-2">Bejelentkezés</button>
     </VeeForm>
 </template>
+
+<style scoped>
+.IonIcon {
+    color:white;
+}
+.IonIconSize {
+    font-size: 22px;
+
+}
+</style>
