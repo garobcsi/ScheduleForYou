@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_routine_groups', function (Blueprint $table) {
+        Schema::create('user_time_groups', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('name',100);
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_routine_groups');
+        Schema::dropIfExists('user_time_groups');
     }
 };
