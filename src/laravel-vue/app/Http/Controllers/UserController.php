@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function KeepTokenAlive(Request $request) {
         $this->SetTokenExpiresAt($request->bearerToken());
-        return response()->json(["message" => "Token Kept Alive"],200);
+        return response()->json(["message" => "Token Kept Alive."],200);
     }
 
     /**
