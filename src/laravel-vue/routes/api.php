@@ -20,13 +20,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user());
 });
 
-Route::post('/register',[UserController::class,'Register'])->name('user.Register');
-Route::post('/login',[UserController::class,'Login'])->name('user.Login');
+Route::name('user.')->group(function () {
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/login/valid',[UserController::class,'IsLoginValid'])->name('user.login.valid');
-    Route::get('/login/alive',[UserController::class, 'KeepTokenAlive'])->name('user.login.alive');
-    Route::get('/logout',[UserController::class,'Logout'])->name('user.logout');
-    Route::get('/logout/all',[UserController::class,'LogoutAll'])->name('user.logout.all');
+    Route::post('/register',[UserController::class,'Register'])->name('register');
+
+    Route::prefix('login')->name('login')->group(function () {
+        Route::post('',[UserController::class,'Login']);
+        Route::middleware(['auth:sanctum'])->group(function () {
+            Route::get('/valid',[UserController::class,'IsLoginValid'])->name('.valid');
+            Route::get('/alive',[UserController::class, 'KeepTokenAlive'])->name('.alive');
+        });
+    });
+    Route::prefix('logout')->name('logout')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('',[UserController::class,'Logout']);
+        Route::get('/all',[UserController::class,'LogoutAll'])->name('.all');
+    });
 });
 
