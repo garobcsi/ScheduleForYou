@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('company_unique_close_hours', function (Blueprint $table) {
+        Schema::create('company_special_open_hours', function (Blueprint $table) {
             $table->id();
             $table->foreignId('companies_id')->constrained();
             $table->date('start');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_unique_close_hours');
+        Schema::dropIfExists('company_special_open_hours');
     }
 };
