@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -37,3 +38,10 @@ Route::name('user.')->group(function () {
     });
 });
 
+Route::prefix('company')->name('company.')->middleware(['auth:sanctum'])->group(function () {
+    Route::get('',[CompanyController::class,'index'])->name('index');
+    Route::post('',[CompanyController::class,'post'])->name('post');
+    Route::get('/{company}',[CompanyController::class,'show'])->whereNumber('company')->name('show');
+    Route::post('/{company}',[CompanyController::class,'update'])->whereNumber('company')->name('update');
+    Route::delete('/{company}',[CompanyController::class,'destroy'])->whereNumber('company')->name('destroy');
+});
