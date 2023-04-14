@@ -24,7 +24,11 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','min:1','max:100'],
+            'introduce' => ['nullable','min:1'],
+            'email' =>['nullable','max:200'],
+            'tel' => ['nullable','max:20'],
+            'address' => ['nullable','min:1']
         ];
     }
 }

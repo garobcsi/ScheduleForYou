@@ -9,4 +9,11 @@ class Company extends Model
 {
     protected $table = "companies";
     public $timestamps = true;
+    protected $fillable = ["name","introduce","email","tel","address"];
+
+    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'company_permissions');
+    }
+
 }
