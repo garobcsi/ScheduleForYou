@@ -179,13 +179,21 @@ class UserTest extends TestCase
         $response->assertStatus(200);
 
         // Assert that both tokens were deleted from the database
+        $explode1 = explode('|',$token1);
+        $thisToken1 = count($explode1) == 2 ? $explode1[1] : $token1;
+        $tokenHash1 = \hash('sha256',$thisToken1);
+
+        $explode2 = explode('|',$token2);
+        $thisToken2 = count($explode2) == 2 ? $explode2[1] : $token2;
+        $tokenHash2 = \hash('sha256',$thisToken2);
+
         $this->assertDatabaseMissing('personal_access_tokens', [
             'tokenable_id' => $user->id,
-            'token' => $token1,
+            'token' => $tokenHash1,
         ]);
         $this->assertDatabaseMissing('personal_access_tokens', [
             'tokenable_id' => $user->id,
-            'token' => $token2,
+            'token' => $tokenHash2,
         ]);
     }
 }
