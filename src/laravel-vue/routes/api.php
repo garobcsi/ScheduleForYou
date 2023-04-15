@@ -17,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
-});
-
 Route::name('user.')->group(function () {
+
+    Route::prefix('user')->group(function () {
+        Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
+        Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
+
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::get('',[UserController::class,'getMyUser'])->name('my');
+        });
+    });
 
     Route::post('/register',[UserController::class,'Register'])->name('register');
 

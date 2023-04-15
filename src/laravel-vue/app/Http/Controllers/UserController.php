@@ -2,20 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\PublicUserResource;
+use App\Http\Resources\UserResource;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use function PHPUnit\Framework\containsOnly;
 
 class UserController extends Controller
 {
+    /**
+     * Get users account
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getMyUser(Request $request): JsonResponse
+    {
+        return response()->json(new UserResource($request->user()),200);
+    }
+
+    /**
+     * Get user if exists
+     *
+     * @param FindUserRequest $request
+     * @return JsonResponse
+     */
+    public function getUserByEmail(FindUserRequest $request): JsonResponse
+    {
+        $data = User::all()->where('email',$request->email);
+        if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+
+        return response()->json(PublicUserResource::collection($data),200);
+    }
+
+    /**
+     * Check if user exists
+     *
+     * @param FindUserRequest $request
+     * @return JsonResponse
+     */
+    public function doesUserExist(FindUserRequest $request): JsonResponse
+    {
+        $data = User::all()->where('email',$request->email);
+        if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+
+        return response()->json(['message'=>'User exists.'],200);
+    }
+
     /**
      * Register an account
      *
