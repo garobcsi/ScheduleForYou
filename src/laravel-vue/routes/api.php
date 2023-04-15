@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::name('user.')->group(function () {
 
     Route::prefix('user')->group(function () {
-        Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
-        Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
-
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('',[UserController::class,'getMyUser'])->name('my');
         });
+        Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
+        Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
+
     });
 
     Route::post('/register',[UserController::class,'Register'])->name('register');
@@ -49,8 +49,15 @@ Route::prefix('company')->name('company.')->group(function () {
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/my',[CompanyController::class,'my'])->name('my');
+
         Route::post('',[CompanyController::class,'store'])->name('post');
         Route::post('/{company}',[CompanyController::class,'update'])->whereNumber('company')->name('update');
         Route::delete('/{company}',[CompanyController::class,'destroy'])->whereNumber('company')->name('destroy');
+
+        Route::prefix('contributor')->name('contributor')->group(function () {
+            Route::post('/{company}',[CompanyController::class,'addContributor'])->name('.set');
+            Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->name('.update');
+            Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->name('.leave');
+        });
     });
 });
