@@ -13,7 +13,7 @@ class Company extends Model
 
     public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class,'company_permissions');
+        return $this->belongsToMany(User::class,'company_permissions')->withPivot('permission');
     }
 
 }
