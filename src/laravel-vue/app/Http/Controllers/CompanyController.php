@@ -72,7 +72,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        // update it when other things should be destroyed too
+
     }
 
     /**
@@ -119,7 +120,6 @@ class CompanyController extends Controller
         $enum = CompanyPermissionEnum::tryFrom($request->permission);
         $company->permissions()->attach($id,['permission'=>$enum->value]);
         return response()->json(['message'=>"User added as ".$enum->name."."],201);
-
     }
 
     /**
@@ -129,7 +129,8 @@ class CompanyController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateContributorPerms(ContributorCompanyRequest $request, Company $company) {
+    public function updateContributorPerms(ContributorCompanyRequest $request, Company $company): JsonResponse
+    {
         $user = User::all()->where('email',$request->email);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
@@ -142,7 +143,6 @@ class CompanyController extends Controller
         ]);
         return response()->json(['message'=>"User permission changed to ".$enum->name."."],200);
     }
-
 
     /**
      * User leaves Being as a Contributor
