@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CompanyPermissionEnum;
-use App\Http\Requests\AddContributorCompanyRequest;
+use App\Http\Requests\ContributorCompanyRequest;
 use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
@@ -106,11 +106,11 @@ class CompanyController extends Controller
     /**
      * The creator of the Table can add Users to the Table
      *
-     * @param AddContributorCompanyRequest $request
+     * @param ContributorCompanyRequest $request
      * @param Company $company
      * @return JsonResponse
      */
-    public function addContributor(AddContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
+    public function addContributor(ContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
     {
         $data = User::all()->where('email',$request->email);
         if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
@@ -125,11 +125,22 @@ class CompanyController extends Controller
     /**
      * Update the existing Contributor Users
      *
-     * @param  \App\Models\Company  $company
+     * @param ContributorCompanyRequest $request
+     * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateContributorPerms() {
-
+    public function updateContributorPerms(ContributorCompanyRequest $request, Company $company) {
+        $user = User::all()->where('email',$request->email);
+        if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+        $id = $user->first()->id;
+        $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
+        if ($permUser->count() === 0) return response()->json(['message'=>"User is not already a contributor."],403);
+        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user cannot change its own permission."],403);
+        $enum = CompanyPermissionEnum::tryFrom($request->permission);
+        $company->permissions()->updateExistingPivot($id, [
+            'permission' => $enum->value,
+        ]);
+        return response()->json(['message'=>"User permission changed to ".$enum->name."."],200);
     }
 
 
