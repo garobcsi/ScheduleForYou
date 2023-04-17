@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+/// Admin
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::post('/register',[UserAdminController::class,'Register'])->name('register');
+
+});
+///
 
 Route::name('user.')->group(function () {
 
