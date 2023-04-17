@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\CompanyPermissionEnum;
 use App\Http\Requests\ContributorCompanyRequest;
 use App\Http\Requests\FindUserRequest;
-use App\Http\Requests\StoreCompanyRequest;
+use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Resources\AllContributorsCompanyResource;
 use App\Http\Resources\MyCompanyResource;
@@ -41,10 +41,10 @@ class CompanyController extends Controller
     /**
      * Create new Company Table
      *
-     * @param  \App\Http\Requests\StoreCompanyRequest  $request
+     * @param  \App\Http\Requests\CompanyRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreCompanyRequest $request): \Illuminate\Http\JsonResponse
+    public function store(CompanyRequest $request): \Illuminate\Http\JsonResponse
     {
         $data = $request->validated();
         $created = Company::create($data);
@@ -55,11 +55,11 @@ class CompanyController extends Controller
     /**
      * Change existing Company Table
      *
-     * @param  \App\Http\Requests\UpdateCompanyRequest  $request
+     * @param  \App\Http\Requests\CompanyRequest  $request
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
 
     }
