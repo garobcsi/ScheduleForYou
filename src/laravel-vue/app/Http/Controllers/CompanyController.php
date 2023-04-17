@@ -61,7 +61,7 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+
     }
 
     /**
@@ -113,6 +113,7 @@ class CompanyController extends Controller
      */
     public function addContributor(ContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
     {
+        $request->validated();
         $data = User::all()->where('email',$request->email);
         if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $data->first()->id;
@@ -131,6 +132,7 @@ class CompanyController extends Controller
      */
     public function updateContributorPerms(ContributorCompanyRequest $request, Company $company): JsonResponse
     {
+        $request->validated();
         $user = User::all()->where('email',$request->email);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
