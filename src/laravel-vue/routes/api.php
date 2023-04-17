@@ -55,11 +55,11 @@ Route::prefix('company')->name('company.')->group(function () {
         Route::delete('/{company}',[CompanyController::class,'destroy'])->whereNumber('company')->name('destroy');
 
         Route::prefix('contributor')->name('contributor')->group(function () {
-            Route::get('/{company}',[CompanyController::class,'getAllContributors'])->name('.getAll');
-            Route::post('/{company}',[CompanyController::class,'addContributor'])->name('.set');
-            Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->name('.update');
-            Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->name('.leave');
-            Route::post('/kick/{company}',[CompanyController::class,'kickContributor'])->name('.kick');
+            Route::get('/{company}',[CompanyController::class,'getAllContributors'])->whereNumber('company')->name('.getAll');
+            Route::post('/{company}',[CompanyController::class,'addContributor'])->whereNumber('company')->name('.set');
+            Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->whereNumber('company')->name('.update');
+            Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->whereNumber('company')->name('.leave');
+            Route::post('/kick/{company}',[CompanyController::class,'kickContributor'])->whereNumber('company')->name('.kick');
         });
     });
 });
