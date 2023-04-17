@@ -136,7 +136,7 @@ class CompanyController extends Controller
         $id = $user->first()->id;
         $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
         if ($permUser->count() === 0) return response()->json(['message'=>"User is not already a contributor."],403);
-        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user cannot change its own permission."],403);
+        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user permission cannot be changed."],403);
         $enum = CompanyPermissionEnum::tryFrom($request->permission);
         $company->permissions()->updateExistingPivot($id, [
             'permission' => $enum->value,
