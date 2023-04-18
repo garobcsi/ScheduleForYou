@@ -128,7 +128,7 @@ class CompanyController extends Controller
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
         $pivot = $company->permissions()->where('company_id',$company->id);
-        if ($pivot->where('user_id',$id)->count() !==0) return response()->json(['message'=>"User is already a contributor."],403);
+        if ($pivot->where('user_id',$id)->count() !==0) return response()->json(['message'=>"User is already a contributor !"],403);
         $pivot->detach([$id]);
         $enum = CompanyPermissionEnum::tryFrom($data["permission"]);
         $company->permissions()->attach($id,['permission'=>$enum->value]);
@@ -149,8 +149,8 @@ class CompanyController extends Controller
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
         $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
-        if ($permUser->count() === 0) return response()->json(['message'=>"User is not already a contributor."],403);
-        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user permission cannot be changed."],403);
+        if ($permUser->count() === 0) return response()->json(['message'=>"User is not already a contributor !"],403);
+        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user permission cannot be changed !"],403);
         $enum = CompanyPermissionEnum::tryFrom($data["permission"]);
         $company->permissions()->updateExistingPivot($id, [
             'permission' => $enum->value,
@@ -165,7 +165,13 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function leaveContributor(Company $company) {
-        // the owner cant leave
+        $id = auth('sanctum')->user()->id;
+        if ($company->permissions()->where('company_id',$company->id)->where('user_id',$id)->count() === 0) return response()->json(['message'=>"You are not a contributor !"],403);
+        $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
+        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user can't leave !"],403);
+        $pivot = $company->permissions()->where('company_id',$company->id);
+        $pivot->detach([$id]);
+        return response()->json(['message'=>'Leave successful.'],200);
     }
 
     /**
@@ -174,7 +180,16 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function kickContributor(Company $company) {
-
+    public function kickContributor(FindUserRequest $request,Company $company) {
+        $data = $request->validated();
+        $user = User::all()->where('email',$data["email"]);
+        $id = $user->first()->id;
+        if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+        if ($company->permissions()->where('company_id',$company->id)->where('user_id',$id)->count() === 0) return response()->json(['message'=>"User is not a contributor !"],403);
+        $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
+        if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user can't leave !"],403);
+        $pivot = $company->permissions()->where('company_id',$company->id);
+        $pivot->detach([$id]);
+        return response()->json(['message'=>'User removed successfully.'],200);
     }
 }
