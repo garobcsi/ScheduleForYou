@@ -57,11 +57,20 @@ class CompanyController extends Controller
      *
      * @param  \App\Http\Requests\CompanyRequest  $request
      * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function update(CompanyRequest $request, Company $company)
+    public function update(CompanyRequest $request, Company $company): JsonResponse
     {
-
+        $data = $request->validated();
+        $company->name = $data["name"];
+        $company->introduce = $data["introduce"];
+        $company->email = $data["email"];
+        $company->tel = $data["tel"];
+        $company->address = $data["address"];
+        $company->save();
+        return response()->json([
+            "data" => ["message" => "Data updated successfully."]
+        ],201);
     }
 
     /**
