@@ -82,7 +82,8 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         // update it when other things should be destroyed too
-
+        $company->permissions()->where("company_id",$company->id)->detach();
+        $company->delete($company->id);
     }
 
     /**
@@ -126,7 +127,9 @@ class CompanyController extends Controller
         $data = User::all()->where('email',$request->email);
         if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $data->first()->id;
-        if ($company->permissions()->where('user_id',$id)->where('company_id',$company->id)->count() !==0) return response()->json(['message'=>"User is already a contributor."],403);
+        $pivot = $company->permissions()->where('company_id',$company->id);
+        if ($pivot->where('user_id',$id)->count() !==0) return response()->json(['message'=>"User is already a contributor."],403);
+        $pivot->detach([$id]);
         $enum = CompanyPermissionEnum::tryFrom($request->permission);
         $company->permissions()->attach($id,['permission'=>$enum->value]);
         return response()->json(['message'=>"User added as ".$enum->name."."],201);
@@ -171,7 +174,7 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function kickContributor() {
+    public function kickContributor(Company $company) {
 
     }
 }
