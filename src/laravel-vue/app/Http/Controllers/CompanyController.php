@@ -124,13 +124,13 @@ class CompanyController extends Controller
     public function addContributor(ContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
     {
         $data = $request->validated();
-        $user = User::all()->where('email',$data->email);
+        $user = User::all()->where('email',$data["email"]);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
         $pivot = $company->permissions()->where('company_id',$company->id);
         if ($pivot->where('user_id',$id)->count() !==0) return response()->json(['message'=>"User is already a contributor."],403);
         $pivot->detach([$id]);
-        $enum = CompanyPermissionEnum::tryFrom($data->permission);
+        $enum = CompanyPermissionEnum::tryFrom($data["permission"]);
         $company->permissions()->attach($id,['permission'=>$enum->value]);
         return response()->json(['message'=>"User added as ".$enum->name."."],201);
     }
@@ -145,13 +145,13 @@ class CompanyController extends Controller
     public function updateContributorPerms(ContributorCompanyRequest $request, Company $company): JsonResponse
     {
         $data = $request->validated();
-        $user = User::all()->where('email',$data->email);
+        $user = User::all()->where('email',$data["email"]);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
         $id = $user->first()->id;
         $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
         if ($permUser->count() === 0) return response()->json(['message'=>"User is not already a contributor."],403);
         if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user permission cannot be changed."],403);
-        $enum = CompanyPermissionEnum::tryFrom($data->permission);
+        $enum = CompanyPermissionEnum::tryFrom($data["permission"]);
         $company->permissions()->updateExistingPivot($id, [
             'permission' => $enum->value,
         ]);
