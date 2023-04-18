@@ -33,6 +33,11 @@ const routes = [
         component: () => import('@/pages/TestPage.vue'),
     },
     {
+        path: '/naptar',
+        name: 'naptar',
+        component: () => import('@/pages/CalendarPage.vue'),
+    },
+    {
         path: '/frontend_test',
         name: 'frontend_test',
         component: () => import('@/pages/FrontendTestPage.vue')
