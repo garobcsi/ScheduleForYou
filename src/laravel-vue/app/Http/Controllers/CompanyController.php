@@ -6,11 +6,9 @@ use App\Enums\CompanyPermissionEnum;
 use App\Http\Requests\ContributorCompanyRequest;
 use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\CompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Resources\AllContributorsCompanyResource;
 use App\Http\Resources\MyCompanyResource;
 use App\Http\Resources\PublicCompanyResource;
-use App\Http\Resources\PublicUserResource;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -164,7 +162,8 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function leaveContributor(Company $company) {
+    public function leaveContributor(Company $company): JsonResponse
+    {
         $id = auth('sanctum')->user()->id;
         if ($company->permissions()->where('company_id',$company->id)->where('user_id',$id)->count() === 0) return response()->json(['message'=>"You are not a contributor !"],403);
         $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
@@ -174,13 +173,16 @@ class CompanyController extends Controller
         return response()->json(['message'=>'Leave successful.'],200);
     }
 
+
     /**
      * Kick user front being as a Contributor
      *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\JsonResponse
+     * @param FindUserRequest $request
+     * @param Company $company
+     * @return JsonResponse
      */
-    public function kickContributor(FindUserRequest $request,Company $company) {
+    public function kickContributor(FindUserRequest $request, Company $company): JsonResponse
+    {
         $data = $request->validated();
         $user = User::all()->where('email',$data["email"]);
         $id = $user->first()->id;
