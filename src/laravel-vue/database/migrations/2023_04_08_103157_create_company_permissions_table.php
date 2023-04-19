@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('company_permissions', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('companies_id')->constrained();
+            $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('permission',50);
         });
     }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\CompanyPermissionEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateCompanyRequest extends FormRequest
+class ContributorCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +26,8 @@ class UpdateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "email" => ['required','email'],
+            "permission" => ['required',Rule::in(array_diff(array_column(CompanyPermissionEnum::cases(), 'value'),array('owner')))]
         ];
     }
 }

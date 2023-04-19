@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\UserResource;
@@ -16,12 +17,23 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+/// Admin
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::post('/register',[UserAdminController::class,'Register'])->name('register');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
 });
+///
 
 Route::name('user.')->group(function () {
+
+    Route::prefix('user')->group(function () {
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::get('',[UserController::class,'getMyUser'])->name('my');
+        });
+        Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
+        Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
+
+    });
 
     Route::post('/register',[UserController::class,'Register'])->name('register');
 
@@ -38,10 +50,23 @@ Route::name('user.')->group(function () {
     });
 });
 
-Route::prefix('company')->name('company.')->middleware(['auth:sanctum'])->group(function () {
+Route::prefix('company')->name('company.')->group(function () {
     Route::get('',[CompanyController::class,'index'])->name('index');
-    Route::post('',[CompanyController::class,'post'])->name('post');
     Route::get('/{company}',[CompanyController::class,'show'])->whereNumber('company')->name('show');
-    Route::post('/{company}',[CompanyController::class,'update'])->whereNumber('company')->name('update');
-    Route::delete('/{company}',[CompanyController::class,'destroy'])->whereNumber('company')->name('destroy');
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('/my',[CompanyController::class,'my'])->name('my');
+
+        Route::post('',[CompanyController::class,'store'])->name('post');
+        Route::post('/{company}',[CompanyController::class,'update'])->whereNumber('company')->name('update');
+        Route::delete('/{company}',[CompanyController::class,'destroy'])->whereNumber('company')->name('destroy');
+
+        Route::prefix('contributor')->name('contributor')->group(function () {
+            Route::get('/{company}',[CompanyController::class,'getAllContributors'])->whereNumber('company')->name('.getAll');
+            Route::post('/{company}',[CompanyController::class,'addContributor'])->whereNumber('company')->name('.set');
+            Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->whereNumber('company')->name('.update');
+            Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->whereNumber('company')->name('.leave');
+            Route::post('/kick/{company}',[CompanyController::class,'kickContributor'])->whereNumber('company')->name('.kick');
+        });
+    });
 });

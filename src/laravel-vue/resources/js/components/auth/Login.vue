@@ -81,7 +81,7 @@ export default {
         </div>
         <ErrorMessage name="password" as="div" class="alert alert-danger mt-2 mb-0" />
         <div class="form-check mt-2">
-            <Field name="stayLogedIn" type="checkbox" :value="true" class="form-check-input"/>
+            <Field name="stayLogedIn" id="stayLogedIn" type="checkbox" :value="true" class="form-check-input"/>
             <label class="form-check-label" for="stayLogedIn">
                 Bejelentkezve maradok.
             </label>
@@ -97,5 +97,11 @@ export default {
 .IonIconSize {
     font-size: 22px;
 
+}
+label {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 </style>

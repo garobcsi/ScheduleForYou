@@ -2,25 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\PublicUserResource;
+use App\Http\Resources\UserResource;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use function PHPUnit\Framework\containsOnly;
 
 class UserController extends Controller
 {
     /**
+     * Get users account
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getMyUser(Request $request): JsonResponse
+    {
+        return response()->json(new UserResource($request->user()),200);
+    }
+
+    /**
+     * Get user if exists
+     *
+     * @param FindUserRequest $request
+     * @return JsonResponse
+     */
+    public function getUserByEmail(FindUserRequest $request): JsonResponse
+    {
+        $data = User::all()->where('email',$request->email);
+        if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+
+        return response()->json(PublicUserResource::collection($data),200);
+    }
+
+    /**
+     * Check if user exists
+     *
+     * @param FindUserRequest $request
+     * @return JsonResponse
+     */
+    public function doesUserExist(FindUserRequest $request): JsonResponse
+    {
+        $data = User::all()->where('email',$request->email);
+        if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
+
+        return response()->json(['message'=>'User exists.'],200);
+    }
+
+    /**
+     * Register an account
+     *
      * @param RegisterRequest $request
      * @return JsonResponse
      */
-    public function Register(RegisterRequest $request) {
+    public function Register(RegisterRequest $request): JsonResponse
+    {
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
         User::create($data);
@@ -28,10 +71,13 @@ class UserController extends Controller
     }
 
     /**
+     * Login with user account
+     *
      * @param LoginRequest $request
      * @return JsonResponse
      */
-    public function Login(LoginRequest $request) {
+    public function Login(LoginRequest $request): JsonResponse
+    {
         if(Auth::attempt($request->validated())) {
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -46,18 +92,24 @@ class UserController extends Controller
     }
 
     /**
+     * Check if token valid
+     *
      * @param Request $request
      * @return JsonResponse
      */
-    public function IsLoginValid(Request $request) {
+    public function IsLoginValid(Request $request): JsonResponse
+    {
         return response()->json(["message" => "Authenticated."],200);
     }
 
     /**
+     * Set The Token Expiry Date
+     *
      * @param $token
      * @return void
      */
-    private function SetTokenExpiresAt($token) {
+    private function SetTokenExpiresAt($token): void
+    {
         $explode = explode('|',$token);
         $thisToken = count($explode) == 2 ? $explode[1] : $token;
         $tokenHash = \hash('sha256',$thisToken);
@@ -67,28 +119,37 @@ class UserController extends Controller
     }
 
     /**
+     * Set The Token Expiry Date with api
+     *
      * @param Request $request
      * @return JsonResponse
      */
-    public function KeepTokenAlive(Request $request) {
+    public function KeepTokenAlive(Request $request): JsonResponse
+    {
         $this->SetTokenExpiresAt($request->bearerToken());
         return response()->json(["message" => "Token Kept Alive."],200);
     }
 
     /**
+     * Logout of user account
+     *
      * @param Request $request
      * @return JsonResponse
      */
-    public function Logout(Request $request) {
+    public function Logout(Request $request): JsonResponse
+    {
         $request->user()->currentAccessToken()->delete();
         return response()->json(["message" => "Logout Success."],200);
     }
 
     /**
+     * Logout of all user devices
+     *
      * @param Request $request
      * @return JsonResponse
      */
-    public function LogoutAll(Request $request) {
+    public function LogoutAll(Request $request): JsonResponse
+    {
         $request->user()->tokens()->delete();
         return response()->json(["message" => "Logout All Success."],200);
     }
