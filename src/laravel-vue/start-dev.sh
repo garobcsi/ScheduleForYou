@@ -21,3 +21,4 @@ $COMPOSE exec app php artisan storage:link
 $COMPOSE exec app php artisan migrate:fresh --seed
 $COMPOSE exec app npm install
 $COMPOSE exec app npm run dev
+
