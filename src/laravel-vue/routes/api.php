@@ -29,10 +29,10 @@ Route::name('user.')->group(function () {
     Route::prefix('user')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('',[UserController::class,'getMyUser'])->name('my');
+            Route::delete('',[UserController::class,'DeleteAccount'])->name('delete');
         });
         Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
         Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
-
     });
 
     Route::post('/register',[UserController::class,'Register'])->name('register');

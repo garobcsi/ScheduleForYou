@@ -9,6 +9,7 @@ use App\Http\Resources\PublicUserResource;
 use App\Http\Resources\UserResource;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
+use App\Models\UserSettings;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -66,7 +67,8 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
-        User::create($data);
+        $user = User::create($data);
+        UserSettings::create(["user_id" => $user->id]);
         return response()->json(["message" => "Registration Success."],200);
     }
 
@@ -152,5 +154,14 @@ class UserController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json(["message" => "Logout All Success."],200);
+    }
+
+    public function DeleteAccount() {
+        // extend it to delete evrything the user has
+        $user = auth('sanctum')->user();
+        $user->delete();
+        UserSettings::all()->where('user_id',$user->id)->delete();
+        return response()->json(["message" => "User deleted successfully."],200);
+
     }
 }
