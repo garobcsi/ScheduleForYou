@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid bg-blue">
         <div class="row basic-margo">
-          index
+            index
         </div>
     </div>
 </template>
