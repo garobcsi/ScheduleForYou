@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function getMyUser(Request $request): JsonResponse
     {
-        return response()->json(new UserResource($request->user()),200);
+        return response()->json(["data" => new UserResource($request->user())],200);
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends Controller
         $data = User::all()->where('email',$request->email);
         if ($data->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
 
-        return response()->json(PublicUserResource::collection($data),200);
+        return response()->json(["data" =>PublicUserResource::collection($data)],200);
     }
 
     /**

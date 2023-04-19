@@ -22,7 +22,7 @@ class CompanyController extends Controller
      */
     public function index(): \Illuminate\Http\JsonResponse
     {
-        return response()->json(PublicCompanyResource::collection(Company::all()),200);
+        return response()->json(["data" => PublicCompanyResource::collection(Company::all())],200);
     }
 
     /**
@@ -33,7 +33,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company): \Illuminate\Http\JsonResponse
     {
-        return response()->json(new PublicCompanyResource($company),200);
+        return response()->json(["data" => new PublicCompanyResource($company)],200);
     }
 
     /**
@@ -66,22 +66,21 @@ class CompanyController extends Controller
         $company->tel = $data["tel"];
         $company->address = $data["address"];
         $company->save();
-        return response()->json([
-            "data" => ["message" => "Data updated successfully."]
-        ],201);
+        return response()->json(["message" => "Data updated successfully."],201);
     }
 
     /**
      * Delete existing Company Table
      *
      * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function destroy(Company $company)
+    public function destroy(Company $company): JsonResponse
     {
         // update it when other things should be destroyed too
         $company->permissions()->where("company_id",$company->id)->detach();
         $company->delete($company->id);
+        return response()->json(["message" => "Company deleted successfully."],200);
     }
 
     /**
@@ -109,7 +108,7 @@ class CompanyController extends Controller
         })->get();
         $resource = AllContributorsCompanyResource::collection($data);
         $resource->map(function($i) use ($company) { $i->company = $company->id; });
-        return response()->json($resource,200);
+        return response()->json(["data" => $resource],200);
     }
 
     /**
