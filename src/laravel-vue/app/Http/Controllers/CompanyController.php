@@ -59,6 +59,7 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $company): JsonResponse
     {
+        $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
         $company->name = $data["name"];
         $company->introduce = $data["introduce"];
@@ -78,6 +79,7 @@ class CompanyController extends Controller
     public function destroy(Company $company): JsonResponse
     {
         // update it when other things should be destroyed too
+        $this->authorize('onlyOwnerCoOwner',$company);
         $company->permissions()->where("company_id",$company->id)->detach();
         $company->delete($company->id);
         return response()->json(["message" => "Company deleted successfully."],200);
@@ -103,6 +105,7 @@ class CompanyController extends Controller
      */
     public function getAllContributors(Company $company): JsonResponse
     {
+        $this->authorize('isContributor',$company);
         $data = User::whereHas('permissions', function ($query) use ($company) {
             $query->where('company_id', $company->id);
         })->get();
@@ -120,6 +123,7 @@ class CompanyController extends Controller
      */
     public function addContributor(ContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
     {
+        $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
         $user = User::all()->where('email',$data["email"]);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
@@ -141,6 +145,7 @@ class CompanyController extends Controller
      */
     public function updateContributorPerms(ContributorCompanyRequest $request, Company $company): JsonResponse
     {
+        $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
         $user = User::all()->where('email',$data["email"]);
         if ($user->count() === 0) return response()->json(['message'=>'User dosen\'t exist !'],404);
@@ -163,8 +168,8 @@ class CompanyController extends Controller
      */
     public function leaveContributor(Company $company): JsonResponse
     {
+        $this->authorize('isContributor',$company);
         $id = auth('sanctum')->user()->id;
-        if ($company->permissions()->where('company_id',$company->id)->where('user_id',$id)->count() === 0) return response()->json(['message'=>"You are not a contributor !"],403);
         $permUser = $company->permissions()->where('user_id',$id)->where('company_id',$company->id);
         if ($permUser->first()->pivot->permission === CompanyPermissionEnum::Owner->value) return response()->json(['message'=>CompanyPermissionEnum::Owner->name." user can't leave !"],403);
         $pivot = $company->permissions()->where('company_id',$company->id);
@@ -182,6 +187,7 @@ class CompanyController extends Controller
      */
     public function kickContributor(FindUserRequest $request, Company $company): JsonResponse
     {
+        $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
         $user = User::all()->where('email',$data["email"]);
         $id = $user->first()->id;

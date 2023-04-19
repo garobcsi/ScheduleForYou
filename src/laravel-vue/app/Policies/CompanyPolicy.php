@@ -2,93 +2,38 @@
 
 namespace App\Policies;
 
+use App\Enums\CompanyPermissionEnum;
+use App\Enums\UserRoleEnum;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class CompanyPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
+    public function onlyOwnerCoOwnerManager(User $user,Company $company)
     {
-        //
+        if ($user->role === UserRoleEnum::Admin->value) return Response::allow();
+        $pivot = $company->permissions()->where('user_id',$user->id)->where('company_id',$company->id);
+        if ($pivot->count() === 0) return Response::deny('You are not a contributor !');
+        if (!in_array($pivot->first()->pivot->permission,array(CompanyPermissionEnum::Owner->value,CompanyPermissionEnum::CoOwner->value,CompanyPermissionEnum::Manager->value))) return Response::deny('You are don\'t have access !');
+        return Response::allow();
     }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Company $company)
+    public function onlyOwnerCoOwner(User $user,Company $company)
     {
-        //
+        if ($user->role === UserRoleEnum::Admin->value) return Response::allow();
+        $pivot = $company->permissions()->where('user_id',$user->id)->where('company_id',$company->id);
+        if ($pivot->count() === 0) return Response::deny('You are not a contributor !');
+        if (!in_array($pivot->first()->pivot->permission,array(CompanyPermissionEnum::Owner->value,CompanyPermissionEnum::CoOwner->value))) return Response::deny('You are don\'t have access !');
+        return Response::allow();
     }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function create(User $user)
+    public function isContributor(User $user,Company $company)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function update(User $user, Company $company)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function delete(User $user, Company $company)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Company $company)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Company $company)
-    {
-        //
+        if ($user->role === UserRoleEnum::Admin->value) return Response::allow();
+        $pivot = $company->permissions()->where('user_id',$user->id)->where('company_id',$company->id);
+        if ($pivot->count() === 0) return Response::deny('You are not a contributor !');
+        return Response::allow();
     }
 }
