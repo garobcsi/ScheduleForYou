@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import AlertPopup from "../bootstrap/AlertPopup.vue";
+import AlertPopup from "/AlertPopup.vue";
 import {useAlertStore} from "../../stores/AlertStore";
 const alertStore = useAlertStore();
 </script>
