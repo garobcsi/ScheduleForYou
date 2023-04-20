@@ -17,11 +17,13 @@ export default {
             useAlertStore().remove(this.pkey);
         },
         play() {
+            if (this.$refs.countdown === null) return;
             this.isComponentHover = true;
             this.cssTimeBarVisibility = null;
             this.$refs.countdown.restart();
         },
         pause() {
+            if (this.$refs.countdown === null) return;
             this.isComponentHover = false;
             this.cssTimeBarVisibility = 0;
             this.$refs.countdown.pause();
