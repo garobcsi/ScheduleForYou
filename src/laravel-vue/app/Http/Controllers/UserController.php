@@ -158,10 +158,15 @@ class UserController extends Controller
         return response()->json(["message" => "Logout All Success."],200);
     }
 
-    public function DeleteAccount() {
+    /**
+     * Delete users account
+     *
+     * @return JsonResponse
+     */
+    public function DeleteAccount(): JsonResponse
+    {
         // extend it to delete evrything the user has
         $user = auth('sanctum')->user();
-        // filter owner :)
         $data = Company::whereRelation('permissions','user_id', $user->id)->get();
         foreach ($data as $i) {
             if ($i->permissions()->where('user_id',$user->id)->first()->pivot->permission === CompanyPermissionEnum::Owner->value) {
