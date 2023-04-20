@@ -49,7 +49,7 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-
+import { INITIAL_EVENTS, createEventId } from './page-utils/event-utils'
 
 export default defineComponent({
     components: {

@@ -13,6 +13,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">{{ $t('navbar.services') }}</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/naptar">Naptár</router-link>
+                    </li>
 
                 </ul>
                 <div class="btn-group mx-2 wh-3">
