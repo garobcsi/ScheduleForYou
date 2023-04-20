@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSettingsController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,11 +26,12 @@ Route::name('admin.')->prefix('admin')->group(function () {
 ///
 
 Route::name('user.')->group(function () {
-
     Route::prefix('user')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('',[UserController::class,'getMyUser'])->name('my');
             Route::delete('',[UserController::class,'DeleteAccount'])->name('delete');
+            Route::get('/settings',[UserSettingsController::class,'get'])->name('get');
+            Route::post('/settings',[UserSettingsController::class,'update'])->name('settings');
         });
         Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
         Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
