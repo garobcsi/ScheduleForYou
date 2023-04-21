@@ -18,7 +18,7 @@
             <div class="row align-items-center">
                 <div class="btn-group col align-items-center dropdown">
                     <ion-icon :icon="languageOutline" id="lang"  type="button" data-bs-toggle="dropdown" aria-expanded="false"></ion-icon>
-                    <ul class="dropdown-menu" >
+                    <ul class="dropdown-menu dropdown-menu-end mt-3" id="lang-dd">
                         <li v-for="locale in $i18n.availableLocales">
                             <button class="dropdown-item" @click="setLocal(locale)" :value="locale">{{$t(`locale.${locale}`)}}</button>
                         </li>
@@ -61,6 +61,10 @@ const { locale } = useI18n({useScope: 'global'})
 #lang{
     font-size: 25px;
     margin-right: -20px;
+}
+#lang-dd{
+    margin-right: -80px;
+
 }
 
 </style>
