@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-sm bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-t">
         <div class="container-fluid basic-margo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -64,7 +64,9 @@ const { locale } = useI18n({useScope: 'global'})
 }
 #lang-dd{
     margin-right: -80px;
-
 }
-
+.bg-t{
+    background: transparent;
+    color: white ;
+}
 </style>
