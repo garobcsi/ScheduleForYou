@@ -41,6 +41,10 @@ const routes = [
         path: '/frontend_test',
         name: 'frontend_test',
         component: () => import('@/pages/FrontendTestPage.vue')
+    },{
+        path: '/profil',
+        name: 'profil',
+        component: () => import('@/pages/PrfilPage.vue')
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('@/components/error/NotFound.vue') }, // 404 error not found
 ]
