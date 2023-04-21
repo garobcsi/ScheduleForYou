@@ -10,4 +10,5 @@ class UserSettings extends Model
     protected $table = "user_settings";
     protected $fillable = ["user_id","lang","theme"];
     public $timestamps = false;
+    protected $primaryKey = "user_id";
 }

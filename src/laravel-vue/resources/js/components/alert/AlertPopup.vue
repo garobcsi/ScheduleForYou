@@ -17,11 +17,13 @@ export default {
             useAlertStore().remove(this.pkey);
         },
         play() {
+            if (this.$refs.countdown === null) return;
             this.isComponentHover = true;
             this.cssTimeBarVisibility = null;
             this.$refs.countdown.restart();
         },
         pause() {
+            if (this.$refs.countdown === null) return;
             this.isComponentHover = false;
             this.cssTimeBarVisibility = 0;
             this.$refs.countdown.pause();
@@ -39,7 +41,7 @@ const cssCountDownTime = ref(countDownTime.value+"s");
 </script>
 
 <template>
-    <div :class="'alert-'+this.color" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert" @mouseover="pause" @mouseleave="play">
+    <div :class="{[`alert-${color}`]:true}" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert" @mouseover="pause" @mouseleave="play">
         <div class="m-3 me-5">
             <slot></slot>
         </div>
