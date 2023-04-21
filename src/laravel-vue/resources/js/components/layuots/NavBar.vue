@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="row align-items-center">
-                <div class="btn-group col align-items-center dropdown">
+                <div class="btn-group col  dropdown">
                     <ion-icon :icon="languageOutline" id="lang"  type="button" data-bs-toggle="dropdown" aria-expanded="false"></ion-icon>
                     <ul class="dropdown-menu dropdown-menu-end mt-3" id="lang-dd">
                         <li v-for="locale in $i18n.availableLocales">
@@ -24,11 +24,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col mx-1">
-                    <button class="btn-group m-0 p-0 border-0 dropdown-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="btn-group col mx-1">
+                    <button class="m-0 p-0 border-0 dropdown-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <ion-icon :icon="personCircle" id="profIcon"></ion-icon>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end mx-sm-2">
+                    <ul class="dropdown-menu dropdown-menu-end">
                         <li ><router-link class="dropdown-item" to="#">Profil</router-link></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><router-link class="dropdown-item" to="#">Kijelentkezés</router-link></li>
