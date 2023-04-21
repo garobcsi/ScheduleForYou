@@ -9,6 +9,7 @@ import hu from '@/locales/hu.mjs'
 import en from '@/locales/en.mjs'
 const messages = { hu, en}
 const i18n = createI18n({
+    legacy: false,
     messages,
     locale: localStorage.getItem('lang') ?? 'hu',
     fallbackLocal: 'en'
