@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import {useAuthStore} from "../stores/AuthStore";
 const routes = [
     {
@@ -50,7 +50,7 @@ const routes = [
 ]
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 router.beforeEach((to, from, next)=>{
