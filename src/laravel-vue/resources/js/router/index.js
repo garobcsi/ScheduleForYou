@@ -46,7 +46,7 @@ const routes = [
         name: 'profile',
         component: () => import('@/pages/ProfilePage.vue')
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: import('@/components/error/NotFound.vue') }, // 404 error not found
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
 ]
 
 export const router = createRouter({
