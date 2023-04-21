@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserSettingsController extends Controller
 {
     public function get() {
-        return response()->json(["data" => UserSettings::all()->where('user_id',auth('sanctum')->user()->id)->first()],200);
+        return response()->json(["data" => auth('sanctum')->user()->settings],200);
     }
     public function update(UpdateUserSettingsRequest $request) {
         $data = $request->validated();

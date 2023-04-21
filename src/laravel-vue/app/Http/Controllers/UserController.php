@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CompanyPermissionEnum;
+use App\Enums\UserRoleEnum;
 use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -69,6 +70,7 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
+        $data["role"] = UserRoleEnum::User;
         $user = User::create($data);
         UserSettings::create(["user_id" => $user->id]);
         return response()->json(["message" => "Registration Success."],200);

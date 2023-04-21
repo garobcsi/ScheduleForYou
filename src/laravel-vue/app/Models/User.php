@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Company::class,'company_permissions')->withPivot('permission');
     }
+
+    public function settings() {
+        return $this->hasone(UserSettings::class,'user_id','id');
+    }
 }
