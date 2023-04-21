@@ -30,8 +30,10 @@ Route::name('user.')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('',[UserController::class,'getMyUser'])->name('my');
             Route::delete('',[UserController::class,'DeleteAccount'])->name('delete');
-            Route::get('/settings',[UserSettingsController::class,'get'])->name('get');
-            Route::post('/settings',[UserSettingsController::class,'update'])->name('settings');
+            Route::prefix('settings')->name('settings.')->group(function () {
+                Route::get('',[UserSettingsController::class,'get'])->name('get');
+                Route::post('',[UserSettingsController::class,'update'])->name('post');
+            });
         });
         Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
         Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
@@ -65,7 +67,7 @@ Route::prefix('company')->name('company.')->group(function () {
 
         Route::prefix('contributor')->name('contributor')->group(function () {
             Route::get('/{company}',[CompanyController::class,'getAllContributors'])->whereNumber('company')->name('.getAll');
-            Route::post('/{company}',[CompanyController::class,'addContributor'])->whereNumber('company')->name('.set');
+            Route::post('/{company}',[CompanyController::class,'addContributor'])->whereNumber('company')->name('.add');
             Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->whereNumber('company')->name('.update');
             Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->whereNumber('company')->name('.leave');
             Route::post('/kick/{company}',[CompanyController::class,'kickContributor'])->whereNumber('company')->name('.kick');
