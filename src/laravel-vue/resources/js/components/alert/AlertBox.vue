@@ -1,17 +1,19 @@
 <template>
-    <div class="
-    col-12
-    offset-sm-6 col-sm-6
-    offset-md-8 col-md-4
-    offset-xl-9 col-xl-3
-    pb-3 pe-3 ps-3 ps-sm-0"
-         id="AlertBox">
-        <TransitionGroup name="alert" tag="div">
-            <AlertPopup :color="item.color" v-for="(item, index) in alertStore.data" :key="item.id" :pkey="item.id">
-                {{item.message}}
-            </AlertPopup>
-        </TransitionGroup>
-    </div>
+    <transition name="show">
+        <div v-show="alertStore.data.length !== 0" class="
+        col-12
+        offset-sm-6 col-sm-6
+        offset-md-8 col-md-4
+        offset-xl-9 col-xl-3
+        pb-3 pe-3 ps-3 ps-sm-0"
+             id="AlertBox">
+            <TransitionGroup name="alert" tag="div">
+                <AlertPopup :color="item.color" v-for="(item, index) in alertStore.data" :key="item.id" :pkey="item.id">
+                    {{item.message}}
+                </AlertPopup>
+            </TransitionGroup>
+        </div>
+    </transition>
 </template>
 
 <script setup>
@@ -40,5 +42,9 @@ const alertStore = useAlertStore();
 .alert-leave-to {
     opacity: 0;
     transform: translateX(30px);
+}
+
+.show-leave-active {
+    transition-delay: 500ms;
 }
 </style>
