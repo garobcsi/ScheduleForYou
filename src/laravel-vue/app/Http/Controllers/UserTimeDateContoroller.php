@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TimeDateRequest;
+use App\Http\Resources\TimeDateWithGroupsResource;
 use App\Models\UserTimeDate;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,10 @@ class UserTimeDateContoroller extends Controller
     public function index()
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeDate],200);
+    }
+
+    public function indexWithGroups() {
+        return response()->json(["data" => TimeDateWithGroupsResource::collection(auth('sanctum')->user()->TimeDate)],200);
     }
 
     public function show(UserTimeDate $date)

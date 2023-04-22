@@ -44,6 +44,7 @@ Route::name('user.')->group(function () {
         Route::name('time')->middleware('auth:sanctum')->group(function () {
             Route::name('Date.')->prefix('date')->group(function () {
                 Route::get('',[UserTimeDateContoroller::class,'index'])->name('get');
+                Route::get('/group',[UserTimeDateContoroller::class,'indexWithGroups'])->name('group');
                 Route::get('/{date}',[UserTimeDateContoroller::class,'show'])->whereNumber('date')->name('show');
                 Route::post('',[UserTimeDateContoroller::class,'store'])->name('post');
                 Route::post('/{date}',[UserTimeDateContoroller::class,'update'])->whereNumber('date')->name('update');
@@ -51,6 +52,7 @@ Route::name('user.')->group(function () {
             });
             Route::name('Routine.')->prefix('routine')->group(function () {
                 Route::get('',[UserTimeRoutineContoroller::class,'index'])->name('get');
+                Route::get('/group',[UserTimeRoutineContoroller::class,'indexWithGroups'])->name('group');
                 Route::get('/{date}',[UserTimeRoutineContoroller::class,'show'])->whereNumber('date')->name('show');
                 Route::post('',[UserTimeRoutineContoroller::class,'store'])->name('post');
                 Route::post('/{date}',[UserTimeRoutineContoroller::class,'update'])->whereNumber('date')->name('update');

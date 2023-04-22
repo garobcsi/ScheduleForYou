@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TimeRoutineRequest;
+use App\Http\Resources\TimeRoutineWithGroupsResource;
 use App\Models\UserTimeRoutine;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,10 @@ class UserTimeRoutineContoroller extends Controller
     public function index()
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeRoutine],200);
+    }
+
+    public function indexWithGroups() {
+        return response()->json(["data" => TimeRoutineWithGroupsResource::collection(auth('sanctum')->user()->TimeRoutine)],200);
     }
 
     public function show(UserTimeRoutine $date)
