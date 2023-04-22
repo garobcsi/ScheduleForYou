@@ -16,4 +16,8 @@ class Company extends Model
         return $this->belongsToMany(User::class,'company_permissions')->withPivot('permission');
     }
 
+    public function CompanyFavourite() {
+        return $this->hasMany(UserCompanyFavourite::class,'company_id','id');
+    }
+
 }

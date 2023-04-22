@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserCompanyFavouriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
 use App\Http\Controllers\UserTimeDateContoroller;
@@ -100,6 +101,14 @@ Route::prefix('company')->name('company.')->group(function () {
             Route::post('/update/{company}',[CompanyController::class,'updateContributorPerms'])->whereNumber('company')->name('.update');
             Route::get('/leave/{company}',[CompanyController::class,'leaveContributor'])->whereNumber('company')->name('.leave');
             Route::post('/kick/{company}',[CompanyController::class,'kickContributor'])->whereNumber('company')->name('.kick');
+        });
+
+        Route::prefix('favourite')->name('favourite.')->group(function () {
+            Route::get('',[UserCompanyFavouriteController::class,'index'])->name('index');
+            Route::get('/company',[UserCompanyFavouriteController::class,'indexWithCompany'])->name('indexWC');
+            Route::get('/{company}',[UserCompanyFavouriteController::class,'isItFavourite'])->whereNumber('company')->name('isItFavourite');
+            Route::get('/add/{company}',[UserCompanyFavouriteController::class,'add'])->whereNumber('company')->name('add');
+            Route::delete('/remove/{favourite}',[UserCompanyFavouriteController::class,'remove'])->whereNumber('favourite')->name('remove');
         });
     });
 });
