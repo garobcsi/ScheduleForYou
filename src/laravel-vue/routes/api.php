@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
+use App\Http\Controllers\UserTimeDateContoroller;
+use App\Http\Controllers\UserTimeGroupsContoroller;
+use App\Http\Controllers\UserTimeRoutineContoroller;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +40,30 @@ Route::name('user.')->group(function () {
         });
         Route::get('/getByEmail',[UserController::class,'getUserByEmail'])->name('get');
         Route::get('/exists',[UserController::class,'doesUserExist'])->name('exists');
+
+        Route::name('time')->middleware('auth:sanctum')->group(function () {
+            Route::name('Date.')->prefix('date')->group(function () {
+                Route::get('',[UserTimeDateContoroller::class,'index'])->name('get');
+                Route::get('/{date}',[UserTimeDateContoroller::class,'show'])->whereNumber('date')->name('show');
+                Route::post('',[UserTimeDateContoroller::class,'store'])->name('post');
+                Route::post('/{date}',[UserTimeDateContoroller::class,'update'])->whereNumber('date')->name('update');
+                Route::delete('/{date}',[UserTimeDateContoroller::class,'destroy'])->whereNumber('date')->name('delete');
+            });
+            Route::name('Routine.')->prefix('routine')->group(function () {
+                Route::get('',[UserTimeRoutineContoroller::class,'index'])->name('get');
+                Route::get('/{date}',[UserTimeRoutineContoroller::class,'show'])->whereNumber('date')->name('show');
+                Route::post('',[UserTimeRoutineContoroller::class,'store'])->name('post');
+                Route::post('/{date}',[UserTimeRoutineContoroller::class,'update'])->whereNumber('date')->name('update');
+                Route::delete('/{date}',[UserTimeRoutineContoroller::class,'destroy'])->whereNumber('date')->name('delete');
+            });
+            Route::name('Groups.')->prefix('groups')->group(function () {
+                Route::get('',[UserTimeGroupsContoroller::class,'index'])->name('get');
+                Route::get('/{date}',[UserTimeGroupsContoroller::class,'show'])->whereNumber('date')->name('show');
+                Route::post('',[UserTimeGroupsContoroller::class,'store'])->name('post');
+                Route::post('/{date}',[UserTimeGroupsContoroller::class,'update'])->whereNumber('date')->name('update');
+                Route::delete('/{date}',[UserTimeGroupsContoroller::class,'destroy'])->whereNumber('date')->name('delete');
+            });
+        });
     });
 
     Route::post('/register',[UserController::class,'Register'])->name('register');

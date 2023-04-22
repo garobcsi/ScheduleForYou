@@ -51,4 +51,16 @@ class User extends Authenticatable
     public function settings() {
         return $this->hasone(UserSettings::class,'user_id','id');
     }
+
+    public function TimeDate() {
+        return $this->hasMany(UserTimeDate::class,'user_id','id');
+    }
+
+    public function TimeRoutine() {
+        return $this->hasMany(UserTimeRoutine::class,'user_id','id');
+    }
+    
+    public function TimeGroups() {
+        return $this->hasMany(UserTimeGroups::class,'user_id','id');
+    }
 }
