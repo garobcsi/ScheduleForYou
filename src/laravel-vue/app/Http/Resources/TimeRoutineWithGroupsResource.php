@@ -6,6 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TimeRoutineWithGroupsResource extends JsonResource
 {
+    private function unsetw($data,$str) {
+        unset($data[$str]);
+        return $data;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -21,7 +26,7 @@ class TimeRoutineWithGroupsResource extends JsonResource
             "end" => $this->end,
             "repeat_time" => $this->repeat_time,
             "description" => $this->description,
-            "group" => $this->group
+            "group" => $this->group !== null ? $this->unsetw($this->group,"user_id") : $this->group
         ];
     }
 }
