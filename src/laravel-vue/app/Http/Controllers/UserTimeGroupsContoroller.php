@@ -40,6 +40,16 @@ class UserTimeGroupsContoroller extends Controller
     public function destroy(UserTimeGroups $date)
     {
         $this->authorize('isAuthorized',$date);
+        $TimeDate = $date->date;
+        foreach ($TimeDate as $i) {
+            $i->group_id = null;
+            $i->save();
+        }
+        $TimeRoutine = $date->routine;
+        foreach ($TimeRoutine as $i) {
+            $i->group_id = null;
+            $i->save();
+        }
         $date->delete();
         return response()->json(["message" => "Data deleted successfully."],200);
     }
