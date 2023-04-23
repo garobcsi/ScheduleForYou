@@ -107,7 +107,7 @@ Route::prefix('company')->name('company.')->group(function () {
             Route::get('',[UserCompanyFavouriteController::class,'index'])->name('index');
             Route::get('/company',[UserCompanyFavouriteController::class,'indexWithCompany'])->name('indexWC');
             Route::get('/{company}',[UserCompanyFavouriteController::class,'isItFavourite'])->whereNumber('company')->name('isItFavourite');
-            Route::get('/add/{company}',[UserCompanyFavouriteController::class,'add'])->whereNumber('company')->name('add');
+            Route::post('/add/{company}',[UserCompanyFavouriteController::class,'add'])->whereNumber('company')->name('add');
             Route::delete('/remove/{favourite}',[UserCompanyFavouriteController::class,'remove'])->whereNumber('favourite')->name('remove');
         });
     });
