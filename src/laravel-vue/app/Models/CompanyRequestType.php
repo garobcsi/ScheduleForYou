@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyRequestType extends Model
 {
     public $timestamps = true;
-    protected $fillable = ["company_id","requested_name","renamed_name","status"];
+    protected $fillable = ["company_id","requested_name","renamed_name","status","lang"];
     protected $table = "company_request_type";
 }
