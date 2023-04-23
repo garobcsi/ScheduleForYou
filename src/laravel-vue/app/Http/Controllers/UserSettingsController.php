@@ -5,14 +5,29 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserSettingsRequest;
 use App\Models\User;
 use App\Models\UserSettings;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserSettingsController extends Controller
 {
-    public function get() {
+    /**
+     * Gets user settins
+     *
+     * @return JsonResponse
+     */
+    public function get(): \Illuminate\Http\JsonResponse
+    {
         return response()->json(["data" => auth('sanctum')->user()->settings],200);
     }
-    public function update(UpdateUserSettingsRequest $request) {
+
+    /**
+     * Sets User settings
+     *
+     * @param UpdateUserSettingsRequest $request
+     * @return JsonResponse
+     */
+    public function update(UpdateUserSettingsRequest $request): JsonResponse
+    {
         $data = $request->validated();
         $id = auth('sanctum')->user()->id;
         $settings = UserSettings::findOrFail($id);

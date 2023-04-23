@@ -5,25 +5,50 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TimeRoutineRequest;
 use App\Http\Resources\TimeRoutineWithGroupsResource;
 use App\Models\UserTimeRoutine;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserTimeRoutineContoroller extends Controller
 {
-    public function index()
+    /**
+     * Shows all routines
+     *
+     * @return JsonResponse
+     */
+    public function index(): \Illuminate\Http\JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeRoutine],200);
     }
 
-    public function indexWithGroups() {
+    /**
+     * Show all routines with all group associations
+     *
+     * @return JsonResponse
+     */
+    public function indexWithGroups(): JsonResponse
+    {
         return response()->json(["data" => TimeRoutineWithGroupsResource::collection(auth('sanctum')->user()->TimeRoutine)],200);
     }
 
-    public function show(UserTimeRoutine $date)
+    /**
+     * Show one Routine
+     *
+     * @param UserTimeRoutine $date
+     * @return JsonResponse
+     */
+    public function show(UserTimeRoutine $date): JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeRoutine->where('id',$date->id)],200);
     }
 
-    public function store(TimeRoutineRequest $request)
+    /**
+     * Adds a Routine
+     *
+     * @param TimeRoutineRequest $request
+     * @return JsonResponse
+     */
+    public function store(TimeRoutineRequest $request): JsonResponse
     {
         $data = $request->validated();
         $id = auth('sanctum')->user()->id;
@@ -32,7 +57,15 @@ class UserTimeRoutineContoroller extends Controller
         return response()->json(["data" => "Data created successfully."],201);
     }
 
-    public function update(TimeRoutineRequest $request, UserTimeRoutine $date)
+    /**
+     * Updates a routine
+     *
+     * @param TimeRoutineRequest $request
+     * @param UserTimeRoutine $date
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function update(TimeRoutineRequest $request, UserTimeRoutine $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $data = $request->validated();
@@ -46,7 +79,14 @@ class UserTimeRoutineContoroller extends Controller
         return response()->json(["message" => "Data updated successfully."],200);
     }
 
-    public function destroy(UserTimeRoutine $date)
+    /**
+     * Deletes a Routine
+     *
+     * @param UserTimeRoutine $date
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function destroy(UserTimeRoutine $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $date->delete();

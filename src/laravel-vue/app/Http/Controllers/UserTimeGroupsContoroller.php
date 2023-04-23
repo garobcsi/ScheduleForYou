@@ -4,21 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TimeGroupsRequest;
 use App\Models\UserTimeGroups;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserTimeGroupsContoroller extends Controller
 {
-    public function index()
+    /**
+     * Shows all group
+     *
+     * @return JsonResponse
+     */
+    public function index(): \Illuminate\Http\JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeGroups],200);
     }
 
-    public function show(UserTimeGroups $date)
+
+    /**
+     * Shows one group
+     *
+     * @param UserTimeGroups $date
+     * @return JsonResponse
+     */
+    public function show(UserTimeGroups $date): JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeGroups->where('id',$date->id)],200);
     }
 
-    public function store(TimeGroupsRequest $request)
+    /**
+     * Creates a group
+     *
+     * @param TimeGroupsRequest $request
+     * @return JsonResponse
+     */
+    public function store(TimeGroupsRequest $request): JsonResponse
     {
         $data = $request->validated();
         $id = auth('sanctum')->user()->id;
@@ -27,7 +47,15 @@ class UserTimeGroupsContoroller extends Controller
         return response()->json(["data" => "Data created successfully."],201);
     }
 
-    public function update(TimeGroupsRequest $request, UserTimeGroups $date)
+    /**
+     * Updates group
+     *
+     * @param TimeGroupsRequest $request
+     * @param UserTimeGroups $date
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function update(TimeGroupsRequest $request, UserTimeGroups $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $data = $request->validated();
@@ -37,7 +65,14 @@ class UserTimeGroupsContoroller extends Controller
         return response()->json(["message" => "Data updated successfully."],200);
     }
 
-    public function destroy(UserTimeGroups $date)
+    /**
+     * Deletes a group
+     *
+     * @param UserTimeGroups $date
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function destroy(UserTimeGroups $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $TimeDate = $date->date;

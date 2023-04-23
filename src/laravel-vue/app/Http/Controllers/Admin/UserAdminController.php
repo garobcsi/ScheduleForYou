@@ -7,11 +7,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\UserSettings;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class UserAdminController extends Controller
 {
-    public function Register(RegisterRequest $request) {
+    /**
+     * Register an admin account
+     *
+     * @param RegisterRequest $request
+     * @return JsonResponse
+     */
+    public function Register(RegisterRequest $request): \Illuminate\Http\JsonResponse
+    {
         if(!in_array($request->host(),["localhost","127.0.0.1"])) return response()->json(["message" => "Cannot create account on ".$request->host()],403);
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
