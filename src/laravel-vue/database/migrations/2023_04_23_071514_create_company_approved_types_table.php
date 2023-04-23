@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_settings', function (Blueprint $table) {
-            $table->id('user_id');
-            $table->string('lang',10)->default('en'); //hu
-            $table->string('theme',10)->default('dark'); //dark
+        Schema::create('company_approved_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('lang',100);
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_settings');
+        Schema::dropIfExists('company_approved_types');
     }
 };

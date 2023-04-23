@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\AdminCompanyRequestApproveController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyTypeController;
 use App\Http\Controllers\UserCompanyFavouriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
@@ -24,8 +26,16 @@ use Illuminate\Support\Facades\Route;
 */
 /// Admin
 Route::name('admin.')->prefix('admin')->group(function () {
-    Route::post('/register',[UserAdminController::class,'Register'])->name('register');
+    Route::post('/register',[AdminUserController::class,'Register'])->name('register');
 
+    Route::prefix('company/request')->name('CompanyRequest.')->group(function () {
+        Route::get('',[AdminCompanyRequestApproveController::class,'getRequests'])->name('get');
+        Route::get('/pending',[AdminCompanyRequestApproveController::class,'getPendingRequests'])->name('pending');
+        Route::post('/add',[AdminCompanyRequestApproveController::class,'add'])->name('add');
+        Route::post('/approve/{type}',[AdminCompanyRequestApproveController::class,'Approve'])->name('approve');
+        Route::post('/denies/{type}',[AdminCompanyRequestApproveController::class,'Denies'])->name('denies');
+        Route::post('/rename/{type}',[AdminCompanyRequestApproveController::class,'Rename'])->name('rename');
+    });
 });
 ///
 
@@ -109,6 +119,19 @@ Route::prefix('company')->name('company.')->group(function () {
             Route::get('/{company}',[UserCompanyFavouriteController::class,'isItFavourite'])->whereNumber('company')->name('isItFavourite');
             Route::post('/add/{company}',[UserCompanyFavouriteController::class,'add'])->whereNumber('company')->name('add');
             Route::delete('/remove/{favourite}',[UserCompanyFavouriteController::class,'remove'])->whereNumber('favourite')->name('remove');
+        });
+    });
+    Route::prefix('type')->name('type.')->group(function () {
+        Route::get('',[CompanyTypeController::class,'getTypes'])->name('getTypes');
+        Route::get('/{lang}',[CompanyTypeController::class,'getTypesByLang'])->name('getTypesByLang');
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::post('/add/{company}/{type}',[CompanyTypeController::class,'add'])->whereNumber('company')->whereNumber('type')->name('add');
+            Route::delete('/remove/{company}/{type}',[CompanyTypeController::class,'remove'])->whereNumber('company')->whereNumber('type')->name('remove');
+        });
+        Route::prefix('request')->name('request')->middleware('auth:sanctum')->group(function () {
+            Route::get('/{company}',[CompanyTypeController::class,'getRequests'])->whereNumber('company')->name('get');
+            Route::post('/add/{company}',[CompanyTypeController::class,'addTypeRequest'])->whereNumber('company')->name('add');
+            Route::delete('/remove/{company}/{type}',[CompanyTypeController::class,'removeTypeRequest'])->whereNumber('company')->whereNumber('type')->name('remove');
         });
     });
 });

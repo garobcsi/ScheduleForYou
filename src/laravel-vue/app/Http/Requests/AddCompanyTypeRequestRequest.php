@@ -6,7 +6,7 @@ use App\Enums\LangEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateUserSettingsRequest extends FormRequest
+class AddCompanyTypeRequestRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,8 @@ class UpdateUserSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            "lang" => ["required","max:10",Rule::in(array_column(LangEnum::cases(), 'value'))],
-            "theme" => ["required","max:10",Rule::in(['light','dark'])],
+            "requested_name" => ['required','max:100'],
+            "lang" => ["required","max:10",Rule::in(array_column(LangEnum::cases(), 'value'))]
         ];
     }
 }
