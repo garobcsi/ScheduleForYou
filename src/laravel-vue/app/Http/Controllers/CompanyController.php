@@ -78,10 +78,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company): JsonResponse
     {
-        // update it when other things should be destroyed too
         $this->authorize('onlyOwnerCoOwner',$company);
-        $company->permissions()->where("company_id",$company->id)->detach();
-        $company->delete($company->id);
+        $company->delete();
         return response()->json(["message" => "Company deleted successfully."],200);
     }
 

@@ -167,20 +167,7 @@ class UserController extends Controller
      */
     public function DeleteAccount(): JsonResponse
     {
-        // extend it to delete evrything the user has
         $user = auth('sanctum')->user();
-        $data = Company::whereRelation('permissions','user_id', $user->id)->get();
-        foreach ($data as $i) {
-            if ($i->permissions()->where('user_id',$user->id)->first()->pivot->permission === CompanyPermissionEnum::Owner->value) {
-                $i->permissions()->where("company_id", $i->id)->detach();
-                $i->delete($i->id);
-            }
-            else {
-                $pivot = $i->permissions()->where('company_id',$i->id);
-                $pivot->detach([$user->id]);
-            }
-        }
-        UserSettings::findOrFail($user->id)->delete();
         $user->delete();
         return response()->json(["message" => "User deleted successfully."],200);
 

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('company_types', function (Blueprint $table) {
-            $table->foreignId('company_id')->references('id')->on('companies');
-            $table->foreignId('type_id')->references('id')->on('company_approved_types');
+            $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreignId('type_id')->references('id')->on('company_approved_types')->onDelete('cascade');
         });
     }
 

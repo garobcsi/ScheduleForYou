@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('company_special_open_hours', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('opening_hours_id')->references('companies_id')->on('company_opening_hours');
+            $table->foreignId('opening_hours_id')->references('companies_id')->on('company_opening_hours')->onDelete('cascade');
             $table->date('start');
             $table->date('end');
         });

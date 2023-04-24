@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_routines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('group_id')->nullable()->references('id')->on('user_time_groups');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('group_id')->nullable()->references('id')->on('user_time_groups')->onDelete('cascade');
             $table->string('name',100);
             $table->date('start');
             $table->date('end');

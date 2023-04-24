@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('company_permissions', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->string('permission',50);
         });
     }

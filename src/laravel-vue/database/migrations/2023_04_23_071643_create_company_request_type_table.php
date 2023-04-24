@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('company_request_type', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->string('requested_name');
             $table->string('renamed_name')->nullable();
             $table->string('status',100);
