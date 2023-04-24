@@ -24,10 +24,7 @@ class AdminCompanyRequestApproveController extends Controller
     public function add(AdminAddCompanyApprovedTypeRequest $request) {
         if(auth('sanctum')->user()->role !== UserRoleEnum::Admin->value) return response()->json(["message" => "You don't have access !"],403);
         $data = $request->validated();
-        if(CompanyApprovedType::all()->where('name',$data["name"])->where('lang',$data["lang"])->count() !== 0) {
-            return response()->json(["message" => "Data already exists !"],403);
-        };
-        CompanyApprovedType::create($data);
+        if (CompanyApprovedType::all()->where('name',$data["name"])->where('lang',$data["lang"])->count() === 0) CompanyApprovedType::create($data);
         return response()->json(["message" => "Data created successfully."],201);
     }
 
@@ -42,10 +39,7 @@ class AdminCompanyRequestApproveController extends Controller
         if ($type->status !== CompanyRequestStatusEnum::Pending->value) return response()->json(["message" => "Request is not pending !"],403);
         $type->status = CompanyRequestStatusEnum::Approved->value;
         $type->save();
-        if(CompanyApprovedType::all()->where('name',$type->requested_name)->where('lang',$type->lang)->count() !== 0) {
-            return response()->json(["message" => "Data already exists !"],403);
-        };
-        CompanyApprovedType::create(["name" => $type->requested_name,"lang" => $type->lang]);
+        if(CompanyApprovedType::all()->where('name',$type->requested_name)->where('lang',$type->lang)->count() === 0) CompanyApprovedType::create(["name" => $type->requested_name,"lang" => $type->lang]);
         return response()->json(["message" => "Request approved successfully."],201);
     }
 
@@ -66,10 +60,7 @@ class AdminCompanyRequestApproveController extends Controller
         $type->lang = $data["lang"];
         $type->status = CompanyRequestStatusEnum::Renamed->value;
         $type->save();
-        if(CompanyApprovedType::all()->where('name',$data["name"])->where('lang',$data["lang"])->count() !== 0) {
-            return response()->json(["message" => "Data already exists !"],403);
-        };
-        CompanyApprovedType::create(["name" => $data["name"],"lang" => $data["lang"]]);
+        if(CompanyApprovedType::all()->where('name',$data["name"])->where('lang',$data["lang"])->count() === 0) CompanyApprovedType::create(["name" => $data["name"],"lang" => $data["lang"]]);
         return response()->json(["message" => "Request renamed successfully."],201);
     }
 }
