@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyApprovedType extends Model
 {
     public $timestamps = false;
-    protected $fillable = ["name"];
+    protected $fillable = ["name","lang"];
     protected $table = "company_approved_types";
 
     public function CompanyTypes() {
