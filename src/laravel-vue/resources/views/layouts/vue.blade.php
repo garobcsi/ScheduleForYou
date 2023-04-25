@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("title")</title>
     @vite(['resources/css/app.scss','resources/js/app.js' , 'resources/js/app.vue.js'])
+    <style>
+        body{
+            background-color: #fffefe !important;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
     @yield("content")

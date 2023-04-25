@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark shadow-sm">
         <div class="container-fluid basic-margo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center text-white">
                 <div class="btn-group col mx-1 dropdown">
                     <ion-icon :icon="languageOutline" id="lang"  type="button" data-bs-toggle="dropdown" aria-expanded="false"></ion-icon>
                     <ul class="dropdown-menu dropdown-menu-end mt-3" id="lang-dd">
@@ -67,6 +67,9 @@ const { locale } = useI18n({useScope: 'global'})
 </script>
 
 <style scoped>
+nav{
+    background-color: #000 !important;
+}
 #profIcon{
     font-size: 50px
 }
@@ -76,10 +79,6 @@ const { locale } = useI18n({useScope: 'global'})
 }
 #lang-dd{
     margin-right: -80px;
-}
-.bg-t{
-    background: transparent;
-    color: white ;
 }
 #login{
     margin-right: 7px;

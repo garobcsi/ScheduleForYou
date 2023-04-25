@@ -28,6 +28,7 @@
 </script>
 
 <style scoped>
+
 #heroContent{
 }
 .content{
