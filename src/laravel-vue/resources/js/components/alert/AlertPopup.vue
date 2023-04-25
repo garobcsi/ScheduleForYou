@@ -29,6 +29,11 @@ export default {
             this.$refs.countdown.pause();
         }
     },
+    computed: {
+        getColor() {
+            return ["primary","success","danger","warning","info","dark"].includes(this.color) ? this.color : "primary";
+        }
+    },
     components: {
         VueCountdown
     }
@@ -41,14 +46,14 @@ const cssCountDownTime = ref(countDownTime.value+"s");
 </script>
 
 <template>
-    <div :class="{[`alert-${color}`]:true}" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert" @mouseover="pause" @mouseleave="play">
-        <div class="m-3 me-5">
+    <div :class="{[`alert-${getColor}`]:true}" class="alert alert-dismissible fade show mb-0 mt-1 p-0" role="alert" @mouseover="pause" @mouseleave="play">
+        <div class="m-3 me-5" style="min-height: 21px">
             <slot></slot>
         </div>
         <button @click="dismiss" type="button" class="btn-close" aria-label="Close"></button>
         <vue-countdown ref="countdown" :time="countDownTime*1000" @end="dismiss">
             <div class="progress">
-                <div :class="{[`bg-${color}`]:true,'animation':isComponentHover}"  class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                <div :class="{[`bg-${getColor}`]:true,'animation':isComponentHover}"  class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </vue-countdown>
     </div>
