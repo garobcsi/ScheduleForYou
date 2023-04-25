@@ -54,7 +54,7 @@ class UserTimeDateContoroller extends Controller
         $id = auth('sanctum')->user()->id;
         $data["user_id"] = $id;
         UserTimeDate::create($data);
-        return response()->json(["data" => "Data created successfully."],201);
+        return response()->json(["message" => "Data created successfully."],201);
     }
 
     /**

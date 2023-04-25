@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('company_reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->references('id')->on('companies');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('start');
             $table->date('end');
             $table->longText('description')->nullable();

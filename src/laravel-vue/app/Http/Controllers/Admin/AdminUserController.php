@@ -10,7 +10,7 @@ use App\Models\UserSettings;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
-class UserAdminController extends Controller
+class AdminUserController extends Controller
 {
     /**
      * Register an admin account

@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('company_permissions', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        Schema::create('company_request_type', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->string('permission',50);
+            $table->string('requested_name');
+            $table->string('renamed_name')->nullable();
+            $table->string('status',100);
+            $table->string('lang',10);
+            $table->timestamps();
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_permissions');
+        Schema::dropIfExists('company_request_type');
     }
 };

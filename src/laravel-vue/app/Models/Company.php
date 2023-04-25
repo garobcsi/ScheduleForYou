@@ -19,5 +19,4 @@ class Company extends Model
     public function CompanyFavourite() {
         return $this->hasMany(UserCompanyFavourite::class,'company_id','id');
     }
-
 }

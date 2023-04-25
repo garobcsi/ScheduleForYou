@@ -83,6 +83,16 @@ export const useAuthStore = defineStore('auth-store', {
         isLogedIn() {
             return this.token !== null && this.user !== null;
         },
+        async isAdmin() {
+            if (this.user === null || this.user === undefined) return null;
+            if(this.user.role !== "admin") return false;
+            let success = null;
+            let error = null;
+            await api.get('/user').then(x=>success =x.data).catch(x=>error= x.response.data);
+            if (success.data.role === "admin") return true;
+            return false;
+
+        },
         gotErrors() {
             return this.errorMsg !== null;
         }

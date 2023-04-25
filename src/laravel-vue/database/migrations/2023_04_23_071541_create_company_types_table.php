@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('company_permissions', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        Schema::create('company_types', function (Blueprint $table) {
             $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->string('permission',50);
+            $table->foreignId('type_id')->references('id')->on('company_approved_types')->onDelete('cascade');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_permissions');
+        Schema::dropIfExists('company_types');
     }
 };
