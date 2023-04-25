@@ -1,9 +1,10 @@
 <template>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-t">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid basic-margo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
@@ -16,7 +17,7 @@
                 </ul>
             </div>
             <div class="row align-items-center">
-                <div class="btn-group col  dropdown">
+                <div class="btn-group col mx-1 dropdown">
                     <ion-icon :icon="languageOutline" id="lang"  type="button" data-bs-toggle="dropdown" aria-expanded="false"></ion-icon>
                     <ul class="dropdown-menu dropdown-menu-end mt-3" id="lang-dd">
                         <li v-for="locale in $i18n.availableLocales">
@@ -24,7 +25,15 @@
                         </li>
                     </ul>
                 </div>
-                <div class="btn-group col mx-1">
+
+                <div v-show="!authStore.isLogedIn" class="btn-group col">
+                    <router-link class="btn btn-outline-primary" to="/register">Registration</router-link>
+                </div>
+                <div v-show="!authStore.isLogedIn" class="btn-group col p-0" id="login">
+                    <router-link class="btn btn-outline-primary" to="/login">Login</router-link>
+                </div>
+
+                <div v-show="authStore.isLogedIn" class="btn-group col mx-1">
                     <button class="m-0 p-0 border-0 dropdown-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <ion-icon :icon="personCircle" id="profIcon"></ion-icon>
                     </button>
@@ -46,6 +55,9 @@ import { IonIcon } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
 import { languageOutline } from 'ionicons/icons';
 import {useI18n} from "vue-i18n";
+import {useAuthStore} from "../../stores/AuthStore";
+
+const authStore = useAuthStore();
 const { locale } = useI18n({useScope: 'global'})
  function  setLocal(l){
     locale.value = l;
@@ -68,5 +80,8 @@ const { locale } = useI18n({useScope: 'global'})
 .bg-t{
     background: transparent;
     color: white ;
+}
+#login{
+    margin-right: 7px;
 }
 </style>
