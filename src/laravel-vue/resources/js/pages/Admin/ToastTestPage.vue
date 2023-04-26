@@ -12,9 +12,9 @@
                     <span class="input-group-text">bg-</span>
                     <input id="color" type="text" class="form-control" v-model="color">
                 </div>
-                <label for="color mt-2">Msg:</label>
+                <label for="color mt-2">I18n Path:</label>
                 <div class="input-group mt-1 mb-3 ">
-                    <input id="color" type="text" class="form-control" v-model="msg">
+                    <input id="color" type="text" class="form-control" v-model="i18nPath">
                 </div>
                 <button class="btn btn-primary form-control" @click="makeToast">Toast me !</button>
             </div>
@@ -44,12 +44,12 @@ export default {
     data() {
         return {
             "color": "",
-            "msg":"",
+            "i18nPath":"",
         }
     },
     methods: {
         makeToast(){
-            alertStore.push(this.msg,this.color);
+            alertStore.push(this.i18nPath,this.color);
         }
     }
 }

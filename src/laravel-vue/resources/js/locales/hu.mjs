@@ -35,10 +35,39 @@ export default {
             }
         },
     },
+    login: {
+        title: "Bejelentkezés",
+        form: {
+            email: "Email",
+            password: "Jelszó",
+            stayLogedIn: "Bejelentkezve maradok.",
+
+            button: {
+                login: "Bejelentkezés"
+            },
+            validation: {
+                email: "Ez nem email nem valid !",
+                required: "Kötelező kitölteni !",
+            },
+            error: {
+                youAreAlreadyLogedIn: "Már bevagy jelentkezve !",
+                userOrPasswordWrong: "A felhasználónév vagy jelszó rossz !",
+            }
+        },
+
+    },
     toast: {
         error: "Váratlan hiba történt !",
         register: {
             success: "Sikeres regisztráció !",
+        },
+        login: {
+            success: "Sikeres bejelentkezés !"
+        },
+        logout: {
+            account: 'Sikeres kijelentkezés !',
+            accountAll: 'Sikeres kijelentkezés !'
+
         }
     }
 }

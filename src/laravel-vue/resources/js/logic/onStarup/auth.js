@@ -23,7 +23,7 @@ export async function start() {
         let keepAliveError = null;
         await api.get('/login/alive').then(x=>keepAliveData =x.data).catch(x=>keepAliveError= x.response.data);
         if (keepAliveError !== null) {
-            alertStore.push('Váratlan hiba történt !','danger');
+            alertStore.push('toast.error','danger');
         }
     }
     else if(isValidError !== null){

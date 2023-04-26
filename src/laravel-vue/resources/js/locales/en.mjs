@@ -35,10 +35,39 @@ export default {
             }
         },
     },
+    login: {
+        title: "Login",
+        form: {
+            email: "Email",
+            password: "Password",
+            stayLogedIn: "Stay Loged In",
+
+            button: {
+                login: "Login"
+            },
+            validation: {
+                email: "This email is not valid !",
+                required: "Required to fill out !",
+            },
+            error: {
+                youAreAlreadyLogedIn: "You are already loged in !",
+                userOrPasswordWrong: "Email or Password wrong !",
+            }
+        },
+
+    },
     toast: {
         error: "Unexpected error occurred !",
         register: {
             success: "Registration success !",
+        },
+        login: {
+            success: "Login Success !"
+        },
+        logout: {
+            account: 'Logout Success !',
+            accountAll: 'Loged Out of all devices !'
+
         }
     }
 }

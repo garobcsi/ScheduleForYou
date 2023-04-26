@@ -45,10 +45,10 @@ export const useAuthStore = defineStore('auth-store', {
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
             this.logoutSession();
             if (logoutData !== null) {
-                useAlertStore().push('Sikeres kijelentkezés !','success');
+                useAlertStore().push('toast.logout.account','success');
             }
             else if (logoutError !== null) {
-                useAlertStore().push('Váratlan hiba történt !','danger');
+                useAlertStore().push('toast.error','danger');
             }
         },
         async logoutAll() {
@@ -57,10 +57,10 @@ export const useAuthStore = defineStore('auth-store', {
             await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
             this.logoutSession();
             if (logoutAllData !== null) {
-                useAlertStore().push('Sikeres kijelentkezés összes fiókból !','success');
+                useAlertStore().push('toast.logout.accountAll','success');
             }
             else if (logoutAllError !== null) {
-                useAlertStore().push('Váratlan hiba történt !','danger');
+                useAlertStore().push('toast.error','danger');
             }
         },
         save() {
