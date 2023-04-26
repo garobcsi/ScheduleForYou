@@ -7,8 +7,8 @@ export const useAlertStore = defineStore('alert-store', {
         }
     },
     actions: {
-        push(msg,color) {
-            this.data.push({id:this.data.length === 0 ? 0 : this.data.at(-1).id+1,message:msg,color:color});
+        push(i18nPath,color) {
+            this.data.push({id:this.data.length === 0 ? 0 : this.data.at(-1).id+1,message:i18nPath,color:color});
             const alert = document.getElementById('AlertBox');
             setTimeout(function() {alert.scrollTo({
                 top: alert.scrollHeight,
