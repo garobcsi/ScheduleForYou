@@ -22,10 +22,10 @@ services:
 
 
   app:
-    image: rcsnjszg/laravelapp:0.0.1-alpine
-    build:
-      context: ./docker/php
-      dockerfile: Dockerfile
+    image: garobcsi/laravelapp:0.0.1-alpine
+#    build:
+#      context: ./docker/php
+#      dockerfile: Dockerfile
     ports:
       - "${VITE_PORT}:${VITE_PORT}"
     volumes:

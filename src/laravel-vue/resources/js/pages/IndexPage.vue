@@ -1,24 +1,24 @@
 <template>
     <div class="container-fluid">
-        <div >
-            <div class="row basic-margo" id="heroContent">
-                <div class=" col-9 content">
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                </div>
-                <div class="col-5 content">
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
-                    <p>asdfqeofneojfnewjodnwonwed</p>
+        <div class="row">
+<!--            <div class="row basic-margo" id="heroContent">-->
+<!--                <div class=" col-9 content">-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                </div>-->
+<!--                <div class="col-5 content">-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
+<!--                    <p>asdfqeofneojfnewjodnwonwed</p>-->
 
-                </div>
-                <div class="col-5 content">
-                    as
-                </div>
-            </div>
+<!--                </div>-->
+<!--                <div class="col-5 content">-->
+<!--                    as-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </template>

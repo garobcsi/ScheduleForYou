@@ -9,7 +9,7 @@
              id="AlertBox">
             <TransitionGroup name="alert" tag="div">
                 <AlertPopup :color="item.color" v-for="(item, index) in alertStore.data" :key="item.id" :pkey="item.id">
-                    {{item.message}}
+                    {{item.message !== '' && te(item.message) ? t(item.message) : t('placeholder')}}
                 </AlertPopup>
             </TransitionGroup>
         </div>
@@ -20,6 +20,8 @@
 import AlertPopup from "./AlertPopup.vue";
 import {useAlertStore} from "../../stores/AlertStore";
 const alertStore = useAlertStore();
+import { useI18n } from 'vue-i18n';
+const { t, te } = useI18n();
 </script>
 
 <style scoped>

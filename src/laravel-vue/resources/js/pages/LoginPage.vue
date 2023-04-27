@@ -5,7 +5,7 @@ import Login from "../components/auth/Login.vue";
 <template>
     <div class="container">
         <div class="row">
-            <h1 class="text-center mt-1">Bejelentkezés</h1>
+            <h1 class="text-center mt-2">{{$t('login.title')}}</h1>
             <Login></Login>
         </div>
     </div>

@@ -1,86 +1,40 @@
 <template>
-    <nav class="navbar navbar-expand-sm navbar-dark shadow-sm">
-        <div class="container-fluid basic-margo">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-dark">
+        <div class="container-fluid d-flex justify-content-between">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Toggler" aria-controls="Toggler" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <router-link class="navbar-brand" to="/">
+                ScheduleForYou
+            </router-link>
+            <LangUser class="navbar-brand navbar-toggler navbar-remove"></LangUser>
+            <div class="collapse navbar-collapse" id="Toggler">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/homepage">{{ $t('navbar.home') }}</router-link>
+                        <router-link class="nav-link" :to="{name: 'explore'}">{{$t('navbar.explore')}}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/">{{ $t('navbar.services') }}</router-link>
+                        <router-link class="nav-link" :to="{name: 'services'}">{{$t('navbar.services')}}</router-link>
                     </li>
                 </ul>
             </div>
-            <div class="row align-items-center text-white">
-                <div class="btn-group col mx-1 dropdown">
-                    <ion-icon :icon="languageOutline" id="lang"  type="button" data-bs-toggle="dropdown" aria-expanded="false"></ion-icon>
-                    <ul class="dropdown-menu dropdown-menu-end mt-3" id="lang-dd">
-                        <li v-for="locale in $i18n.availableLocales">
-                            <button class="dropdown-item" @click="setLocal(locale)" :value="locale">{{$t(`locale.${locale}`)}}</button>
-                        </li>
-                    </ul>
-                </div>
-
-                <div v-show="!authStore.isLogedIn" class="btn-group col">
-                    <router-link class="btn btn-outline-primary" to="/register">Registration</router-link>
-                </div>
-                <div v-show="!authStore.isLogedIn" class="btn-group col p-0" id="login">
-                    <router-link class="btn btn-outline-primary" to="/login">Login</router-link>
-                </div>
-
-                <div v-show="authStore.isLogedIn" class="btn-group col mx-1">
-                    <button class="m-0 p-0 border-0 dropdown-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <ion-icon :icon="personCircle" id="profIcon"></ion-icon>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li ><router-link class="dropdown-item" to="#">Profil</router-link></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><router-link class="dropdown-item" to="#">Kijelentkezés</router-link></li>
-                        <li><router-link class="dropdown-item" to="/login">Bejelentkezés</router-link></li>
-                        <li><router-link class="dropdown-item" to="/register">Regisztrálás</router-link></li>
-                    </ul>
-                </div>
-            </div>
+            <LangUser class="collapse navbar-collapse justify-content-end"></LangUser>
         </div>
     </nav>
 </template>
 
 <script setup>
-import { IonIcon } from '@ionic/vue';
-import { personCircle } from 'ionicons/icons';
-import { languageOutline } from 'ionicons/icons';
-import {useI18n} from "vue-i18n";
-import {useAuthStore} from "../../stores/AuthStore";
-
-const authStore = useAuthStore();
-const { locale } = useI18n({useScope: 'global'})
- function  setLocal(l){
-    locale.value = l;
-    localStorage.setItem('local', locale );
-}
-
+import LangUser from "../navbar/LangUser.vue";
 </script>
 
 <style scoped>
-nav{
-    background-color: #000 !important;
-}
-#profIcon{
-    font-size: 50px
-}
-#lang{
-    font-size: 25px;
-    margin-right: -20px;
-}
-#lang-dd{
-    margin-right: -80px;
-}
-#login{
-    margin-right: 7px;
+
+.navbar-remove {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font: revert;
+    color: revert;
+    text-decoration: revert;
 }
 </style>
