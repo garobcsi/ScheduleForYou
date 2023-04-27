@@ -33,6 +33,26 @@ const routes = [
         name: 'profile',
         component: () => import('@/pages/ProfilePage.vue')
     },
+    {
+        path: '/services',
+        name: 'services',
+        component: () => import('@/pages/ServicesPage.vue')
+    },
+    {
+        path: '/explore',
+        name: 'explore',
+        component: () => import('@/pages/ExplorePage.vue')
+    },
+    {
+        path: '/company',
+        name: 'company',
+        component: () => import('@/pages/CompanyPage.vue')
+    },
+    {
+        path: '/settings',
+        name: 'settings',
+        component: () => import('@/pages/SettingsPage.vue')
+    },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
     // admin
     {

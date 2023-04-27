@@ -83,8 +83,12 @@ export const useAuthStore = defineStore('auth-store', {
         isLogedIn() {
             return this.token !== null && this.user !== null;
         },
+        isAdminLocalStorageOnly() {
+            if (this.user === null || this.user === undefined) return false;
+            if(this.user.role === "admin") return true;
+        },
         async isAdmin() {
-            if (this.user === null || this.user === undefined) return null;
+            if (this.user === null || this.user === undefined) return false;
             if(this.user.role !== "admin") return false;
             let success = null;
             let error = null;

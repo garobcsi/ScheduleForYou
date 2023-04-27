@@ -2,7 +2,21 @@ export default {
     placeholder: "No translation. (i18n)",
     navbar: {
         home: 'Home',
-        services: 'Services'
+        services: 'Services',
+        explore: "Explore",
+
+        button: {
+            register: "Registration",
+            login:"Login"
+        },
+        dropdown: {
+            logedInAs: "Loged in as",
+            adminPage: "Admin page",
+            profile: "Your Profile",
+            companies: "Your Companies",
+            settings:"Settings",
+            logOut:"Log out"
+        }
     },
     locale: {
         en: 'English',

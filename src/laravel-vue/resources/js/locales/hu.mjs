@@ -2,7 +2,21 @@ export default {
     placeholder: "Nincs forditás. (i18n)",
     navbar: {
         home: 'Kezdőlap',
-        services: 'Szolgáltatások'
+        services: 'Szolgáltatások',
+        explore: "Felfedezés",
+
+        button: {
+            register: "Regisztráció",
+            login:"Bejelenkezés"
+        },
+        dropdown: {
+            logedInAs: "Bejelentkezve mint",
+            adminPage: "Admin oldal",
+            profile: "Profilod",
+            companies: "Cégeid",
+            settings:"Bállitások",
+            logOut:"Kijelentkezés"
+        }
     },
     locale: {
         en: 'English',

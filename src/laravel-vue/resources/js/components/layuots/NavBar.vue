@@ -4,22 +4,21 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Toggler" aria-controls="Toggler" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/">Navbar</a>
-            <LangUser class="navbar-brand navbar-toggler navbar-remove">NavBar 2</LangUser>
+            <router-link class="navbar-brand" to="/">
+                ScheduleForYou
+            </router-link>
+            <LangUser class="navbar-brand navbar-toggler navbar-remove"></LangUser>
             <div class="collapse navbar-collapse" id="Toggler">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <router-link class="nav-link" :to="{name: 'explore'}">{{$t('navbar.explore')}}</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <router-link class="nav-link" :to="{name: 'services'}">{{$t('navbar.services')}}</router-link>
                     </li>
                 </ul>
             </div>
-            <LangUser class="collapse navbar-collapse justify-content-end">Navbar 2</LangUser>
+            <LangUser class="collapse navbar-collapse justify-content-end"></LangUser>
         </div>
     </nav>
 </template>
