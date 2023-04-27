@@ -1,13 +1,13 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-dark">
         <div class="container-fluid d-flex justify-content-between">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Toggler" aria-controls="Toggler" aria-expanded="false">
+            <button class="navbar-toggler mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#Toggler" aria-controls="Toggler" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <router-link class="navbar-brand" to="/">
+            <router-link class="navbar-brand mx-2 mt-1" to="/">
                 ScheduleForYou
             </router-link>
-            <LangUser class="navbar-brand navbar-toggler navbar-remove"></LangUser>
+            <LangUser class="navbar-brand navbar-toggler navbar-remove mt-1 col-12 col-sm-auto col-md-auto col-xl-auto col-xxl-auto justify-content-end"></LangUser>
             <div class="collapse navbar-collapse" id="Toggler">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
