@@ -19,8 +19,8 @@ const routes = [
         beforeEnter: [dontAccessAfterLogin]
     },
     {
-        path: '/homepage',
-        name: 'homepage',
+        path: '/home',
+        name: 'home',
         component: () => import('@/pages/HomePage.vue')
     },
     {

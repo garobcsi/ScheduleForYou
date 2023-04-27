@@ -11,7 +11,7 @@ const messages = { hu, en}
 const i18n = createI18n({
     legacy: false,
     messages,
-    locale: localStorage.getItem('lang') ?? 'hu',
+    locale: localStorage.getItem('local') ?? 'hu',
     fallbackLocal: 'en'
 })
 
