@@ -11,10 +11,9 @@ const messages = { hu, en}
 const i18n = createI18n({
     legacy: false,
     messages,
-    locale: localStorage.getItem('local') ?? 'hu',
+    locale: ["en","hu"].includes(localStorage.getItem('local')) ? localStorage.getItem('local') : "hu",
     fallbackLocal: 'en'
 })
-
 const app = createApp(App);
 app.use(i18n);
 app.use(createPinia());
