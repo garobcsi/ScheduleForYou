@@ -5,7 +5,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <router-link class="navbar-brand mx-2 mt-1" to="/">
-                ScheduleForYou
+                <img class="img-fluid" src="../../../images/Logo/Logo3.png" alt="logo">
             </router-link>
             <LangUser class="navbar-brand navbar-toggler navbar-remove mt-1 col-12 col-sm-auto col-md-auto col-xl-auto col-xxl-auto justify-content-end"></LangUser>
             <div class="collapse navbar-collapse" id="Toggler">
@@ -36,5 +36,20 @@ import LangUser from "../navbar/LangUser.vue";
     font: revert;
     color: revert;
     text-decoration: revert;
+}
+img {
+    width: 300px;
+    height: auto;
+}
+@media only screen and (max-width: 992px) {
+    img {
+        width: 260px;
+        height: auto;
+    }
+}@media only screen and (max-width: 630px) {
+    img {
+        width: 210px;
+        height: auto;
+    }
 }
 </style>
