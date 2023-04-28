@@ -55,7 +55,7 @@
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <button class="dropdown-item d-flex align-items-center" @click="authStore.logout">
+                    <button class="dropdown-item d-flex align-items-center" @click="logout">
                         <ion-icon class="me-1 icons" :icon="logOutOutline"></ion-icon>
                         {{ $t('navbar.dropdown.logOut') }}
                     </button>
@@ -76,6 +76,16 @@ const { locale } = useI18n({useScope: 'global'})
 function  setLocal(l){
     locale.value = l;
     localStorage.setItem('local', locale.value );
+}
+</script>
+<script>
+import {useAuthStore} from "../../stores/AuthStore";
+export default {
+    methods: {
+        async logout() {
+            await useAuthStore().logout();
+        }
+    }
 }
 </script>
 

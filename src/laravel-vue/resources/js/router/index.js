@@ -7,31 +7,9 @@ const routes = [
         component: () => import('@/pages/IndexPage.vue'),
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/pages/LoginPage.vue'),
-        beforeEnter: [dontAccessAfterLogin]
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import('@/pages/RegisterPage.vue'),
-        beforeEnter: [dontAccessAfterLogin]
-    },
-    {
         path: '/home',
         name: 'home',
         component: () => import('@/pages/HomePage.vue')
-    },
-    {
-        path: '/naptar',
-        name: 'naptar',
-        component: () => import('@/pages/CalendarPage.vue'),
-    },
-    {
-        path: '/profile',
-        name: 'profile',
-        component: () => import('@/pages/ProfilePage.vue')
     },
     {
         path: '/services',
@@ -44,14 +22,58 @@ const routes = [
         component: () => import('@/pages/ExplorePage.vue')
     },
     {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/pages/auth/LoginPage.vue'),
+        beforeEnter: [dontAccessAfterLogin]
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/pages/auth/RegisterPage.vue'),
+        beforeEnter: [dontAccessAfterLogin]
+    },
+    {
+        path: '/naptar',
+        name: 'naptar',
+        component: () => import('@/pages/user/UserCalendarPage.vue'),
+        beforeEnter: [accessAfterLogin]
+
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/pages/user/ProfilePage.vue'),
+        beforeEnter: [accessAfterLogin]
+
+    },
+    {
         path: '/company',
         name: 'company',
-        component: () => import('@/pages/CompanyPage.vue')
+        component: () => import('@/pages/user/CompanyPage.vue'),
+        beforeEnter: [accessAfterLogin]
+
     },
     {
         path: '/settings',
         name: 'settings',
-        component: () => import('@/pages/SettingsPage.vue')
+        component: () => import('@/pages/settings/SettingsProfilePage.vue'),
+        beforeEnter: [accessAfterLogin]
+
+    },
+    {
+        path: '/settings/profile',
+        name: 'settings_profile',
+        component: () => import('@/pages/settings/SettingsProfilePage.vue'),
+        beforeEnter: [accessAfterLogin]
+
+    },
+    {
+        path: '/settings/account',
+        name: 'settings_account',
+        component: () => import('@/pages/settings/SettingsAccountPage.vue'),
+        beforeEnter: [accessAfterLogin]
+
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
     // admin

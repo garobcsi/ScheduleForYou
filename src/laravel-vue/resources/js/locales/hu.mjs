@@ -68,7 +68,6 @@ export default {
                 userOrPasswordWrong: "A felhasználónév vagy jelszó rossz !",
             }
         },
-
     },
     toast: {
         error: "Váratlan hiba történt !",
