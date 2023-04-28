@@ -75,7 +75,7 @@ import {useI18n} from "vue-i18n";
 const { locale } = useI18n({useScope: 'global'})
 function  setLocal(l){
     locale.value = l;
-    localStorage.setItem('local', locale.value );
+    localStorage.setItem('locale', locale.value );
 }
 </script>
 <script>
