@@ -44,6 +44,7 @@ Route::name('user.')->group(function () {
     Route::prefix('user')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('',[UserController::class,'getMyUser'])->name('my');
+            Route::post('',[UserController::class,'updateMyUser'])->name('post');
             Route::delete('',[UserController::class,'DeleteAccount'])->name('delete');
             Route::prefix('settings')->name('settings.')->group(function () {
                 Route::get('',[UserSettingsController::class,'get'])->name('get');

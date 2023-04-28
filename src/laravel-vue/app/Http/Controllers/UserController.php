@@ -7,6 +7,7 @@ use App\Enums\UserRoleEnum;
 use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\PublicUserResource;
 use App\Http\Resources\UserResource;
 use App\Models\Company;
@@ -30,6 +31,16 @@ class UserController extends Controller
     public function getMyUser(Request $request): JsonResponse
     {
         return response()->json(["data" => new UserResource($request->user())],200);
+    }
+
+    public function updateMyUser(UpdateUserRequest $request){
+        $data = $request->validated();
+        $user = auth('sanctum')->user();
+        $user->name = $data["username"];
+        $user->email = $data["email"];
+        $user->save();
+
+        return response()->json(['message'=>'User updated successfully.'],201);
     }
 
     /**
