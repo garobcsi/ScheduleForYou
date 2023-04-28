@@ -26,7 +26,6 @@ class UpdateUserRequest extends FormRequest
         return [
             "username"=>["required","min:3","max:255"],
             "email"=>["required","email", "unique:users,email"],
-
         ];
     }
 }
