@@ -7,6 +7,7 @@ use App\Enums\UserRoleEnum;
 use App\Http\Requests\FindUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ResetMyUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\PublicUserResource;
 use App\Http\Resources\UserResource;
@@ -41,6 +42,17 @@ class UserController extends Controller
         $user->save();
 
         return response()->json(['message'=>'User updated successfully.'],201);
+    }
+
+    public function resetMyUserPassword(ResetMyUserPasswordRequest $request){
+        $data = $request->validated();
+        $user = auth('sanctum')->user();
+        if (!Hash::check($data["password"],$user->password))
+        return response()->json(['message'=>'Wrong password !'],403);
+        $user->password = Hash::make($data["password_changed"]);
+        $user->save();
+
+        return response()->json(['message'=>'User password updated successfully.'],201);
     }
 
     /**
