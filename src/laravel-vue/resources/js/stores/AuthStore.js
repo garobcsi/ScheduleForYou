@@ -33,6 +33,15 @@ export const useAuthStore = defineStore('auth-store', {
                 this.errorMsg = loginError;
             }
         },
+        async update() {
+            let userData = null;
+            await api.get('/user').then(x=>userData =x.data);
+            if (userData !== null) {
+                this.user = userData.data;
+                this.errorMsg = null;
+                this.save();
+            }
+        },
         logoutSession() {
             this.token = null;
             this.user = null;
