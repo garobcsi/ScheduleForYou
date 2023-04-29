@@ -79,7 +79,13 @@ export default {
                 email: "Email",
                 update: "Frissítés",
                 loading: "Betöltés",
+                validation: {
+                email: "Ez nem email nem valid !",
+                min: "Minimum {n} betűnél nagyobb legyen.",
+                max: "Maxinum {n} karakter hosszú lehet.",
+                required: "Kötelező kitölteni !",
             }
+            },   
         }
     },
     toast: {

@@ -35,7 +35,7 @@ const initialValues = computed(()=> {
 
 const i18nSchema = computed(() => {
     return yup.object({
-        username: yup.string().min(3).max(255).required(),
+        username: yup.string().min(3,t('settings.menu.profile.validation.min',{n:3})).max(255,t('settings.menu.profile.validation.max',{n:255})).required(t('settings.menu.profile.validation.required')),
     })
 });
 

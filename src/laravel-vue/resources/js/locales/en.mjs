@@ -80,6 +80,13 @@ export default {
                 email: "Email",
                 update: "Update",
                 loading: "Loading",
+
+                validation: {
+                    email: "This email is not valid !",
+                    max: "It can be a maximum of {n} characters long.",
+                    min: "Must be greater than {n} letters.",
+                    required: "Required to fill out !",
+                }
             }
         }
     },

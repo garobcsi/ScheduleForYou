@@ -36,7 +36,7 @@ const initialValues = computed(()=> {
 
 const i18nSchema = computed(() => {
     return yup.object({
-        email: yup.string().email().max(255).required(),
+        email: yup.string().email(t('settings.menu.profile.validation.email')).max(255,t('settings.menu.profile.validation.max',{n:255})).required(t('settings.menu.profile.validation.required')),
     })
 });
 
