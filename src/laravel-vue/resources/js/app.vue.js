@@ -19,8 +19,9 @@ import en from '@/locales/en.mjs'
     let locale = ["en","hu"].includes(localStorage.getItem('locale')) ? localStorage.getItem('locale') : "hu";
     if (useAuthStore().isLogedIn) {
         let dataSuccess = null;
-        await api.get('/user/settings').then(x=>dataSuccess=x.data);
-        if (dataSuccess !== null) locale = dataSuccess.data.lang;
+        let dataError = null;
+        await api.get('/user/settings').then(x=>dataSuccess=x.data).catch(x=>dataError=x.response.data);
+        if (dataError === null && dataSuccess !== null) locale = dataSuccess.data.lang;
     }
     const i18n = createI18n({
         legacy: false,
