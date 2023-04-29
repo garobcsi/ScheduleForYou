@@ -69,6 +69,19 @@ export default {
             }
         },
     },
+    settings: {
+        menu: {
+            yourProfile: "Profilod",
+            yourAccount: "Fiókod",
+
+            profile: {
+                username: "Felhasználónév",
+                email: "Email",
+                update: "Frissítés",
+                loading: "Betöltés",
+            }
+        }
+    },
     toast: {
         error: "Váratlan hiba történt !",
         register: {
@@ -81,6 +94,9 @@ export default {
             account: 'Sikeres kijelentkezés !',
             accountAll: 'Sikeres kijelentkezés !'
 
+        },
+        username: {
+            success: "Felhsználónév sikeresen frissitve !"
         }
     }
 }

@@ -5,8 +5,8 @@
      col-md-4
      col-xl-4
     col-xxl-4">
-        <router-link :to="{name: 'settings_profile'}" class="btn rounded-3 w-100 hover mt-2 text-start d-flex align-items-center" :class="{'on fw-semibold':['settings_profile','settings'].includes($route.name)}"><IonIcon class="icons me-1" :icon="personOutline"/>Your Profile</router-link>
-        <router-link :to="{name: 'settings_account'}" class="btn rounded-3 w-100 hover mt-1 text-start d-flex align-items-center" :class="{'on fw-semibold':['settings_account'].includes($route.name)}"><IonIcon class="icons me-1" :icon="settingsOutline" />Your Account</router-link>
+        <router-link :to="{name: 'settings_profile'}" class="btn rounded-3 w-100 hover mt-2 text-start d-flex align-items-center" :class="{'on fw-semibold':['settings_profile','settings'].includes($route.name)}"><IonIcon class="icons me-1" :icon="personOutline"/>{{$t('settings.menu.yourProfile')}}</router-link>
+        <router-link :to="{name: 'settings_account'}" class="btn rounded-3 w-100 hover mt-1 text-start d-flex align-items-center" :class="{'on fw-semibold':['settings_account'].includes($route.name)}"><IonIcon class="icons me-1" :icon="settingsOutline" />{{$t('settings.menu.yourAccount')}}</router-link>
     </div>
     <div class="
        col-12

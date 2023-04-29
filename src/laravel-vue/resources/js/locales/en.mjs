@@ -70,6 +70,19 @@ export default {
         },
 
     },
+    settings: {
+        menu: {
+            yourProfile: "Your Profile",
+            yourAccount: "Your Account",
+
+            profile: {
+                username: "Username",
+                email: "Email",
+                update: "Update",
+                loading: "Loading",
+            }
+        }
+    },
     toast: {
         error: "Unexpected error occurred !",
         register: {
@@ -81,7 +94,9 @@ export default {
         logout: {
             account: 'Logout Success !',
             accountAll: 'Loged Out of all devices !'
-
+        },
+        username: {
+            success: "Username successfully updated !"
         }
     }
 }
