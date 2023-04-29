@@ -44,10 +44,6 @@ function i18nIsValid(values) {
 }
 
 async function onUsernameSubmit(values) {
-    if (dataSuccess === null) {
-        useAlertStore().push("toast.error","danger");
-        return;
-    }
     let data = null;
     let error = null;
     await api.post('/user',{
