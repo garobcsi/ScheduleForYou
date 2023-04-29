@@ -7,6 +7,7 @@
                 </h3>
                 <hr class="border border-1 mt-2 border-dark">
                 <SettingsUsername/>
+                <SettingsEmail/>
             </settings-items>
         </div>
     </div>
@@ -15,6 +16,7 @@
 <script setup>
 import SettingsItems from "../../components/layuots/SettingsItems.vue";
 import SettingsUsername from "../../components/settings/SettingsUsername.vue";
+import SettingsEmail from "../../components/settings/SettingsEmail.vue";
 </script>
 
 <style scoped>

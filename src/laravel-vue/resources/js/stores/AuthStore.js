@@ -48,11 +48,12 @@ export const useAuthStore = defineStore('auth-store', {
             this.stayLogedIn = false;
             this.delete();
         },
-        async logout() {
+        async logout(silent = false) {
             let logoutData = null;
             let logoutError= null;
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
             this.logoutSession();
+            if (silent) return;
             if (logoutData !== null) {
                 useAlertStore().push('toast.logout.account','success');
             }

@@ -97,6 +97,10 @@ export default {
         },
         username: {
             success: "Felhsználónév sikeresen frissitve !"
+        },
+        email: {
+            success: "Email sikeresen frissitve !",
+            taken: "Ez az email már foglalt !"
         }
     }
 }

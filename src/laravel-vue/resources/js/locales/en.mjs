@@ -97,6 +97,10 @@ export default {
         },
         username: {
             success: "Username successfully updated !"
+        },
+        email: {
+            success: "Email successfully updated !",
+            taken: "The email has already been taken !"
         }
     }
 }
