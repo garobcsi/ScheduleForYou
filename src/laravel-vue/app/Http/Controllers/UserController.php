@@ -37,8 +37,8 @@ class UserController extends Controller
     public function updateMyUser(UpdateUserRequest $request){
         $data = $request->validated();
         $user = auth('sanctum')->user();
-        $user->name = $data["username"];
-        $user->email = $data["email"];
+        if (array_key_exists('username',$data)) $user->name = $data["username"];
+        if (array_key_exists('email',$data)) $user->email = $data["email"];
         $user->save();
 
         return response()->json(['message'=>'User updated successfully.'],201);
