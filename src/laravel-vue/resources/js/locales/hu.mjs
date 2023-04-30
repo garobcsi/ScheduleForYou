@@ -73,6 +73,7 @@ export default {
         menu: {
             yourProfile: "Profilod",
             yourAccount: "Fiókod",
+            language: "Nyelv",
 
             profile: {
                 username: "Felhasználónév",

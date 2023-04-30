@@ -70,6 +70,13 @@ const routes = [
         beforeEnter: [accessAfterLogin]
 
     },
+    {
+        path: '/settings/language',
+        name: 'settings_language',
+        component: () => import('@/pages/settings/SettingsLangPage.vue'),
+        beforeEnter: [accessAfterLogin]
+
+    },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
     // admin
     {

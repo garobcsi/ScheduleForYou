@@ -74,6 +74,7 @@ export default {
         menu: {
             yourProfile: "Your Profile",
             yourAccount: "Your Account",
+            language: "Language",
 
             profile: {
                 username: "Username",
