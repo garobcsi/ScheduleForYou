@@ -28,9 +28,14 @@ const disabled = ref(true);
         disabled.value = false;
     }
 })();
+
+function i18nIsValid(values) {
+    return (dataSuccess.value === null && values.email === t('settings.menu.profile.loading')+" ..." ) || i18nSchema.value.isValidSync(values);
+}
+
 const initialValues = computed(()=> {
     return {
-        "email": dataSuccess.value !== null ? dataSuccess.value.data.email : `${t('settings.menu.profile.loading')} ...`
+        "email":  dataSuccess.value !== null ? dataSuccess.value.data.email : `${t('settings.menu.profile.loading')} ...`
     }
 })
 
@@ -40,9 +45,6 @@ const i18nSchema = computed(() => {
     })
 });
 
-function i18nIsValid(values) {
-    return i18nSchema.value.isValidSync(values);
-}
 
 async function onUsernameSubmit(values) {
     let data = null;
