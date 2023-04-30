@@ -88,6 +88,21 @@ export default {
                     min: "Must be greater than {n} letters.",
                     required: "Required to fill out !",
                 }
+            },
+            password: {
+                title: "Password reset",
+                current_password:"Old Password",
+                password_changed: "New Password",
+                password_changed_confirm: "Confirm New Password",
+                update: "Update",
+
+                validation: {
+                    max: "It can be a maximum of {n} characters long.",
+                    min: "Must be greater than {n} letters.",
+                    required: "Required to fill out !",
+                    passwordAreNotTheSame: "The password don't match !",
+                    oldPasswordAndNewPasswordSame: "Old and New password cannot be the same !"
+                }
             }
         }
     },
@@ -109,6 +124,10 @@ export default {
         email: {
             success: "Email successfully updated !",
             taken: "The email has already been taken !"
+        },
+        password: {
+            success: "Password successfully updated !",
+            wrongPassword: "Wrong old password !",
         }
     }
 }

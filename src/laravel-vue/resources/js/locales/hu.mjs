@@ -81,12 +81,28 @@ export default {
                 update: "Frissítés",
                 loading: "Betöltés",
                 validation: {
-                email: "Ez nem email nem valid !",
-                min: "Minimum {n} betűnél nagyobb legyen.",
-                max: "Maxinum {n} karakter hosszú lehet.",
-                required: "Kötelező kitölteni !",
+                    email: "Ez nem email nem valid !",
+                    min: "Minimum {n} betűnél nagyobb legyen.",
+                    max: "Maxinum {n} karakter hosszú lehet.",
+                    required: "Kötelező kitölteni !",
+                }
+            },
+            password: {
+                title: "Jelszó visszaállítás",
+                current_password:"Régi jelszó",
+                password_changed: "Új jelszó",
+                password_changed_confirm: "Új jelszó megerösités",
+                update: "Frissítés",
+
+                validation: {
+                    min: "Minimum {n} betűnél nagyobb legyen.",
+                    max: "Maxinum {n} karakter hosszú lehet.",
+                    required: "Kötelező kitölteni !",
+                    passwordAreNotTheSame: "A jelszavak nem egyeznek meg !",
+                    oldPasswordAndNewPasswordSame: "Régi és új jelszó nem lehet ugyan az !"
+
+                }
             }
-            },   
         }
     },
     toast: {
@@ -108,6 +124,10 @@ export default {
         email: {
             success: "Email sikeresen frissitve !",
             taken: "Ez az email már foglalt !"
+        },
+        password: {
+            success: "Jelszó sikeresen frissitve !",
+            wrongPassword: "Rossz régi jelszó !",
         }
     }
 }

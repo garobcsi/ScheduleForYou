@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import {api} from "../utils/api";
 import {useAlertStore} from "./AlertStore";
+import {router} from "../router";
 export const useAuthStore = defineStore('auth-store', {
     state() {
         return {
@@ -53,6 +54,7 @@ export const useAuthStore = defineStore('auth-store', {
             let logoutError= null;
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
             this.logoutSession();
+            router.push({name:"index"});
             if (silent) return;
             if (logoutData !== null) {
                 useAlertStore().push('toast.logout.account','success');
@@ -61,11 +63,13 @@ export const useAuthStore = defineStore('auth-store', {
                 useAlertStore().push('toast.error','danger');
             }
         },
-        async logoutAll() {
+        async logoutAll(silent = false) {
             let logoutAllData = null;
             let logoutAllError= null;
             await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
             this.logoutSession();
+            router.push({name:"index"});
+            if (silent) return;
             if (logoutAllData !== null) {
                 useAlertStore().push('toast.logout.accountAll','success');
             }
