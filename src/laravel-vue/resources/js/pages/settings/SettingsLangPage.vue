@@ -7,6 +7,7 @@
                 </h3>
                 <hr class="border border-1 mt-2 border-dark">
                 <SettingsLang/>
+
             </settings-items>
         </div>
     </div>

@@ -8,6 +8,7 @@
                 <hr class="border border-1 mt-2 border-dark">
                 <SettingsUsername/>
                 <SettingsEmail/>
+                <div class="my-5"/>
             </settings-items>
         </div>
     </div>

@@ -7,6 +7,7 @@
                 </h3>
                 <hr class="border border-1 mt-2 border-dark">
                 <SettingsPasswordReset/>
+                <SettingsLogoutAllAccount/>
             </settings-items>
         </div>
     </div>
@@ -15,6 +16,7 @@
 <script setup>
 import SettingsItems from "../../components/layuots/SettingsItems.vue";
 import SettingsPasswordReset from "../../components/settings/SettingsPasswordReset.vue";
+import SettingsLogoutAllAccount from "../../components/settings/SettingsLogoutAllAccount.vue";
 </script>
 
 <style scoped>

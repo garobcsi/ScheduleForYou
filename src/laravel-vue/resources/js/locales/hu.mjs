@@ -102,6 +102,17 @@ export default {
                     oldPasswordAndNewPasswordSame: "Régi és új jelszó nem lehet ugyan az !"
 
                 }
+            },
+            logoutAll: {
+                title: "Kijelentkezés minden fiókból",
+                button: "Kijelentkezés",
+
+                model: {
+                    questionTitle: "Kijelentkezés minden fiókból ?",
+                    questionAreYouSure: "Biztos vagy ebben ?",
+                    yesImSure: "Igen !",
+                    close: "Bezárás"
+                }
             }
         }
     },

@@ -103,6 +103,17 @@ export default {
                     passwordAreNotTheSame: "The password don't match !",
                     oldPasswordAndNewPasswordSame: "Old and New password cannot be the same !"
                 }
+            },
+            logoutAll: {
+                title: "Logout from all devices",
+                button: "Logout All",
+
+                model: {
+                    questionTitle: "Logout from all devices ?",
+                    questionAreYouSure: "Are you sure ?",
+                    yesImSure: "Yes im sure !",
+                    close: "Close"
+                }
             }
         }
     },

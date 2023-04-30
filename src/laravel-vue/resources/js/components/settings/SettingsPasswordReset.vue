@@ -1,6 +1,6 @@
 <template>
     <h6>{{$t('settings.menu.password.title')}}</h6>
-    <VeeForm class="col-xl-8" @submit="onUsernameSubmit" v-slot="{ values }" :validation-schema="i18nSchema" @change="onChange">
+    <VeeForm class="col-xl-8 mb-3" @submit="onUsernameSubmit" v-slot="{ values }" :validation-schema="i18nSchema" @change="onChange">
         <div v-if="alert_danger !== null" class="alert alert-danger mb-0" role="alert">
             {{$t(alert_danger)}}
         </div>

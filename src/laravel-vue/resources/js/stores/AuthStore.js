@@ -53,8 +53,8 @@ export const useAuthStore = defineStore('auth-store', {
             let logoutData = null;
             let logoutError= null;
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
-            this.logoutSession();
             router.push({name:"index"});
+            this.logoutSession();
             if (silent) return;
             if (logoutData !== null) {
                 useAlertStore().push('toast.logout.account','success');
@@ -67,8 +67,8 @@ export const useAuthStore = defineStore('auth-store', {
             let logoutAllData = null;
             let logoutAllError= null;
             await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
-            this.logoutSession();
             router.push({name:"index"});
+            this.logoutSession();
             if (silent) return;
             if (logoutAllData !== null) {
                 useAlertStore().push('toast.logout.accountAll','success');
