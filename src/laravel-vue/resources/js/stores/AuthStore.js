@@ -77,6 +77,20 @@ export const useAuthStore = defineStore('auth-store', {
                 useAlertStore().push('toast.error','danger');
             }
         },
+        async deleteAccount(silent = false) {
+            let accountData = null;
+            let accountError= null;
+            await api.delete('/user').then(x=>accountData =x.data).catch(x=>accountError= x.response.data);
+            router.push({name:"index"});
+            this.logoutSession();
+            if (silent) return;
+            if (accountData !== null) {
+                useAlertStore().push('toast.accountDelete.success','success');
+            }
+            else if (accountError !== null) {
+                useAlertStore().push('toast.error','danger');
+            }
+        },
         save() {
             localStorage.setItem('token',this.token);
             localStorage.setItem('user',JSON.stringify(this.user));

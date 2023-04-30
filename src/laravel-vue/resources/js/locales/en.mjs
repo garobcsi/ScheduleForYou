@@ -114,6 +114,22 @@ export default {
                     yesImSure: "Yes im sure !",
                     close: "Close"
                 }
+            },
+            deleteAccount: {
+                title: "Danger Zone",
+                deleteTheAccount: "Delete the account",
+                thisActionIs:"This action is",
+                notReversible: "not reversible",
+                button: "Delete account",
+
+                model: {
+                    questionTitle: "Delete the account ?",
+                    thisActionIsNotReversible: "This action is not reversible !",
+                    questionAreYouSure: "Are you sure ?",
+                    yesImSure: "Yes im sure !",
+                    close: "Close"
+
+                }
             }
         }
     },
@@ -139,6 +155,9 @@ export default {
         password: {
             success: "Password successfully updated !",
             wrongPassword: "Wrong old password !",
+        },
+        accountDelete: {
+            success: "Account successfully deleted !"
         }
     }
 }

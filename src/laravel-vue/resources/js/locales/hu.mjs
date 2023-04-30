@@ -113,6 +113,21 @@ export default {
                     yesImSure: "Igen !",
                     close: "Bezárás"
                 }
+            },
+            deleteAccount: {
+                title: "Veszélyzona",
+                deleteTheAccount: "Fiók törlése",
+                thisActionIs:"Ez a tevékenység",
+                notReversible: "nem visszafordítható",
+                button: "Fiók Törlése",
+
+                model: {
+                    questionTitle: "Fiók törlése ?",
+                    thisActionIsNotReversible: "Ez a tevékenység nem visszafordítható !",
+                    questionAreYouSure: "Biztos vagy ebben ?",
+                    yesImSure: "Igen !",
+                    close: "Bezárás"
+                }
             }
         }
     },
@@ -139,6 +154,9 @@ export default {
         password: {
             success: "Jelszó sikeresen frissitve !",
             wrongPassword: "Rossz régi jelszó !",
+        },
+        accountDelete: {
+            success: "Felhasználó sikeresen törölve !"
         }
     }
 }
