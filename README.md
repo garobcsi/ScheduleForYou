@@ -9,6 +9,8 @@
   * [Building For Production](#building-for-production)
   * [Building Manually For Production](#building-manually-for-production)
   * [PrerequisitesHaving troubles ?](#having-troubles)
+* **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
+* **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 
 
 # :black_nib: About The Project
@@ -22,21 +24,44 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 * [Docker](https://www.docker.com/) & [Docker-Compose](https://docs.docker.com/compose/)
 
 ### Building For Development
-1. Make sure project is not running in `Docker`
+1. Make sure project is not running in `docker`
 2. Navigate to `src/laravel-vue`
 3. Run `./start-dev.sh`
 ### Building Manually For Development
-1. Make sure project is not running in `Docker`
+1. Make sure project is not running in `docker`
 2. Navigate to `src/laravel-vue`
+3. Start the application `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
+4. Log into fish shell `docker compose exec app fish`
+5. Install composer `composer install`
+6. Generate key `php artisan key:generate`
+7. Migrate the database `php artisan migrate:fresh --seed`
+8. Install node packages `npm i`
+9. Start Vite dev mode `npm run dev`
 ### Building For Production
-
+1. Make sure project is not running in `docker`
+2. Navigate to `src/laravel-vue`
+3. Run `./start-prod.sh`
 ### Building Manually For Production
-
+1. Make sure project is not running in `docker`
+2. Navigate to `src/laravel-vue`
+3. Start the application `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`
+4. Log into fish shell `docker compose exec app fish`
+5. Install composer `composer install`
+6. Generate key `php artisan key:generate`
+7. Migrate the database `php artisan migrate:fresh --seed`
+8. Install node packages `npm i`
+9. Build the application `npm run build`
 ### Having troubles ?
 
+# :open_file_folder: Application ports
+- Website: `80`
+- Vite: `5000` (development only, In prodoction dosen't work/used)
+- PhpMyAdmin: `5001`
+- DB (MySql): 33061
+# :keyboard: Useful Commands
 <!-- ## LINKEK -->
 
-<!-- Trello (not poublic): https://trello.com/b/k4g2bpTB/vizsgaremek-naptár
+<!-- Trello (done): https://trello.com/b/k4g2bpTB/vizsgaremek-naptár
 
 Figma: (done) https://www.figma.com/file/qlWjgsmqi6hjBC6cHR09qB/Vizsgaremek?node-id=0%3A1&t=ZHQlMKRc6BF3in2D-1
 
