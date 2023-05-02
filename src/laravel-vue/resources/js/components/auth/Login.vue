@@ -36,8 +36,8 @@ async function onSubmit(values) {
     await authStore.login(values);
     if (authStore.isLogedIn && !authStore.gotErrors) {
         alert_danger.value = null;
-        router.push({name: 'index'});
         alertStore.push('toast.login.success','success');
+        router.push({name: 'index'});
     }
     else if (authStore.errorMsg.message === "Login Unsuccessful.") {
         alert_danger.value = "login.form.error.userOrPasswordWrong"

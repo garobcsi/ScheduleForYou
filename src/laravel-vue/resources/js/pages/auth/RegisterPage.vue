@@ -1,5 +1,5 @@
 <script setup>
-import Register from "../components/auth/Register.vue";
+import Register from "../../components/auth/Register.vue";
 </script>
 
 <template>

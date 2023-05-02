@@ -26,8 +26,8 @@ class UpdateUserSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            "lang" => ["required","max:10",Rule::in(array_column(LangEnum::cases(), 'value'))],
-            "theme" => ["required","max:10",Rule::in(['light','dark'])],
+            "lang" => ["nullable","max:10",Rule::in(array_column(LangEnum::cases(), 'value'))],
+            "theme" => ["nullable","max:10",Rule::in(['light','dark'])],
         ];
     }
 }

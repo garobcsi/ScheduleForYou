@@ -70,6 +70,69 @@ export default {
         },
 
     },
+    settings: {
+        menu: {
+            yourProfile: "Your Profile",
+            yourAccount: "Your Account",
+            language: "Language",
+
+            profile: {
+                username: "Username",
+                email: "Email",
+                update: "Update",
+                loading: "Loading",
+
+                validation: {
+                    email: "This email is not valid !",
+                    max: "It can be a maximum of {n} characters long.",
+                    min: "Must be greater than {n} letters.",
+                    required: "Required to fill out !",
+                }
+            },
+            password: {
+                title: "Password reset",
+                current_password:"Old Password",
+                password_changed: "New Password",
+                password_changed_confirm: "Confirm New Password",
+                update: "Update",
+
+                validation: {
+                    max: "It can be a maximum of {n} characters long.",
+                    min: "Must be greater than {n} letters.",
+                    required: "Required to fill out !",
+                    passwordAreNotTheSame: "The password don't match !",
+                    oldPasswordAndNewPasswordSame: "Old and New password cannot be the same !"
+                }
+            },
+            logoutAll: {
+                title: "Logout from all devices",
+                button: "Logout All",
+
+                model: {
+                    questionTitle: "Logout from all devices ?",
+                    questionAreYouSure: "Are you sure ?",
+                    yesImSure: "Yes im sure !",
+                    close: "Close"
+                }
+            },
+            deleteAccount: {
+                title: "Danger Zone",
+                deleteTheAccount: "Delete the account",
+                thisActionIs:"This action is",
+                notReversible: "not reversible",
+                button: "Delete account",
+
+                model: {
+                    questionTitle: "Delete the account ?",
+                    thisActionIsNotReversible: "This action is not reversible !",
+                    questionAreYouSure: "Are you sure ?",
+                    yesImSure: "Yes im sure !",
+                    close: "Close"
+
+                }
+            }
+        }
+    },
     toast: {
         error: "Unexpected error occurred !",
         register: {
@@ -81,7 +144,20 @@ export default {
         logout: {
             account: 'Logout Success !',
             accountAll: 'Loged Out of all devices !'
-
+        },
+        username: {
+            success: "Username successfully updated !"
+        },
+        email: {
+            success: "Email successfully updated !",
+            taken: "The email has already been taken !"
+        },
+        password: {
+            success: "Password successfully updated !",
+            wrongPassword: "Wrong old password !",
+        },
+        accountDelete: {
+            success: "Account successfully deleted !"
         }
     }
 }

@@ -31,8 +31,8 @@ class UserSettingsController extends Controller
         $data = $request->validated();
         $id = auth('sanctum')->user()->id;
         $settings = UserSettings::findOrFail($id);
-        $settings->lang = $data["lang"];
-        $settings->theme = $data["theme"];
+        if (array_key_exists('lang',$data)) $settings->lang = $data["lang"];
+        if (array_key_exists('theme',$data)) $settings->theme = $data["theme"];
         $settings->save();
         return response()->json(["message" => "Data updated successfully."],200);
     }

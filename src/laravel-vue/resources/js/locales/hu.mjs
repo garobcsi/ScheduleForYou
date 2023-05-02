@@ -68,7 +68,68 @@ export default {
                 userOrPasswordWrong: "A felhasználónév vagy jelszó rossz !",
             }
         },
+    },
+    settings: {
+        menu: {
+            yourProfile: "Profilod",
+            yourAccount: "Fiókod",
+            language: "Nyelv",
 
+            profile: {
+                username: "Felhasználónév",
+                email: "Email",
+                update: "Frissítés",
+                loading: "Betöltés",
+                validation: {
+                    email: "Ez nem email nem valid !",
+                    min: "Minimum {n} betűnél nagyobb legyen.",
+                    max: "Maxinum {n} karakter hosszú lehet.",
+                    required: "Kötelező kitölteni !",
+                }
+            },
+            password: {
+                title: "Jelszó visszaállítás",
+                current_password:"Régi jelszó",
+                password_changed: "Új jelszó",
+                password_changed_confirm: "Új jelszó megerösités",
+                update: "Frissítés",
+
+                validation: {
+                    min: "Minimum {n} betűnél nagyobb legyen.",
+                    max: "Maxinum {n} karakter hosszú lehet.",
+                    required: "Kötelező kitölteni !",
+                    passwordAreNotTheSame: "A jelszavak nem egyeznek meg !",
+                    oldPasswordAndNewPasswordSame: "Régi és új jelszó nem lehet ugyan az !"
+
+                }
+            },
+            logoutAll: {
+                title: "Kijelentkezés minden fiókból",
+                button: "Kijelentkezés",
+
+                model: {
+                    questionTitle: "Kijelentkezés minden fiókból ?",
+                    questionAreYouSure: "Biztos vagy ebben ?",
+                    yesImSure: "Igen !",
+                    close: "Bezárás"
+                }
+            },
+            deleteAccount: {
+                title: "Veszélyzona",
+                deleteTheAccount: "Fiók törlése",
+                thisActionIs:"Ez a tevékenység",
+                notReversible: "nem visszafordítható",
+                button: "Fiók Törlése",
+
+                model: {
+                    questionTitle: "Fiók törlése ?",
+                    thisActionIsNotReversible: "Ez a tevékenység nem visszafordítható !",
+                    questionAreYouSure: "Biztos vagy ebben ?",
+                    yesImSure: "Igen !",
+                    close: "Bezárás"
+                }
+            }
+        }
     },
     toast: {
         error: "Váratlan hiba történt !",
@@ -82,6 +143,20 @@ export default {
             account: 'Sikeres kijelentkezés !',
             accountAll: 'Sikeres kijelentkezés !'
 
+        },
+        username: {
+            success: "Felhsználónév sikeresen frissitve !"
+        },
+        email: {
+            success: "Email sikeresen frissitve !",
+            taken: "Ez az email már foglalt !"
+        },
+        password: {
+            success: "Jelszó sikeresen frissitve !",
+            wrongPassword: "Rossz régi jelszó !",
+        },
+        accountDelete: {
+            success: "Felhasználó sikeresen törölve !"
         }
     }
 }

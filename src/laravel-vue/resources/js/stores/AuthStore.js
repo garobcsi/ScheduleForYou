@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import {api} from "../utils/api";
 import {useAlertStore} from "./AlertStore";
+import {router} from "../router";
 export const useAuthStore = defineStore('auth-store', {
     state() {
         return {
@@ -33,17 +34,28 @@ export const useAuthStore = defineStore('auth-store', {
                 this.errorMsg = loginError;
             }
         },
+        async update() {
+            let userData = null;
+            await api.get('/user').then(x=>userData =x.data);
+            if (userData !== null) {
+                this.user = userData.data;
+                this.errorMsg = null;
+                this.save();
+            }
+        },
         logoutSession() {
             this.token = null;
             this.user = null;
             this.stayLogedIn = false;
             this.delete();
         },
-        async logout() {
+        async logout(silent = false) {
             let logoutData = null;
             let logoutError= null;
             await api.get('/logout').then(x=>logoutData =x.data).catch(x=>logoutError= x.response.data);
+            router.push({name:"index"});
             this.logoutSession();
+            if (silent) return;
             if (logoutData !== null) {
                 useAlertStore().push('toast.logout.account','success');
             }
@@ -51,15 +63,31 @@ export const useAuthStore = defineStore('auth-store', {
                 useAlertStore().push('toast.error','danger');
             }
         },
-        async logoutAll() {
+        async logoutAll(silent = false) {
             let logoutAllData = null;
             let logoutAllError= null;
             await api.get('/logout/all').then(x=>logoutAllData =x.data).catch(x=>logoutAllError= x.response.data);
+            router.push({name:"index"});
             this.logoutSession();
+            if (silent) return;
             if (logoutAllData !== null) {
                 useAlertStore().push('toast.logout.accountAll','success');
             }
             else if (logoutAllError !== null) {
+                useAlertStore().push('toast.error','danger');
+            }
+        },
+        async deleteAccount(silent = false) {
+            let accountData = null;
+            let accountError= null;
+            await api.delete('/user').then(x=>accountData =x.data).catch(x=>accountError= x.response.data);
+            router.push({name:"index"});
+            this.logoutSession();
+            if (silent) return;
+            if (accountData !== null) {
+                useAlertStore().push('toast.accountDelete.success','success');
+            }
+            else if (accountError !== null) {
                 useAlertStore().push('toast.error','danger');
             }
         },
