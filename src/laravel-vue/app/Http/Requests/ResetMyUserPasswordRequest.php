@@ -26,7 +26,6 @@ class ResetMyUserPasswordRequest extends FormRequest
         return [
             "password"=>["required", "min:8", "max:255"],
             "password_changed"=>["required", "min:8", "max:255"]
-
         ];
     }
 }
