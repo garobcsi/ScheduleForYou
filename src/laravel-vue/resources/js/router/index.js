@@ -29,16 +29,9 @@ const routes = [
         beforeEnter: [dontAccessAfterLogin]
     },
     {
-        path: '/naptar',
-        name: 'naptar',
+        path: '/calendar',
+        name: 'calendar',
         component: () => import('@/pages/user/UserCalendarPage.vue'),
-        beforeEnter: [accessAfterLogin]
-
-    },
-    {
-        path: '/profile',
-        name: 'profile',
-        component: () => import('@/pages/user/ProfilePage.vue'),
         beforeEnter: [accessAfterLogin]
 
     },

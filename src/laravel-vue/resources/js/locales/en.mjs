@@ -13,6 +13,7 @@ export default {
             logedInAs: "Loged in as",
             adminPage: "Admin page",
             profile: "Your Profile",
+            yourCalendar: "Your Calendar",
             companies: "Your Companies",
             settings:"Settings",
             logOut:"Log out"
