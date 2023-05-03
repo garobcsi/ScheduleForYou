@@ -69,6 +69,7 @@
 import {useAuthStore} from "../../stores/AuthStore";
 const authStore = useAuthStore();
 import { IonIcon } from '@ionic/vue';
+import {api} from "../../utils/api";
 import { personCircle, languageOutline,logOutOutline,settingsOutline,businessOutline,terminalOutline,calendarOutline } from 'ionicons/icons';
 
 import {useI18n} from "vue-i18n";
@@ -76,6 +77,9 @@ const { locale } = useI18n({useScope: 'global'})
 function  setLocal(l){
     locale.value = l;
     localStorage.setItem('locale', locale.value );
+    if (authStore.isLogedIn) {
+        api.post('/user/settings',{lang: l});
+    }
 }
 </script>
 <script>
