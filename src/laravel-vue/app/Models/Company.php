@@ -19,4 +19,7 @@ class Company extends Model
     public function CompanyFavourite() {
         return $this->hasMany(UserCompanyFavourite::class,'company_id','id');
     }
+    public function OpeningHours(){
+        return $this->hasMany(CompanyOpeningHours::class,"companies_id", "id");
+    }
 }

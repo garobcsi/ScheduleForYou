@@ -1,3 +1,5 @@
+[![Laravel & PHP](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml/badge.svg)](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml)
+
 # Schedule For You
 
 ### Quick navigation
@@ -57,7 +59,7 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 - Website: `80`
 - Vite: `5000` (development only, In prodoction dosen't work/used)
 - PhpMyAdmin: `5001`
-- DB (MySql): 33061
+- DB (MySql): `33061`
 # :keyboard: Useful Commands
 <!-- ## LINKEK -->
 
