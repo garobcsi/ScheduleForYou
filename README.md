@@ -33,8 +33,8 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 1. Make sure the project is not running in the `docker`
 2. Navigate to `src/laravel-vue`
 3. Start the application `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
-4. Log into fish shell `docker compose exec app fish`
-5. Install composer `composer install`
+4. Log into fish shell `docker-compose exec app fish`
+5. Install `composer install`
 6. Generate key `php artisan key:generate`
 7. Migrate the database `php artisan migrate:fresh --seed`
 8. Install node packages `npm i`
@@ -47,8 +47,8 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 1. Make sure the project is not running in the `docker`
 2. Navigate to `src/laravel-vue`
 3. Start the application `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`
-4. Log into fish shell `docker compose exec app fish`
-5. Install composer `composer install`
+4. Log into fish shell `docker-compose exec app fish`
+5. Install composer `install``
 6. Generate key `php artisan key:generate`
 7. Migrate the database `php artisan migrate:fresh --seed`
 8. Install node packages `npm i`
