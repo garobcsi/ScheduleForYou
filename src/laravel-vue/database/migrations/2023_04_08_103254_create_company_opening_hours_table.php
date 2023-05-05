@@ -16,20 +16,20 @@ return new class extends Migration
         Schema::create('company_opening_hours', function (Blueprint $table) {
             $table->id();
             $table->foreignId('companies_id');
-            $table->date('monday_start')->nullable();
-            $table->date('monday_end')->nullable();
-            $table->date('tuesday_start')->nullable();
-            $table->date('tuesday_end')->nullable();
-            $table->date('wednesday_start')->nullable();
-            $table->date('wednesday_end')->nullable();
-            $table->date('thursday_start')->nullable();
-            $table->date('thursday_end')->nullable();
-            $table->date('friday_start')->nullable();
-            $table->date('friday_end')->nullable();
-            $table->date('saturday_start')->nullable();
-            $table->date('saturday_end')->nullable();
-            $table->date('sunday_start')->nullable();
-            $table->date('sunday_end')->nullable();
+            $table->dateTime('monday_start')->nullable();
+            $table->dateTime('monday_end')->nullable();
+            $table->dateTime('tuesday_start')->nullable();
+            $table->dateTime('tuesday_end')->nullable();
+            $table->dateTime('wednesday_start')->nullable();
+            $table->dateTime('wednesday_end')->nullable();
+            $table->dateTime('thursday_start')->nullable();
+            $table->dateTime('thursday_end')->nullable();
+            $table->dateTime('friday_start')->nullable();
+            $table->dateTime('friday_end')->nullable();
+            $table->dateTime('saturday_start')->nullable();
+            $table->dateTime('saturday_end')->nullable();
+            $table->dateTime('sunday_start')->nullable();
+            $table->dateTime('sunday_end')->nullable();
         });
     }
 
