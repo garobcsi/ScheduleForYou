@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('company_opening_hours', function (Blueprint $table) {
-            $table->id('companies_id');
+            $table->id();
+            $table->foreignId('companies_id');
             $table->date('monday_start')->nullable();
             $table->date('monday_end')->nullable();
             $table->date('tuesday_start')->nullable();
