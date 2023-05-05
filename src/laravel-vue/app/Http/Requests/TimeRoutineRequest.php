@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\RepeatTimeEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -29,7 +30,7 @@ class TimeRoutineRequest extends FormRequest
             "name" => ["required","max:100"],
             "start" => ["required","date"],
             "end" => ["required","date"],
-            "repeat_time" => ["required",Rule::in(["hourly","daily","weekly","monthly","yearly"])],
+            "repeat_time" => ["required",Rule::in(array_column(RepeatTimeEnum::cases(), 'value'))],
             "description" => ["nullable"]
         ];
     }
