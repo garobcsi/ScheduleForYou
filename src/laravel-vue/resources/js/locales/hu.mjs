@@ -13,6 +13,7 @@ export default {
             logedInAs: "Bejelentkezve mint",
             adminPage: "Admin oldal",
             profile: "Profilod",
+            yourCalendar: "Naptárod",
             companies: "Cégeid",
             settings:"Bállitások",
             logOut:"Kijelentkezés"

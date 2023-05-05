@@ -9,10 +9,10 @@
             </ul>
         </div>
         <div v-show="!authStore.isLogedIn" class="btn-group pe-2 ps-1">
-            <router-link class="btn btn-outline-primary" to="/register">{{$t('navbar.button.register')}}</router-link>
+            <router-link class="btn btn-outline-light" to="/register">{{$t('navbar.button.register')}}</router-link>
         </div>
         <div v-show="!authStore.isLogedIn" class="btn-group p-0">
-            <router-link class="btn btn-outline-primary" to="/login">{{$t('navbar.button.login')}}</router-link>
+            <router-link class="btn btn-outline-light" to="/login">{{$t('navbar.button.login')}}</router-link>
         </div>
         <div v-show="authStore.isLogedIn" class="btn-group mx-1">
             <button class="m-0 p-0 border-0 dropdown-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,9 +35,9 @@
                     <li><hr class="dropdown-divider"></li>
                 </div>
                 <li>
-                    <router-link class="dropdown-item d-flex align-items-center" to="/profile">
-                        <ion-icon class="me-1 icons" :icon="personOutline"></ion-icon>
-                        {{ $t('navbar.dropdown.profile') }}
+                    <router-link class="dropdown-item d-flex align-items-center" to="/calendar">
+                        <ion-icon class="me-1 icons" :icon="calendarOutline"></ion-icon>
+                        {{ $t('navbar.dropdown.yourCalendar') }}
                     </router-link>
                 </li>
                 <li>
@@ -69,13 +69,17 @@
 import {useAuthStore} from "../../stores/AuthStore";
 const authStore = useAuthStore();
 import { IonIcon } from '@ionic/vue';
-import { personCircle, languageOutline,logOutOutline,settingsOutline,personOutline,businessOutline,terminalOutline } from 'ionicons/icons';
+import {api} from "../../utils/api";
+import { personCircle, languageOutline,logOutOutline,settingsOutline,businessOutline,terminalOutline,calendarOutline } from 'ionicons/icons';
 
 import {useI18n} from "vue-i18n";
 const { locale } = useI18n({useScope: 'global'})
 function  setLocal(l){
     locale.value = l;
     localStorage.setItem('locale', locale.value );
+    if (authStore.isLogedIn) {
+        api.post('/user/settings',{lang: l});
+    }
 }
 </script>
 <script>

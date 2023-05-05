@@ -65,6 +65,7 @@ Route::name('user.')->group(function () {
                 Route::delete('/{date}',[UserTimeDateContoroller::class,'destroy'])->whereNumber('date')->name('delete');
             });
             Route::name('Routine.')->prefix('routine')->group(function () {
+                Route::get('/enum',[UserTimeRoutineContoroller::class,'enum'])->name('enum');
                 Route::get('',[UserTimeRoutineContoroller::class,'index'])->name('get');
                 Route::get('/group',[UserTimeRoutineContoroller::class,'indexWithGroups'])->name('group');
                 Route::get('/{date}',[UserTimeRoutineContoroller::class,'show'])->whereNumber('date')->name('show');

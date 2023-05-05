@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('group_id')->nullable()->references('id')->on('user_time_groups')->onDelete('cascade');
             $table->string('name',100);
-            $table->date('start');
-            $table->date('end');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->longText('description')->nullable();
             //Company ?
         });
