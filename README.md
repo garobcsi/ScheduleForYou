@@ -10,7 +10,7 @@
   * [Building Manually For Development](#building-manually-for-development)
   * [Building For Production](#building-for-production)
   * [Building Manually For Production](#building-manually-for-production)
-  * [PrerequisitesHaving troubles ?](#having-troubles)
+  * [Having troubles ?](#having-troubles)
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 
