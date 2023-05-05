@@ -1,3 +1,5 @@
+[![Laravel & PHP](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml/badge.svg)](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml)
+
 # Schedule For You
 
 ### Quick navigation
