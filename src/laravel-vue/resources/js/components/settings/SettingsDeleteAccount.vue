@@ -21,7 +21,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{$t('settings.menu.deleteAccount.model.close')}}</button>
                         <button type="button" class="btn btn-danger d-flex align-items-center d-flex align-items-center"  @click="deleteAccount" data-bs-dismiss="modal">
-                                <IonIcon class="icon text-warning" :icon="nuclear"/> {{$t('settings.menu.deleteAccount.model.yesImSure')}}
+                                <IonIcon class="icon text-warning pe-1" :icon="nuclear"/> {{$t('settings.menu.deleteAccount.model.yesImSure')}}
                         </button>
                     </div>
                 </div>
