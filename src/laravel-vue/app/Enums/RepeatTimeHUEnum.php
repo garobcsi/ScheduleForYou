@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-trait EnumToArray
+trait EnumToArrayHU
 {
 
     public static function names(): array
@@ -29,11 +29,11 @@ trait EnumToArray
 
 }
 
-enum RepeatTimeEnum:string
+enum RepeatTimeHUEnum:string
 {
-    use EnumToArray;
-    case Daily = "daily";
-    case Weekly = "weekly";
-    case Monthly = "monthly";
-    case Yearly = "yearly";
+    use EnumToArrayHU;
+    case Naponta = "daily";
+    case Hetente = "weekly";
+    case Hónaponta = "monthly";
+    case Évente = "yearly";
 }

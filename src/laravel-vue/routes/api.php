@@ -66,6 +66,7 @@ Route::name('user.')->group(function () {
             });
             Route::name('Routine.')->prefix('routine')->group(function () {
                 Route::get('/enum',[UserTimeRoutineContoroller::class,'enum'])->name('enum');
+                Route::get('/enum/hu',[UserTimeRoutineContoroller::class,'enumHU'])->name('enum.hu');
                 Route::get('',[UserTimeRoutineContoroller::class,'index'])->name('get');
                 Route::get('/group',[UserTimeRoutineContoroller::class,'indexWithGroups'])->name('group');
                 Route::get('/{date}',[UserTimeRoutineContoroller::class,'show'])->whereNumber('date')->name('show');

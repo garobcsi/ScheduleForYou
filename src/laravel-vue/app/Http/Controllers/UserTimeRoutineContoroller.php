@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RepeatTimeEnum;
+use App\Enums\RepeatTimeHUEnum;
 use App\Http\Requests\TimeRoutineRequest;
 use App\Http\Resources\TimeRoutineWithGroupsResource;
 use App\Models\UserTimeRoutine;
@@ -14,6 +15,9 @@ class UserTimeRoutineContoroller extends Controller
 {
     public function enum() {
         return response()->json(["data" => RepeatTimeEnum::array()],200);
+    }
+    public function enumHU() {
+        return response()->json(["data" => RepeatTimeHUEnum::array()],200);
     }
     /**
      * Shows all routines
