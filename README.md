@@ -26,7 +26,7 @@
 
 Schedule For You is a versatile and user-friendly application designed to simplify your daily scheduling needs. The application is built to provide users with an easy-to-use platform to manage their schedules effectively. With Schedule For You, you can easily organize your personal and professional appointments in one convenient location.
 
-# :toolbox: What technology did we use?
+# :toolbox: What technologies that we used
 
 # :building_construction: Building the application
 
@@ -79,7 +79,7 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 2. Build swagger docs `docker-compose exec app php artisan l5-swagger:generate`
 3. Navigate to `<your ip>:80/api/docs` Example `localhost/api/docs`
 
-# Collaboration tools
+# :speaking_head: Collaboration tools
 
 # :hammer_and_wrench: Development Tools
 
