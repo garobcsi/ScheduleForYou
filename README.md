@@ -41,13 +41,14 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 ### Building Manually For Development
 1. Make sure the project is not running in the `docker`
 2. Navigate to `src/laravel-vue`
-3. Start the application `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
-4. Log into fish shell `docker-compose exec app fish`
-5. Install `composer install`
-6. Generate key `php artisan key:generate`
-7. Migrate the database `php artisan migrate:fresh --seed`
-8. Install node packages `npm i`
-9. Start Vite dev mode `npm run dev`
+3. Copy `.env.example` to `.env`
+4. Start the application `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
+5. Log into fish shell `docker-compose exec app fish`
+6. Install `composer install`
+7. Generate key `php artisan key:generate`
+8. Migrate the database `php artisan migrate:fresh --seed`
+9. Install node packages `npm i`
+10. Start Vite dev mode `npm run dev`
 ### Building For Production
 1. Make sure the project is not running in the `docker`
 2. Navigate to `src/laravel-vue`
@@ -55,13 +56,14 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 ### Building Manually For Production
 1. Make sure the project is not running in the `docker`
 2. Navigate to `src/laravel-vue`
-3. Start the application `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`
-4. Log into fish shell `docker-compose exec app fish`
-5. Install composer `install``
-6. Generate key `php artisan key:generate`
-7. Migrate the database `php artisan migrate:fresh --seed`
-8. Install node packages `npm i`
-9. Build the application `npm run build`
+3. Copy `.env.example` to `.env`
+4. Start the application `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`
+5. Log into fish shell `docker-compose exec app fish`
+6. Install `composer install`
+7. Generate key `php artisan key:generate`
+8. Migrate the database `php artisan migrate:fresh --seed`
+9. Install node packages `npm i`
+10. Build the application `npm run build`
 ### Having troubles?
 
 # :open_file_folder: Application ports
