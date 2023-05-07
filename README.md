@@ -1,6 +1,10 @@
-[![Laravel & PHP](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml/badge.svg)](https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml)
 
-# Schedule For You
+<h1 align="center">Schedule For You</h1>
+<p align="center">
+  <a href="https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml">
+    <img alt="Click to see the source" src="https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml/badge.svg" />
+  </a>
+</p>
 
 ### Quick Navigation
 * **[:black_nib: About The Project](#black_nib-about-the-project)**
@@ -13,11 +17,16 @@
   * [Having troubles?](#having-troubles)
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
+* **[:open_book: Documentation](#open_book-documentation)**
+  * [Functional specification (WIP)](#functional-specification-wip)
+  * [Swagger (API Docs)(WIP)](#swagger-api-docswip)
 
 
 # :black_nib: About The Project
 
 Schedule For You is a versatile and user-friendly application designed to simplify your daily scheduling needs. The application is built to provide users with an easy-to-use platform to manage their schedules effectively. With Schedule For You, you can easily organize your personal and professional appointments in one convenient location.
+
+# :toolbox: What technology did we use?
 
 # :building_construction: Building the application
 
@@ -61,6 +70,23 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 - PhpMyAdmin: `5001`
 - DB (MySql): `33061`
 # :keyboard: Useful Commands
+
+# :open_book: Documentation
+### Functional specification (WIP)
+[Open Google Docs](https://docs.google.com/document/d/1ShLbxv7K0FDphoZtEsumG2i_mhR7eEySRCVUruQ7b8s/edit?usp=sharing)
+### Swagger (API Docs)(WIP)
+1. Build the application
+2. Build swagger docs `docker-compose exec app php artisan l5-swagger:generate`
+3. Navigate to `<your ip>:80/api/docs` Example `localhost/api/docs`
+
+# Collaboration tools
+
+# :hammer_and_wrench: Development Tools
+
+# :busts_in_silhouette: Made By
+- Gáspár Róbert
+- Palánki Szűcs Donát
+- Balázs Bence
 <!-- ## LINKEK -->
 
 <!-- Trello (done): https://trello.com/b/k4g2bpTB/vizsgaremek-naptár
