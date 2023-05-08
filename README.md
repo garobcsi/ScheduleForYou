@@ -5,10 +5,11 @@
   </a>
 </p>
 
-> **Warning**
+> **Warning** <br>
 > This Project is intended to run on linux. [See Why]()
 
 ## Quick Navigation
+
 * **[:black_nib: About The Project](#black_nib-about-the-project)**
 * **[:toolbox: Technologies that we used](#toolbox-technologies-that-we-used)**
 * **[:building_construction: Building the application](#building_construction-building-the-application)**
@@ -19,12 +20,22 @@
   * [Building Manually For Production](#building-manually-for-production)
   * [Having troubles?](#having-troubles)
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
+  * [Log Into Fish Shell](#log-into-fish-shell)
+  * [Save Database tables to the seeder](#save-database-tables-to-the-seeder)
+  * [Export a Postman collection](#export-a-postman-collection)
+  * [Register an Account on the terminal](#register-an-account-on-the-terminal)
+    * [Create Admin account](#create-admin-account)
+    * [Create User account](#create-user-account)
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
+* **[:bust_in_silhouette: PhpMyAdmin Users](#bust_in_silhouette-phpmyadmin-users)**
+  * [Root user](#root-user)
+  * [Simple user](#simple-user)
+  * [Change user/password](#change-userpassword)
 * **[:warning: Running the Application On Windows](#warning-running-the-application-on-windows)**
 * **[:test_tube: Run Unit Tests](#test_tube-run-unit-tests)**
   * [PHPUnit (Laravel tests)](#phpunit-laravel-tests)
     * [Unit test](#unit-test)
-  * [Vitest (Vue tests)(wip)](#vitest-vue-testswip)
+  * [Vitest (Vue tests)(WIP)](#vitest-vue-testswip)
     * [Unit test](#unit-test-1)
     * [Coverage test](#coverage-test)
 * **[:open_book: Documentation](#open_book-documentation)**
@@ -94,9 +105,60 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 9. Install node packages `npm i`
 10. Build the application `npm run build`
 
+### Having troubles?
+
 ## :keyboard: Useful Commands
 
-### Having troubles?
+### Log Into Fish Shell
+
+1. Initialize the project
+2. Run `docker-compose exec app fish`
+
+### Save Database tables to the seeder
+
+1. Initialize the project
+2. Log Into Fish shell `docker-compose exec app fish`
+3. Run `php artisan iseed <table name 1>,<table name 2>,<table name 3>` <br>
+Example `php artisan iseed users,personal_access_tokens`
+
+### Export a Postman collection
+
+1. Initialize the project
+2. Log Into Fish shell `docker-compose exec app fish`
+3. Export `php artisan export:postman`
+4. Import collection into Postman
+
+### Register an Account on the terminal
+
+#### Create Admin account
+
+1. Initialize the project
+2. Log Into Fish shell `docker-compose exec app fish`
+3. Run `php artisan register:admin`
+```
+Usage:
+  register:admin [options]
+
+Options:
+  -u, --username[=USERNAME]  
+  -e, --email[=EMAIL]        
+  -p, --password[=PASSWORD]  
+```
+
+#### Create User account
+
+1. Initialize the project
+2. Log Into Fish shell `docker-compose exec app fish`
+3. Run `php artisan register:user`
+```
+Usage:
+  register:user [options]
+
+Options:
+  -u, --username[=USERNAME]  
+  -e, --email[=EMAIL]        
+  -p, --password[=PASSWORD]  
+```
 
 ## :open_file_folder: Application ports
 
@@ -105,11 +167,29 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 - PhpMyAdmin: `5001`
 - DB (MySql): `33061`
 
+## :bust_in_silhouette: PhpMyAdmin Users
+
+### Root user
+- Username: root
+- Password: root_password
+
+### Simple user
+- Username: laravel
+- Password: laravel
+
+### Change user/password
+
+1. Initialize the project
+2. Open `.env` file 
+3. Change `DB_USERNAME=<simple username>`
+4. Change `DB_PASSWORD=<simple user password>`
+5. Change `MYSQL_ROOT_PASSWORD=<root passowrd>`
+
 ## :warning: Running the Application On Windows
 
 Our applications use [docker volumes](https://docs.docker.com/storage/volumes/) to save changes. Because the application uses many small files the coping between the Windows filesystem (NTFS) and Dockers filesystem (ext4) makes it run slower. By making the os filesystem and the Dockers filesystem the same the application will run much quicker.
 
-For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difrence as a proper Linux installation
+For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difference as a proper Linux installation
 
 ## :test_tube: Run Unit Tests
 
@@ -126,7 +206,7 @@ For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 1. In Fish shell run `npm run dev` (Keep it running)
 2. Try again
 
-### Vitest (Vue tests)(wip)
+### Vitest (Vue tests)(WIP)
 
 #### Unit test
 
