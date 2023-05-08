@@ -10,6 +10,7 @@ use App\Http\Resources\AllContributorsCompanyResource;
 use App\Http\Resources\MyCompanyResource;
 use App\Http\Resources\PublicCompanyResource;
 use App\Models\Company;
+use App\Models\CompanyOpeningHours;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -47,6 +48,7 @@ class CompanyController extends Controller
         $data = $request->validated();
         $created = Company::create($data);
         $created->permissions()->attach(auth('sanctum')->user()->id,['permission'=>CompanyPermissionEnum::Owner]);
+        $createdOH = CompanyOpeningHours::create(['companies_id'=>$created->id]);
         return response()->json(["message" =>"Created Successfully."],201);
     }
 
