@@ -6,7 +6,7 @@
 </p>
 
 > **Warning** <br>
-> This Project is intended to run on linux. [See Why]()
+> This Project is intended to run on linux. [See Why](#warning-running-the-application-on-windows)
 
 ## Quick Navigation
 
@@ -47,7 +47,6 @@
   * [Os](#os)
 * **[:speaking_head: Collaboration tools](#speaking_head-collaboration-tools)**
 * **[:busts_in_silhouette: Made By](#busts_in_silhouette-made-by)**
-
 
 ## :black_nib: About The Project
 
@@ -170,12 +169,12 @@ Options:
 ## :bust_in_silhouette: PhpMyAdmin Users
 
 ### Root user
-- Username: root
-- Password: root_password
+- Username: `root`
+- Password: `root_password`
 
 ### Simple user
-- Username: laravel
-- Password: laravel
+- Username: `laravel`
+- Password: `laravel`
 
 ### Change user/password
 
