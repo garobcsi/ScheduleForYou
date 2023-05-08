@@ -12,4 +12,7 @@ class OpeningHoursController extends Controller
     public function index(){
         return response()->json(["data" => CompanyOpeningHours::all()],200);
     }
+    public function show(CompanyOpeningHours $openingHours){
+        return response()->json(["data" => $openingHours]);
+    }
 }
