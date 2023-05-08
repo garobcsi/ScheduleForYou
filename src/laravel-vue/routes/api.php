@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminCompanyRequestApproveController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyTypeController;
+use App\Http\Controllers\OpeningHoursController;
 use App\Http\Controllers\UserCompanyFavouriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
@@ -137,5 +138,11 @@ Route::prefix('company')->name('company.')->group(function () {
             Route::post('/add/{company}',[CompanyTypeController::class,'addTypeRequest'])->whereNumber('company')->name('add');
             Route::delete('/remove/{company}/{type}',[CompanyTypeController::class,'removeTypeRequest'])->whereNumber('company')->whereNumber('type')->name('remove');
         });
+    });
+    Route::prefix('openingHours')->name('openingHours.')->group(function (){
+        Route::middleware(['auth:sanctum'])->group(function () {
+            Route::post('update/{company}',[OpeningHoursController::class,'update'])->name('update')->whereNumber('company');
+        });
+        Route::get('',[OpeningHoursController::class,'index'])->name('index');
     });
 });
