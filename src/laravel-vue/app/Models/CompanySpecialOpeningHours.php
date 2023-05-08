@@ -12,6 +12,6 @@ class CompanySpecialOpeningHours extends Model
     protected $fillable = ['start','end','open_or_close'];
 
     public function CompanyOpeningHours(){
-        return $this->belongsToMany(CompanyOpeningHours::class,'id','opening_hours_id');
+        return $this->belongsTo(CompanyOpeningHours::class,'opening_hours_id','id');
     }
 }
