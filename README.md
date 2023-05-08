@@ -117,8 +117,7 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 
 1. Initialize the project
 2. Log Into Fish shell `docker-compose exec app fish`
-3. Run `php artisan iseed <table name 1>,<table name 2>,<table name 3>` <br>
-Example `php artisan iseed users,personal_access_tokens`
+3. Run `php artisan iseed <table name 1>,<table name 2>,<table name 3>` <br> Example `php artisan iseed users,personal_access_tokens`
 
 ### Export a Postman collection
 
@@ -186,9 +185,9 @@ Options:
 
 ## :warning: Running the Application On Windows
 
-Our applications use [docker volumes](https://docs.docker.com/storage/volumes/) to save changes. Because the application uses many small files the coping between the Windows filesystem (NTFS) and Dockers filesystem (ext4) makes it run slower. By making the os filesystem and the Dockers filesystem the same the application will run much quicker.
+Because the application uses many small files the coping between the Windows filesystem (NTFS) and Docker container filesystem (ext4) makes it run slower. By making the Os filesystem and the Docker containers filesystem the same the application will run much quicker.
 
-For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difference as a proper Linux installation
+For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difference as a proper Linux installation.
 
 ## :test_tube: Run Unit Tests
 
@@ -229,7 +228,7 @@ For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 
 1. Initialize the project
 2. Build swagger docs `docker-compose exec app php artisan l5-swagger:generate`
-3. Navigate to site `<your ip>:80/api/docs` Example `localhost/api/docs`
+3. Navigate to site `<your ip>:80/api/docs` <br> Example `localhost/api/docs`
 
 ## :hammer_and_wrench: Development Tools Used
 
@@ -243,6 +242,7 @@ For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 - [DataGrip](https://www.jetbrains.com/datagrip/)
 - [Postman](https://www.postman.com/)
 - [Virtualbox](https://www.virtualbox.org/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 ### Os
 
