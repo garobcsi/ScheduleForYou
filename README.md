@@ -5,6 +5,9 @@
   </a>
 </p>
 
+> **Warning**
+> This Project is intended to run on linux. [See Why]()
+
 ## Quick Navigation
 * **[:black_nib: About The Project](#black_nib-about-the-project)**
 * **[:toolbox: Technologies that we used](#toolbox-technologies-that-we-used)**
@@ -15,22 +18,23 @@
   * [Building For Production](#building-for-production)
   * [Building Manually For Production](#building-manually-for-production)
   * [Having troubles?](#having-troubles)
+* **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
+* **[:warning: Running the Application On Windows](#warning-running-the-application-on-windows)**
 * **[:test_tube: Run Unit Tests](#test_tube-run-unit-tests)**
   * [PHPUnit (Laravel tests)](#phpunit-laravel-tests)
     * [Unit test](#unit-test)
   * [Vitest (Vue tests)(wip)](#vitest-vue-testswip)
     * [Unit test](#unit-test-1)
     * [Coverage test](#coverage-test)
-* **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 * **[:open_book: Documentation](#open_book-documentation)**
   * [Functional specification (WIP)](#functional-specification-wip)
   * [Swagger (API Docs)(WIP)](#swagger-api-docswip)
-* **[:speaking_head: Collaboration tools](#speaking_head-collaboration-tools)**
 * **[:hammer_and_wrench: Development Tools Used](#hammer_and_wrench-development-tools-used)**
   * [Idea's](#ideas)
   * [Programs](#programs)
   * [Os](#os)
+* **[:speaking_head: Collaboration tools](#speaking_head-collaboration-tools)**
 * **[:busts_in_silhouette: Made By](#busts_in_silhouette-made-by)**
 
 
@@ -90,6 +94,8 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 9. Install node packages `npm i`
 10. Build the application `npm run build`
 
+## :keyboard: Useful Commands
+
 ### Having troubles?
 
 ## :open_file_folder: Application ports
@@ -98,6 +104,12 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 - Vite: `5000` (development only, In production doesn't work/used)
 - PhpMyAdmin: `5001`
 - DB (MySql): `33061`
+
+## :warning: Running the Application On Windows
+
+Our applications use [docker volumes](https://docs.docker.com/storage/volumes/) to save changes. Because the application uses many small files the coping between the Windows filesystem (NTFS) and Dockers filesystem (ext4) makes it run slower. By making the os filesystem and the Dockers filesystem the same the application will run much quicker.
+
+For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difrence as a proper Linux installation
 
 ## :test_tube: Run Unit Tests
 
@@ -128,8 +140,6 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 2. Login To Fish shell as root `docker-compose exec -u root app fish`
 3. Run `npm run test:coverage`
 
-## :keyboard: Useful Commands
-
 ## :open_book: Documentation
 
 ### Functional specification (WIP)
@@ -142,13 +152,6 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 2. Build swagger docs `docker-compose exec app php artisan l5-swagger:generate`
 3. Navigate to site `<your ip>:80/api/docs` Example `localhost/api/docs`
 
-## :speaking_head: Collaboration tools
-
-- [Trello](https://trello.com/b/k4g2bpTB/vizsgaremek-naptár)
-- [Figma](https://www.figma.com/file/qlWjgsmqi6hjBC6cHR09qB/Vizsgaremek?node-id=0%3A1&t=ZHQlMKRc6BF3in2D-1)
-- [GitHub](https://github.com/)
-- [Git](https://git-scm.com/)
- 
 ## :hammer_and_wrench: Development Tools Used
 
 ### Idea's
@@ -170,6 +173,13 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 - [Debian](https://www.debian.org/)
 - [Linux mint](https://linuxmint.com/)
 - [Ubuntu](https://ubuntu.com/)
+
+## :speaking_head: Collaboration tools
+
+- [Trello](https://trello.com/b/k4g2bpTB/vizsgaremek-naptár)
+- [Figma](https://www.figma.com/file/qlWjgsmqi6hjBC6cHR09qB/Vizsgaremek?node-id=0%3A1&t=ZHQlMKRc6BF3in2D-1)
+- [GitHub](https://github.com/)
+- [Git](https://git-scm.com/)
 
 ## :busts_in_silhouette: Made By
 
