@@ -17,6 +17,11 @@
   * [Having troubles?](#having-troubles)
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
 * **[:test_tube: Run Unit Tests](#test_tube-run-unit-tests)**
+  * [PHPUnit (Laravel tests)](#phpunit-laravel-tests)
+    * [Unit test](#unit-test)
+  * [Vitest (Vue tests)(wip)](#vitest-vue-testswip)
+    * [Unit test](#unit-test-1)
+    * [Coverage test](#coverage-test)
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 * **[:open_book: Documentation](#open_book-documentation)**
   * [Functional specification (WIP)](#functional-specification-wip)
@@ -98,11 +103,13 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 
 ### PHPUnit (Laravel tests)
 
+#### Unit test
+
 1. Initialize the project
 2. Login To Fish shell `docker-compose exec app fish`
 3. Run `php artisan test`
 
-#### Did the test fail?
+##### Did the test fail?
 
 1. In Fish shell run `npm run dev` (Keep it running)
 2. Try again
