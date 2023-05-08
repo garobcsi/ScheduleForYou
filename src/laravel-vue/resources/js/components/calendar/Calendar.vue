@@ -1,8 +1,11 @@
 <template>
-    <FullCalendar
-        :options='calendarOptions'
-    >
-    </FullCalendar>
+    <div>
+        <FullCalendar
+            :options='calendarOptions'
+        >
+        </FullCalendar>
+        <CalendarModalAdd ref="modalAdd" :start="modalAddStartStr" :end="modalAddEndStr" :all-day="modalAddAllDay"/>
+    </div>
 </template>
 
 <script>
@@ -16,13 +19,20 @@ import { INITIAL_EVENTS, createEventId } from './calendar-utils/event-utils'
 import huLocale from "@fullcalendar/core/locales/hu";
 import enLocale from "@fullcalendar/core/locales/en-gb"
 import {useI18n} from "vue-i18n";
+import CalendarModalAdd from "./CalendarModalAdd.vue";
 
 export default defineComponent({
     components: {
+        CalendarModalAdd,
         FullCalendar,
     },
     data() {
         return {
+            ////// modal add prop
+            modalAddStartStr: "",
+            modalAddEndStr: "",
+            modalAddAllDay: true,
+            //////
             calendarOptions: {
                 plugins: [
                     rrulePlugin,
@@ -44,9 +54,9 @@ export default defineComponent({
                 selectMirror: true,
                 dayMaxEvents: true,
                 weekends: true,
-                select: this.handleDateSelect,
-                eventClick: this.handleEventClick,
-                eventsSet: this.handleEvents,
+                select: this.dateSelect,
+                eventClick: this.eventClick,
+                eventsSet: this.eventSet,
                 /* you can update a remote database when these fire: */
                 eventAdd: this.eventAdd,
                 eventChange: this.eventChange,
@@ -58,14 +68,22 @@ export default defineComponent({
         }
     },
     methods: {
-        handleDateSelect(info) {
+        dateSelect(info) {
             console.log("select");
+            this.modalAddStartStr = info.startStr;
+            this.modalAddEndStr = info.endStr;
+            this.modalAddAllDay = info.allDay;
+            this.$refs.modalAdd.show();
         },
-        handleEventClick(info) {
+        eventClick(info) {
             console.log("click");
-            info.event.remove();
+            // console.log(info.event.title);
+            // console.log(info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+            // console.log(info.view.type);
+            // this.modalRef.show();
+            // info.event.remove();
         },
-        handleEvents(info) {
+        eventSet(info) {
             console.log("set");
         },
         eventAdd(info) {
@@ -84,7 +102,7 @@ export default defineComponent({
         this.$watch(() =>locale.value,function () {
             this.calendarOptions.locale = locale.value;
         });
-    },
+    }
 })
 
 </script>

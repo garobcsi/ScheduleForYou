@@ -42,7 +42,7 @@ export default {
                 required: "Required to fill out !",
                 email: "This email is not valid !",
                 passwordAndUsernameSame: "The username and password can't be the same !",
-                passwordAreNotTheSame: "The password don't match !",
+                passwordAreNotTheSame: "The password doesn't match !",
             },
             error: {
                 thisEmailExists: "This email is already in use !",
@@ -55,7 +55,7 @@ export default {
         form: {
             email: "Email",
             password: "Password",
-            stayLogedIn: "Stay Loged In",
+            stayLogedIn: "Stay Logged In",
 
             button: {
                 login: "Login"
@@ -65,7 +65,7 @@ export default {
                 required: "Required to fill out !",
             },
             error: {
-                youAreAlreadyLogedIn: "You are already loged in !",
+                youAreAlreadyLogedIn: "You are already logged in !",
                 userOrPasswordWrong: "Email or Password wrong !",
             }
         },
@@ -101,8 +101,8 @@ export default {
                     max: "It can be a maximum of {n} characters long.",
                     min: "Must be greater than {n} letters.",
                     required: "Required to fill out !",
-                    passwordAreNotTheSame: "The password don't match !",
-                    oldPasswordAndNewPasswordSame: "Old and New password cannot be the same !"
+                    passwordAreNotTheSame: "The password doesn't match !",
+                    oldPasswordAndNewPasswordSame: "Old and New passwords cannot be the same !"
                 }
             },
             logoutAll: {
@@ -112,7 +112,7 @@ export default {
                 model: {
                     questionTitle: "Logout from all devices ?",
                     questionAreYouSure: "Are you sure ?",
-                    yesImSure: "Yes im sure !",
+                    yesImSure: "Yes I'm sure !",
                     close: "Close"
                 }
             },
@@ -127,7 +127,7 @@ export default {
                     questionTitle: "Delete the account ?",
                     thisActionIsNotReversible: "This action is not reversible !",
                     questionAreYouSure: "Are you sure ?",
-                    yesImSure: "Yes im sure !",
+                    yesImSure: "Yes I'm sure !",
                     close: "Close"
 
                 }
@@ -144,7 +144,7 @@ export default {
         },
         logout: {
             account: 'Logout Success !',
-            accountAll: 'Loged Out of all devices !'
+            accountAll: 'Logged Out of all devices !'
         },
         username: {
             success: "Username successfully updated !"
