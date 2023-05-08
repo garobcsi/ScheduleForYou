@@ -7,6 +7,7 @@
 
 ## Quick Navigation
 * **[:black_nib: About The Project](#black_nib-about-the-project)**
+* **[:toolbox: Technologies that we used](#toolbox-technologies-that-we-used)**
 * **[:building_construction: Building the application](#building_construction-building-the-application)**
   * [Prerequisites](#prerequisites)
   * [Building For Development](#building-for-development)
@@ -15,10 +16,17 @@
   * [Building Manually For Production](#building-manually-for-production)
   * [Having troubles?](#having-troubles)
 * **[:open_file_folder: Application ports](#open_file_folder-application-ports)**
+* **[:test_tube: Run Unit Tests](#test_tube-run-unit-tests)**
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
 * **[:open_book: Documentation](#open_book-documentation)**
   * [Functional specification (WIP)](#functional-specification-wip)
   * [Swagger (API Docs)(WIP)](#swagger-api-docswip)
+* **[:speaking_head: Collaboration tools](#speaking_head-collaboration-tools)**
+* **[:hammer_and_wrench: Development Tools Used](#hammer_and_wrench-development-tools-used)**
+  * [Idea's](#ideas)
+  * [Programs](#programs)
+  * [Os](#os)
+* **[:busts_in_silhouette: Made By](#busts_in_silhouette-made-by)**
 
 
 ## :black_nib: About The Project
