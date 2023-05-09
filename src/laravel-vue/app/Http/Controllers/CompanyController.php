@@ -12,6 +12,7 @@ use App\Http\Resources\PublicCompanyResource;
 use App\Models\Company;
 use App\Models\CompanyOpeningHours;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 
 class CompanyController extends Controller
@@ -19,9 +20,9 @@ class CompanyController extends Controller
     /**
      * Get all tables
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         return response()->json(["data" => PublicCompanyResource::collection(Company::all())],200);
     }
@@ -29,10 +30,10 @@ class CompanyController extends Controller
     /**
      * Show existing Company Table by index
      *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\JsonResponse
+     * @param Company $company
+     * @return JsonResponse
      */
-    public function show(Company $company): \Illuminate\Http\JsonResponse
+    public function show(Company $company): JsonResponse
     {
         return response()->json(["data" => new PublicCompanyResource($company)],200);
     }
@@ -40,10 +41,10 @@ class CompanyController extends Controller
     /**
      * Create new Company Table
      *
-     * @param  \App\Http\Requests\CompanyRequest  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param CompanyRequest $request
+     * @return JsonResponse
      */
-    public function store(CompanyRequest $request): \Illuminate\Http\JsonResponse
+    public function store(CompanyRequest $request): JsonResponse
     {
         $data = $request->validated();
         $created = Company::create($data);
@@ -55,9 +56,10 @@ class CompanyController extends Controller
     /**
      * Change existing Company Table
      *
-     * @param  \App\Http\Requests\CompanyRequest  $request
-     * @param  \App\Models\Company  $company
+     * @param CompanyRequest $request
+     * @param Company $company
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function update(CompanyRequest $request, Company $company): JsonResponse
     {
@@ -75,8 +77,9 @@ class CompanyController extends Controller
     /**
      * Delete existing Company Table
      *
-     * @param  \App\Models\Company  $company
+     * @param Company $company
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy(Company $company): JsonResponse
     {
@@ -88,7 +91,7 @@ class CompanyController extends Controller
     /**
      * Get back user tables and permissions
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function my(): JsonResponse
     {
@@ -101,7 +104,8 @@ class CompanyController extends Controller
      * Get all Contributors
      *
      * @param Company $company
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function getAllContributors(Company $company): JsonResponse
     {
@@ -120,8 +124,9 @@ class CompanyController extends Controller
      * @param ContributorCompanyRequest $request
      * @param Company $company
      * @return JsonResponse
+     * @throws AuthorizationException
      */
-    public function addContributor(ContributorCompanyRequest $request, Company $company): \Illuminate\Http\JsonResponse
+    public function addContributor(ContributorCompanyRequest $request, Company $company): JsonResponse
     {
         $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
@@ -141,7 +146,8 @@ class CompanyController extends Controller
      *
      * @param ContributorCompanyRequest $request
      * @param Company $company
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function updateContributorPerms(ContributorCompanyRequest $request, Company $company): JsonResponse
     {
@@ -163,8 +169,9 @@ class CompanyController extends Controller
     /**
      * User leaves Being as a Contributor
      *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\JsonResponse
+     * @param Company $company
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function leaveContributor(Company $company): JsonResponse
     {
@@ -184,6 +191,7 @@ class CompanyController extends Controller
      * @param FindUserRequest $request
      * @param Company $company
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function kickContributor(FindUserRequest $request, Company $company): JsonResponse
     {

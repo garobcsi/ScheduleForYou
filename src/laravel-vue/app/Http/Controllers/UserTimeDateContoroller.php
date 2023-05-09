@@ -16,7 +16,7 @@ class UserTimeDateContoroller extends Controller
      *
      * @return JsonResponse
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->TimeDate],200);
     }

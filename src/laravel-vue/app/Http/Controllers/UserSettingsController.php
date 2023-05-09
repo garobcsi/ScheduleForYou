@@ -15,7 +15,7 @@ class UserSettingsController extends Controller
      *
      * @return JsonResponse
      */
-    public function get(): \Illuminate\Http\JsonResponse
+    public function get(): JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->settings],200);
     }

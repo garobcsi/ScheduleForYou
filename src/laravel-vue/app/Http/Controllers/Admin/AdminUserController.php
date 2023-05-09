@@ -18,7 +18,7 @@ class AdminUserController extends Controller
      * @param RegisterRequest $request
      * @return JsonResponse
      */
-    public function Register(RegisterRequest $request): \Illuminate\Http\JsonResponse
+    public function Register(RegisterRequest $request): JsonResponse
     {
         if(!in_array($request->host(),["localhost","127.0.0.1"])) return response()->json(["message" => "Cannot create account on ".$request->host()],403);
         $data = $request->validated();

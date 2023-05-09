@@ -13,10 +13,23 @@ use Illuminate\Http\Request;
 
 class UserTimeRoutineContoroller extends Controller
 {
-    public function enum() {
+    /**
+     * Get Routine Enum
+     * 
+     * @return JsonResponse
+     */
+    public function enum(): JsonResponse
+    {
         return response()->json(["data" => RepeatTimeEnum::array()],200);
     }
-    public function enumHU() {
+
+    /**
+     * Get Routine Enum (In hungarian)
+     * 
+     * @return JsonResponse
+     */
+    public function enumHU(): JsonResponse
+    {
         return response()->json(["data" => RepeatTimeHUEnum::array()],200);
     }
     /**
