@@ -1,0 +1,54 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "asdasdasdasdasdasdasdasdasda",
+        "version": "1.0"
+    },
+    "paths": {
+        "/url": {
+            "get": {
+                "summary": "summary",
+                "description": "description",
+                "operationId": "fefc1ae3a8bd9cd9e543bbaf9bcf3565",
+                "responses": {
+                    "200": {
+                        "description": "A list with products"
+                    },
+                    "default": {
+                        "description": "an \"unexpected\" error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/url/asdas": {
+            "get": {
+                "summary": "summary",
+                "description": "description",
+                "operationId": "f8e88d4cec9489a1ac92f0728368eb22",
+                "responses": {
+                    "200": {
+                        "description": "A list with products"
+                    },
+                    "default": {
+                        "description": "an \"unexpected\" error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
