@@ -1,21 +1,147 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "asdasdasdasdasdasdasdasdasda",
+        "title": "Schedule For You API Docs",
         "version": "1.0"
     },
     "paths": {
-        "/url": {
+        "/api/admin/company/request": {
             "get": {
-                "summary": "summary",
-                "description": "description",
-                "operationId": "fefc1ae3a8bd9cd9e543bbaf9bcf3565",
+                "tags": [
+                    "Admin Company Type Requests"
+                ],
+                "summary": "Get All Type Requests",
+                "operationId": "68b962a3d10697fa2683bcd56421d4fa",
                 "responses": {
-                    "200": {
-                        "description": "A list with products"
+                    "401": {
+                        "description": "No valid Bearer Token was provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
-                    "default": {
-                        "description": "an \"unexpected\" error"
+                    "403": {
+                        "description": "You are not an admin.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "You don't have access !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Data Returned."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin Company Type Requests"
+                ],
+                "summary": "Add a Company Type to Approved list",
+                "operationId": "5960c4abcfc3cbaaa66218e4b1c012f2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "lang"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "your type name"
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "hu|en"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "No valid Bearer Token was provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "You are not an admin.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "You don't have access !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Incorrect data Sent."
+                    },
+                    "201": {
+                        "description": "Data created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "Data created successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -25,19 +151,57 @@
                 ]
             }
         },
-        "/url/asdas": {
+        "/api/admin/company/request/pending": {
             "get": {
-                "summary": "summary",
-                "description": "description",
-                "operationId": "f8e88d4cec9489a1ac92f0728368eb22",
+                "tags": [
+                    "Admin Company Type Requests"
+                ],
+                "summary": "Get All Pending Type Requests",
+                "operationId": "3f4587d533ffe44034e056adc4c6c1f6",
                 "responses": {
-                    "200": {
-                        "description": "A list with products"
+                    "401": {
+                        "description": "No valid Bearer Token was provided.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
-                    "default": {
-                        "description": "an \"unexpected\" error"
+                    "403": {
+                        "description": "You are not an admin.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "format": "text",
+                                            "example": "You don't have access !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Data Returned."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
             }
         }
     },
