@@ -19,6 +19,12 @@
   * [Building For Production](#building-for-production)
   * [Building Manually For Production](#building-manually-for-production)
   * [Having troubles?](#having-troubles)
+    * [Are you trying to run it on an ARM CPU?](#are-you-trying-to-run-it-on-an-arm-cpu)
+    * [Having permission problems?](#having-permission-problems)
+    * [Did you rename app container?](#did-you-rename-app-container)
+    * [Did you rename db (database) container?](#did-you-rename-db-database-container)
+    * [Do you want frontend to load assets from a different URL?](#do-you-want-frontend-to-load-assets-from-a-different-url)
+    * [Did you get the error `Permission denied`?](#did-you-get-the-error-permission-denied)
 * **[:keyboard: Useful Commands](#keyboard-useful-commands)**
   * [Log Into Fish Shell](#log-into-fish-shell)
   * [Save Database tables to the seeder](#save-database-tables-to-the-seeder)
@@ -106,6 +112,46 @@ Schedule For You is a versatile and user-friendly application designed to simpli
 
 ### Having troubles?
 
+#### Are you trying to run it on an ARM CPU?
+
+1. Remove Project Containers from docker `docker-compose down`
+2. Go to `src/laravel-vue/docker-compose.yml` file
+3. Uncomment [this](https://github.com/garobcsi/ScheduleForYou/blob/main/src/laravel-vue/docker-compose.yml#L26.L28) part of the code
+4. Try again
+
+#### Having permission problems?
+
+1. Remove Project Containers from docker `docker-compose down`
+2. Remove Mysql Folder `src/laravel-vue/docker/mysql`
+3. Change the user ownership for the whole project `chown -R 1000:1000 <project name>` <br> Example `chown -R 1000:1000 ScheduleForYou/`
+4. Try Again
+
+#### Did you rename app container?
+
+1. Remove Project Containers from docker `docker-compose down`
+2. Go to `src/laravel-vue/docker/nginx/conf.d/default.conf` file
+3. Go to [this](https://github.com/garobcsi/ScheduleForYou/blob/main/src/laravel-vue/docker/nginx/conf.d/default.conf#L50) line and rename app container name to your container name. <br> Example From `fastcgi_pass  app:9000` To `fastcgi_pass  my_app_name:9000`
+4. Try again
+
+#### Did you rename db (database) container?
+
+1. Remove Project Containers from docker `docker-compose down`
+2. Go to `src/laravel-vue/.env` file
+3. Go to [this](https://github.com/garobcsi/ScheduleForYou/blob/main/src/laravel-vue/.env.example#L28) line and rename db container name to your container name. <br> Example From `DB_HOST=db` To `DB_HOST=my_db_name`
+4. Try again
+
+#### Do you want frontend to load assets from a different URL?
+
+1. Remove Project Containers from docker `docker-compose down`
+2. Go to `src/laravel-vue/.env` file
+3. Add a new line `ASSET_URL=<your URL>` <br> Example `ASSET_URL=https://example.com`
+4. Try again
+
+#### Did you get the error `Permission denied`?
+
+1. Login to Fish as root `docker-compose exec -u root app fish`
+2. Try again
+
 ## :keyboard: Useful Commands
 
 ### Log Into Fish Shell
@@ -187,7 +233,7 @@ Options:
 
 Because the application uses many small files the coping between the Windows filesystem (NTFS) and Docker container filesystem (ext4) makes it run slower. By making the Os filesystem and the Docker containers filesystem the same the application will run much quicker.
 
-For example, when we used [Wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows we saw the same speed difference as a proper Linux installation.
+For example, when we used [wsl](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows. We saw a speedup difference. Because wsl uses ext4 filesystem.
 
 ## :test_tube: Run Unit Tests
 
