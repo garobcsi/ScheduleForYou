@@ -273,7 +273,7 @@ For example, when we used [wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 ### Swagger (API Docs)(WIP)
 
 1. Initialize the project
-2. Build swagger docs `docker-compose exec app php artisan l5-swagger:generate`
+2. Build swagger docs `docker-compose exec -u root app php artisan l5-swagger:generate`
 3. Navigate to site `<your ip>:80/api/docs` <br> Example `localhost/api/docs`
 
 ## :hammer_and_wrench: Development Tools Used
