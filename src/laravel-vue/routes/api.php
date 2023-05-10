@@ -141,9 +141,10 @@ Route::prefix('company')->name('company.')->group(function () {
         });
     });
     Route::prefix('openingHours')->name('openingHours.')->group(function (){
+        Route::get('',[OpeningHoursController::class,'index'])->name('index');
+        Route::get('/show',[OpeningHoursController::class,'show'])->name('show');
         Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('update/{company}',[OpeningHoursController::class,'update'])->name('update')->whereNumber('company');
         });
-        Route::get('',[OpeningHoursController::class,'index'])->name('index');
     });
 });
