@@ -53,8 +53,11 @@ class UserTimeDateContoroller extends Controller
         $data = $request->validated();
         $id = auth('sanctum')->user()->id;
         $data["user_id"] = $id;
-        UserTimeDate::create($data);
-        return response()->json(["message" => "Data created successfully."],201);
+        $created = UserTimeDate::create($data);
+        $coll = collect($created);
+        if (!$coll->has("description")) $created["description"] = null;
+        if (!$coll->has("group_id")) $created["group_id"] = null;
+        return response()->json(["data" => $created],201);
     }
 
     /**
@@ -69,13 +72,13 @@ class UserTimeDateContoroller extends Controller
     {
         $this->authorize('isAuthorized',$date);
         $data = $request->validated();
-        $date->group_id = $data["group_id"];
-        $date->name = $data["name"];
-        $date->start = $data["start"];
-        $date->end = $data["end"];
-        $date->description = $data["description"];
+        if (array_key_exists('group_id',$data)) $date->group_id = $data["group_id"];
+        if (array_key_exists('name',$data))  $date->name = $data["name"];
+        if (array_key_exists('start',$data))  $date->start = $data["start"];
+        if (array_key_exists('end',$data))  $date->end = $data["end"];
+        if (array_key_exists('description',$data))  $date->description = $data["description"];
         $date->save();
-        return response()->json(["message" => "Data updated successfully."],200);
+        return response()->json(["data" => $date],200);
     }
 
     /**
