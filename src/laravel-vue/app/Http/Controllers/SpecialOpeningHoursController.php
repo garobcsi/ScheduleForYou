@@ -9,4 +9,7 @@ use Illuminate\Http\Request;
 
 class SpecialOpeningHoursController extends Controller
 {
+    public function index(){
+        return response()->json(["data" => CompanySpecialOpeningHours::all()],200);
+    }
 }
