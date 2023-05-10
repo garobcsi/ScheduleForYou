@@ -9,6 +9,6 @@ enum RepeatTimeHUEnum:string
     use EnumToArray;
     case Naponta = "daily";
     case Hetente = "weekly";
-    case Hónaponta = "monthly";
+    case Havonta = "monthly";
     case Évente = "yearly";
 }
