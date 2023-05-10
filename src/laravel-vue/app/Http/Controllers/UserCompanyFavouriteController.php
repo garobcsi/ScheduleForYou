@@ -17,7 +17,7 @@ class UserCompanyFavouriteController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         return response()->json(["data" => auth('sanctum')->user()->CompanyFavourite],200);
     }

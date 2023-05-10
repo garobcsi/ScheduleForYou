@@ -34,7 +34,14 @@ class UserController extends Controller
         return response()->json(["data" => new UserResource($request->user())],200);
     }
 
-    public function updateMyUser(UpdateUserRequest $request){
+    /**
+     * Update user info's
+     * 
+     * @param UpdateUserRequest $request
+     * @return JsonResponse
+     */
+    public function updateMyUser(UpdateUserRequest $request): JsonResponse
+    {
         $data = $request->validated();
         $user = auth('sanctum')->user();
         if (array_key_exists('username',$data)) $user->name = $data["username"];
@@ -44,7 +51,14 @@ class UserController extends Controller
         return response()->json(['message'=>'User updated successfully.'],201);
     }
 
-    public function resetMyUserPassword(ResetMyUserPasswordRequest $request){
+    /**
+     * Reset User's Password
+     * 
+     * @param ResetMyUserPasswordRequest $request
+     * @return JsonResponse
+     */
+    public function resetMyUserPassword(ResetMyUserPasswordRequest $request): JsonResponse
+    {
         $data = $request->validated();
         $user = auth('sanctum')->user();
         if (!Hash::check($data["password"],$user->password))

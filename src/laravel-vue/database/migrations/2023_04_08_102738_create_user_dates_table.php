@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->longText('description')->nullable();
+            $table->boolean('allDay')->default(true);
             //Company ?
         });
     }

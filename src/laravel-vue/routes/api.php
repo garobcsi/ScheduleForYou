@@ -32,8 +32,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::prefix('company/request')->name('CompanyRequest.')->middleware('auth:sanctum')->group(function () {
         Route::get('',[AdminCompanyRequestApproveController::class,'getRequests'])->name('get');
         Route::get('/pending',[AdminCompanyRequestApproveController::class,'getPendingRequests'])->name('pending');
-        Route::post('/add',[AdminCompanyRequestApproveController::class,'add'])->name('add');
-        Route::post('/remove/{type}',[AdminCompanyRequestApproveController::class,'remove'])->name('remove');
+        Route::post('',[AdminCompanyRequestApproveController::class,'add'])->name('add');
+        Route::delete('/{type}',[AdminCompanyRequestApproveController::class,'remove'])->name('remove');
         Route::post('/approve/{type}',[AdminCompanyRequestApproveController::class,'Approve'])->name('approve');
         Route::post('/denies/{type}',[AdminCompanyRequestApproveController::class,'Denies'])->name('denies');
         Route::post('/rename/{type}',[AdminCompanyRequestApproveController::class,'Rename'])->name('rename');

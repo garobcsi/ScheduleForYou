@@ -2,32 +2,7 @@
 
 namespace App\Enums;
 
-trait EnumToArray
-{
-
-    public static function names(): array
-    {
-        return array_column(self::cases(), 'name');
-    }
-
-    public static function values(): array
-    {
-        return array_column(self::cases(), 'value');
-    }
-
-    public static function array(): array
-    {
-        $arr = array();
-        foreach (self::names() as $n => $i) {
-            $arr[] = [
-                "name" => $i,
-                "value" => self::values()[$n]
-            ];
-        }
-        return $arr;
-    }
-
-}
+use App\Trait\EnumToArray;
 
 enum RepeatTimeEnum:string
 {

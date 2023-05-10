@@ -31,7 +31,8 @@ class TimeRoutineRequest extends FormRequest
             "start" => ["required","date"],
             "end" => ["required","date"],
             "repeat_time" => ["required",Rule::in(array_column(RepeatTimeEnum::cases(), 'value'))],
-            "description" => ["nullable"]
+            "description" => ["nullable"],
+            "allDay" => ["required","boolean"]
         ];
     }
 }

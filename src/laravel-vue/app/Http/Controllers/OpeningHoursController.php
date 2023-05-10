@@ -5,17 +5,43 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OpeningHoursRequest;
 use App\Models\Company;
 use App\Models\CompanyOpeningHours;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OpeningHoursController extends Controller
 {
-    public function index(){
+    /**
+     * Get All OpeningHours
+     * 
+     * @return JsonResponse
+     */
+    public function index(): \Illuminate\Http\JsonResponse
+    {
         return response()->json(["data" => CompanyOpeningHours::all()],200);
     }
-    public function show(CompanyOpeningHours $openingHours){
+
+    /**
+     * Show one OpeningHours
+     * 
+     * @param CompanyOpeningHours $openingHours
+     * @return JsonResponse
+     */
+    public function show(CompanyOpeningHours $openingHours): JsonResponse
+    {
         return response()->json(["data" => $openingHours]);
     }
-    public function update(OpeningHoursRequest $request, Company $company){
+
+    /**
+     * Update Company Opening hours
+     * 
+     * @param OpeningHoursRequest $request
+     * @param Company $company
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function update(OpeningHoursRequest $request, Company $company): JsonResponse
+    {
         $this->authorize('onlyOwnerCoOwnerManager',$company);
         $data = $request->validated();
         $companyOpeningHours = $company->OpeningHours;
