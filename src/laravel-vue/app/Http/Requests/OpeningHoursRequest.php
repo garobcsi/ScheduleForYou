@@ -24,20 +24,20 @@ class OpeningHoursRequest extends FormRequest
     public function rules()
     {
         return [
-            'monday_start' => ['nullable','date'],
-            'monday_end' => ['nullable','date'],
-            'tuesday_start' => ['nullable','date'],
-            'tuesday_end' => ['nullable','date'],
-            'wednesday_start' => ['nullable','date'],
-            'wednesday_end' => ['nullable','date'],
-            'thursday_start' => ['nullable','date'],
-            'thursday_end' => ['nullable','date'],
-            'friday_start' => ['nullable','date'],
-            'friday_end' => ['nullable','date'],
-            'saturday_start' => ['nullable','date'],
-            'saturday_end' => ['nullable','date'],
-            'sunday_start' => ['nullable','date'],
-            'sunday_end' => ['nullable','date'],
+            'monday_start' => ['nullable','date_format:H:i'],
+            'monday_end' => ['nullable','date_format:H:i'],
+            'tuesday_start' => ['nullable','date_format:H:i'],
+            'tuesday_end' => ['nullable','date_format:H:i'],
+            'wednesday_start' => ['nullable','date_format:H:i'],
+            'wednesday_end' => ['nullable','date_format:H:i'],
+            'thursday_start' => ['nullable','date_format:H:i'],
+            'thursday_end' => ['nullable','date_format:H:i'],
+            'friday_start' => ['nullable','date_format:H:i'],
+            'friday_end' => ['nullable','date_format:H:i'],
+            'saturday_start' => ['nullable','date_format:H:i'],
+            'saturday_end' => ['nullable','date_format:H:i'],
+            'sunday_start' => ['nullable','date_format:H:i'],
+            'sunday_end' => ['nullable','date_format:H:i'],
         ];
     }
 }

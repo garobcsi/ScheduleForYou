@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyTypeController;
 use App\Http\Controllers\OpeningHoursController;
+use App\Http\Controllers\SpecialOpeningHoursController;
 use App\Http\Controllers\UserCompanyFavouriteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
@@ -141,9 +142,17 @@ Route::prefix('company')->name('company.')->group(function () {
         });
     });
     Route::prefix('openingHours')->name('openingHours.')->group(function (){
+        Route::get('',[OpeningHoursController::class,'index'])->name('index');
+        Route::get('/show',[OpeningHoursController::class,'show'])->name('show');
+        Route::prefix('specialOpeningHours')->name('specialOpeningHours.')->group(function (){
+            Route::get('',[SpecialOpeningHoursController::class,'index'])->name('index');
+            Route::get('/show',[SpecialOpeningHoursController::class,'show'])->name('show');
+            Route::middleware(['auth:sanctum'])->group(function () {
+                Route::post('update/{id}',[SpecialOpeningHoursController::class,'update'])->name('update')->whereNumber('id');
+            });
+        });
         Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('update/{company}',[OpeningHoursController::class,'update'])->name('update')->whereNumber('company');
         });
-        Route::get('',[OpeningHoursController::class,'index'])->name('index');
     });
 });
