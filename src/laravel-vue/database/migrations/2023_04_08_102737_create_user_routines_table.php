@@ -22,6 +22,7 @@ return new class extends Migration
             $table->dateTime('end');
             $table->string('repeat_time')->nullable();
             $table->longText('description')->nullable();
+            $table->boolean('allDay')->default(true);
         });
     }
 

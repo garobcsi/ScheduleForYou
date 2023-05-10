@@ -77,6 +77,7 @@ class UserTimeDateContoroller extends Controller
         if (array_key_exists('start',$data))  $date->start = $data["start"];
         if (array_key_exists('end',$data))  $date->end = $data["end"];
         if (array_key_exists('description',$data))  $date->description = $data["description"];
+        if (array_key_exists('allDay',$data))  $date->description = $data["allDay"];
         $date->save();
         return response()->json(["data" => $date],200);
     }

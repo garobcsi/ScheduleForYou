@@ -28,7 +28,8 @@ class TimeDateRequest extends FormRequest
             "name" => ["required","max:100"],
             "start" => ["required","date"],
             "end" => ["required","date"],
-            "description" => ["nullable"]
+            "description" => ["nullable"],
+            "allDay" => ["required","boolean"]
         ];
     }
 }
