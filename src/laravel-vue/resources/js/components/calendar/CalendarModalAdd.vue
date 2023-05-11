@@ -62,12 +62,12 @@ import {Modal} from "bootstrap";
 import {computed, onMounted, ref, watch} from "vue";
 import {api} from "../../utils/api";
 import {useI18n} from "vue-i18n";
-import {pick} from "lodash/object";
 
 const props = defineProps({
     start: String,
     end: String,
     allDay: Boolean,
+    api: Object
 })
 
 const modalRef = ref(null);
@@ -95,7 +95,7 @@ const i18nSchema = computed(() => {
             yup.date()
                 .required(),
         repeat_time:
-            picked.value === "btnradio1"? yup.string() :yup.string().required(),
+            picked.value === "btnradio1" ? yup.string() :yup.string().required(),
         description:
             yup.string()
     })
@@ -103,7 +103,38 @@ const i18nSchema = computed(() => {
 
 
 async function onSubmit(values) {
-    console.log(values);
+    if (picked.value === "btnradio1") delete values.repeat_time;
+    values["allDay"] = (["00:00:00","00:00","00"].includes(values.start.split('T')[1]) && ["00:00:00","00:00","00"].includes(values.end.split('T')[1])) && props.allDay;
+    switch (picked.value) {
+        case "btnradio1":
+            let data1 = null;
+            await api.post('/user/date',values).then(x=>data1 =x.data.data);
+            let end1 = new Date(data1.end);
+            if (values.allDay) end1.setDate(end1.getDate() + 1);
+            props.api.addEvent({
+                id: data1.id,
+                title:data1.name,
+                start: data1.start,
+                end: end1.toISOString(),
+                allDay: data1.allDay
+            });
+            break;
+        case "btnradio2":
+            let data2 = null;
+            await api.post('/user/routine',values).then(x=>data2 =x.data.data);
+            props.api.addEvent({
+                id: data2.id,
+                groupId: data2.id,
+                title:data2.name,
+                allDay: data2.allDay,
+                rrule: {
+                    freq: data2.repeat_time,
+                    dtstart: data2.start,
+                    until: data2.end,
+                }
+            });
+            break;
+    }
     modal.hide();
 }
 
@@ -115,12 +146,12 @@ watch(props,() => {
         start.setHours(start.getHours()+2);
         end.setHours(end.getHours() +2);
     }
-    if (start.getDate() !== end.getDate() -1 && props.allDay) end.setDate(end.getDate() - 1);
+    if (props.allDay) end.setDate(end.getDate() - 1);
     formRef.value.setValues({
         name: '',
         start: start.toISOString().split('.')[0],
         end: end.toISOString().split('.')[0],
-        textarea: "",
+        description: "",
         repeat_time: ""
     });
 });

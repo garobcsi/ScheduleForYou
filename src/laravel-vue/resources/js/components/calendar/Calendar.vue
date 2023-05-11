@@ -4,7 +4,7 @@
             :options='calendarOptions'
         >
         </FullCalendar>
-        <CalendarModalAdd ref="modalAdd" :start="modalAddStartStr" :end="modalAddEndStr" :all-day="modalAddAllDay"/>
+        <CalendarModalAdd ref="modalAdd" :start="modalAddStartStr" :end="modalAddEndStr" :all-day="modalAddAllDay" :api="modalApi"/>
     </div>
 </template>
 
@@ -32,6 +32,7 @@ export default defineComponent({
             modalAddStartStr: "",
             modalAddEndStr: "",
             modalAddAllDay: true,
+            modalApi: {},
             //////
             calendarOptions: {
                 plugins: [
@@ -73,6 +74,9 @@ export default defineComponent({
             this.modalAddStartStr = info.startStr;
             this.modalAddEndStr = info.endStr;
             this.modalAddAllDay = info.allDay;
+            let calendarApi = info.view.calendar;
+            this.modalApi = calendarApi;
+            calendarApi.unselect();
             this.$refs.modalAdd.show();
         },
         eventClick(info) {

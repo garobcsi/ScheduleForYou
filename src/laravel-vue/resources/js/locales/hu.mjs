@@ -116,7 +116,7 @@ export default {
                 }
             },
             deleteAccount: {
-                title: "Veszélyzona",
+                title: "Veszélyzóna",
                 deleteTheAccount: "Fiók törlése",
                 thisActionIs:"Ez a tevékenység",
                 notReversible: "nem visszafordítható",
