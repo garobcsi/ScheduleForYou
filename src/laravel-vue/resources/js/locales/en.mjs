@@ -134,6 +134,34 @@ export default {
             }
         }
     },
+    calendar: {
+        addDateModel: {
+            titleDate: "Add Date",
+            titleRoutine: "Add Routine",
+            select: {
+                date: "Date",
+                routine: "Routine",
+            },
+            form: {
+                name: "Name",
+                startDate: "Start Date",
+                endDate:"End Date",
+                startRoutine: "Start Routine",
+                endRoutine: "End Routine",
+                repeatTime: "Repeat Time",
+                description: "Description",
+                buttons: {
+                    close:"Close",
+                    save:"Save"
+                },
+                validation: {
+                    max: "It can be a maximum of {n} characters long.",
+                    dateError: "This is not a valid date !",
+                    required: "Required to fill out !"
+                }
+            },
+        }
+    },
     toast: {
         error: "Unexpected error occurred !",
         register: {

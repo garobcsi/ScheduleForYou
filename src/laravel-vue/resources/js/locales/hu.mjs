@@ -132,6 +132,34 @@ export default {
             }
         }
     },
+    calendar: {
+        addDateModel: {
+            titleDate: "Dátum hozzáadás",
+            titleRoutine: "Rutin hozzáadás",
+            select: {
+                date: "Dátum",
+                routine: "Rutin",
+            },
+            form: {
+                name: "Név",
+                startDate: "Kezdés dátuma",
+                endDate:"Befejezés dátuma",
+                startRoutine: "Kezdés Rutin dátuma",
+                endRoutine: "Befejezés Rutin dátuma",
+                repeatTime: "Ismétési idő",
+                description: "Leírás",
+                buttons: {
+                    close:"Bezárás",
+                    save:"Elmentés"
+                },
+                validation: {
+                    max: "Maxinum {n} karakter hosszú lehet.",
+                    dateError: "Ez a dátum nem valid !",
+                    required: "Kötelező kitölteni !"
+                }
+            },
+        }
+    },
     toast: {
         error: "Váratlan hiba történt !",
         register: {
