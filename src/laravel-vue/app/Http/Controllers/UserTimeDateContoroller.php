@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TimeDateRequest;
+use App\Http\Requests\UpdateTimeDateRequest;
 use App\Http\Resources\TimeDateWithGroupsResource;
 use App\Models\UserTimeDate;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -63,12 +64,12 @@ class UserTimeDateContoroller extends Controller
     /**
      * Updates date
      *
-     * @param TimeDateRequest $request
+     * @param UpdateTimeDateRequest $request
      * @param UserTimeDate $date
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function update(TimeDateRequest $request, UserTimeDate $date): JsonResponse
+    public function update(UpdateTimeDateRequest $request, UserTimeDate $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $data = $request->validated();
@@ -77,7 +78,7 @@ class UserTimeDateContoroller extends Controller
         if (array_key_exists('start',$data))  $date->start = $data["start"];
         if (array_key_exists('end',$data))  $date->end = $data["end"];
         if (array_key_exists('description',$data))  $date->description = $data["description"];
-        if (array_key_exists('allDay',$data))  $date->description = $data["allDay"];
+        if (array_key_exists('allDay',$data))  $date->allDay = $data["allDay"];
         $date->save();
         return response()->json(["data" => $date],200);
     }

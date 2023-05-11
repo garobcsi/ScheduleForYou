@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\RepeatTimeEnum;
 use App\Enums\RepeatTimeHUEnum;
 use App\Http\Requests\TimeRoutineRequest;
+use App\Http\Requests\UpdateTimeRoutineRequest;
 use App\Http\Resources\TimeRoutineWithGroupsResource;
 use App\Models\UserTimeRoutine;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -84,12 +85,12 @@ class UserTimeRoutineContoroller extends Controller
     /**
      * Updates a routine
      *
-     * @param TimeRoutineRequest $request
+     * @param UpdateTimeRoutineRequest $request
      * @param UserTimeRoutine $date
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function update(TimeRoutineRequest $request, UserTimeRoutine $date): JsonResponse
+    public function update(UpdateTimeRoutineRequest $request, UserTimeRoutine $date): JsonResponse
     {
         $this->authorize('isAuthorized',$date);
         $data = $request->validated();
@@ -99,7 +100,7 @@ class UserTimeRoutineContoroller extends Controller
         if (array_key_exists('end',$data)) $date->end = $data["end"];
         if (array_key_exists('repeat_time',$data)) $date->repeat_time = $data["repeat_time"];
         if (array_key_exists('description',$data)) $date->description = $data["description"];
-        if (array_key_exists('allDay',$data)) $date->description = $data["allDay"];
+        if (array_key_exists('allDay',$data)) $date->allDay = $data["allDay"];
         $date->save();
         return response()->json(["data" => $date],200);
     }
