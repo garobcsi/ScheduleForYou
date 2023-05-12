@@ -4,7 +4,7 @@
             :options='calendarOptions'
         >
         </FullCalendar>
-        <CalendarModalAdd ref="modalAdd" :start="modalAddStartStr" :end="modalAddEndStr" :all-day="modalAddAllDay"/>
+        <CalendarModalAdd ref="modalAdd" :start="modalAddStartStr" :end="modalAddEndStr" :all-day="modalAddAllDay" :api="modalApi"/>
     </div>
 </template>
 
@@ -20,6 +20,8 @@ import huLocale from "@fullcalendar/core/locales/hu";
 import enLocale from "@fullcalendar/core/locales/en-gb"
 import {useI18n} from "vue-i18n";
 import CalendarModalAdd from "./CalendarModalAdd.vue";
+import {api} from "../../utils/api";
+import {star} from "ionicons/icons";
 
 export default defineComponent({
     components: {
@@ -32,6 +34,7 @@ export default defineComponent({
             modalAddStartStr: "",
             modalAddEndStr: "",
             modalAddAllDay: true,
+            modalApi: {},
             //////
             calendarOptions: {
                 plugins: [
@@ -73,15 +76,13 @@ export default defineComponent({
             this.modalAddStartStr = info.startStr;
             this.modalAddEndStr = info.endStr;
             this.modalAddAllDay = info.allDay;
+            let calendarApi = info.view.calendar;
+            this.modalApi = calendarApi;
+            calendarApi.unselect();
             this.$refs.modalAdd.show();
         },
         eventClick(info) {
             console.log("click");
-            // console.log(info.event.title);
-            // console.log(info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            // console.log(info.view.type);
-            // this.modalRef.show();
-            // info.event.remove();
         },
         eventSet(info) {
             console.log("set");
@@ -89,8 +90,38 @@ export default defineComponent({
         eventAdd(info) {
             console.log("add");
         },
-        eventChange(info) {
+        async eventChange(info) {
             console.log("change");
+            switch (info.event.extendedProps.date_type) {
+                case "date":
+                    let start = new Date(info.event.start);
+                    let end = new Date(info.event.end);
+                    start.setHours(start.getHours()+2);
+                    end.setHours(end.getHours()+2);
+                    if (info.event.allDay) {
+                        end.setDate(end.getDate()-1);
+                    }
+                    if (info.event.end === null) {
+                        if (info.event.allDay) {
+                            end = start;
+                        }
+                        else {
+                            let start_copy = new Date(start);
+                            start_copy.setHours(start.getHours()+1);
+                            end = new Date(start_copy);
+                        }
+                    }
+                    const data = {
+                        start: start.toISOString().split('.')[0],
+                        end: end.toISOString().split('.')[0],
+                        allDay: info.event.allDay
+                    };
+                    await api.post("/user/date/"+info.event.id,data);
+                    break;
+
+                case "routine":
+                    break;
+            }
         },
         eventRemove(info) {
             console.log("remove");
