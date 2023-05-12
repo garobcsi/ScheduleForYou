@@ -37,9 +37,15 @@ const routes = [
     },
     {
         path: '/company',
-        name: 'company',
-        component: () => import('@/pages/user/CompanyPage.vue'),
+        name: 'your_company',
+        component: () => import('@/pages/user/YourCompanyPage.vue'),
         beforeEnter: [accessAfterLogin]
+
+    },
+    {
+        path: '/company/:id',
+        name: 'company',
+        component: () => import('@/pages/CompanyPage.vue')
 
     },
     {
@@ -70,7 +76,6 @@ const routes = [
         beforeEnter: [accessAfterLogin]
 
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
     // admin
     {
         path: '/admin',
@@ -89,8 +94,9 @@ const routes = [
         name: 'admin_toast_test',
         component: () => import('@/pages/Admin/ToastTestPage.vue'),
         beforeEnter: [onlyAdminAccess]
-    }
+    },
     // admin end
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/components/error/NotFound.vue') }, // 404 error not found
 ]
 
 export const router = createRouter({
