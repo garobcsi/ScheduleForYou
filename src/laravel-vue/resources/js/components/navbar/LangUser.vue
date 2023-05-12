@@ -20,9 +20,9 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <router-link class="dropdown-item d-flex align-items-center" to="/profile">
+                    <div class="dropdown-item d-flex align-items-center">
                         <span class="panel-heading">{{ $t('navbar.dropdown.logedInAs') }} <span class="fw-semibold">{{authStore.user !== null ? authStore.user.name : "User"}}</span></span>
-                    </router-link>
+                    </div>
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <div v-show="authStore.isAdminLocalStorageOnly === true">
