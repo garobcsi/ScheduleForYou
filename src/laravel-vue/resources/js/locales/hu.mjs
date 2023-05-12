@@ -193,5 +193,26 @@ export default {
         card: {
             show:"Mutasd a céget"
         }
+    },
+    index: {
+        title: {
+            title:"Üdvözöljük a Schedule For You oldalon!",
+            txt: "A Schedule For You egy sokoldalú és felhasználóbarát alkalmazás, amelynek célja a napi ütemezési igények egyszerűsítése. Az alkalmazás úgy készült, hogy a felhasználók számára könnyen használható platformot biztosítson az ütemezésük hatékony kezeléséhez. A Schedule For You segítségével könnyedén megszervezheti személyes és szakmai találkozóit.",
+        },
+        feature: {
+            title: "Funkciók",
+            txt: "Személyes és szakmai találkozók egyszerű kezelése",
+            txt1: "Állítson be emlékeztetőket és értesítéseket a közelgő eseményekről",
+            txt2: "Tekintse meg menetrendjét napi, heti vagy havi formátumban",
+            txt3: "Intuitív és felhasználóbarát felület",
+        }
+        getStarted: {
+            title: "Elindulás",
+            txt: "A kezdéshez egyszerűen hozzon létre egy fiókot, és jelentkezzen be a Schedule For You szolgáltatásba. Innentől kezdve hozzáadhat találkozókat és eseményeket az ütemtervéhez. A beállításait és preferenciáit is testreszabhatja az igényeinek leginkább megfelelő módon."
+            button: {
+                register:"Regisztráció",
+                logIn:"Bejelentkezés"
+            }
+        }
     }
 }
