@@ -194,5 +194,12 @@ export default {
         card: {
             show:"Show the company"
         }
+    },
+    error:{
+        title:"404 Error: Page Not Found",
+        txt:"Sorry, the page you are looking for doesn't exist.",
+        button: {
+            txt: "Go back to Home",
+        }
     }
 }

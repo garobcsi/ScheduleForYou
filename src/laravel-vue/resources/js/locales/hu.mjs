@@ -193,5 +193,12 @@ export default {
         card: {
             show:"Mutasd a céget"
         }
+    },
+    error:{
+        title:"404-es hiba: Az oldal nem található",
+        txt:"Sajnáljuk, a keresett oldal nem létezik.",
+        button: {
+            txt: "Vissza a Kezdőlapra",
+        }
     }
 }
