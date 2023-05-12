@@ -15,13 +15,12 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import rrulePlugin from '@fullcalendar/rrule'
-import { INITIAL_EVENTS, createEventId } from './calendar-utils/event-utils'
 import huLocale from "@fullcalendar/core/locales/hu";
 import enLocale from "@fullcalendar/core/locales/en-gb"
 import {useI18n} from "vue-i18n";
 import CalendarModalAdd from "./CalendarModalAdd.vue";
 import {api} from "../../utils/api";
-import {star} from "ionicons/icons";
+
 
 export default defineComponent({
     components: {
@@ -51,7 +50,6 @@ export default defineComponent({
                 locale: 'en',
                 locales: [ enLocale, huLocale ],
                 initialView: 'dayGridMonth',
-                initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
                 editable: true,
                 selectable: true,
                 selectMirror: true,
@@ -120,6 +118,7 @@ export default defineComponent({
                     break;
 
                 case "routine":
+                    // not implemented
                     break;
             }
         },
