@@ -188,5 +188,11 @@ export default {
         accountDelete: {
             success: "Account successfully deleted !"
         }
+    },
+    explore: {
+        companies: "Already registered companies",
+        card: {
+            show:"Show the company"
+        }
     }
 }

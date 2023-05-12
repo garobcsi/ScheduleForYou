@@ -187,5 +187,11 @@ export default {
         accountDelete: {
             success: "Felhasználó sikeresen törölve !"
         }
+    },
+    explore: {
+        companies: "Már regisztrált cégek",
+        card: {
+            show:"Mutasd a céget"
+        }
     }
 }
