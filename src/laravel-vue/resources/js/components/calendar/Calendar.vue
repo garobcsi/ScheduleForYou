@@ -21,7 +21,6 @@ import {useI18n} from "vue-i18n";
 import CalendarModalAdd from "./CalendarModalAdd.vue";
 import {api} from "../../utils/api";
 
-
 export default defineComponent({
     components: {
         CalendarModalAdd,
@@ -64,13 +63,14 @@ export default defineComponent({
                 eventRemove: this.eventRemove,
                 slotLabelFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false, hour12: false },
                 eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
+                events:[],
             },
             currentEvents: [],
         }
     },
     methods: {
         dateSelect(info) {
-            console.log("select");
+            //console.log("select");
             this.modalAddStartStr = info.startStr;
             this.modalAddEndStr = info.endStr;
             this.modalAddAllDay = info.allDay;
@@ -80,16 +80,16 @@ export default defineComponent({
             this.$refs.modalAdd.show();
         },
         eventClick(info) {
-            console.log("click");
+            // console.log("click");
         },
         eventSet(info) {
-            console.log("set");
+            // console.log("set");
         },
         eventAdd(info) {
-            console.log("add");
+            // console.log("add");
         },
         async eventChange(info) {
-            console.log("change");
+            // console.log("change");
             switch (info.event.extendedProps.date_type) {
                 case "date":
                     let start = new Date(info.event.start);
@@ -132,6 +132,38 @@ export default defineComponent({
         this.$watch(() =>locale.value,function () {
             this.calendarOptions.locale = locale.value;
         });
+    },
+    async mounted() {
+        let data1 = null;
+        let data2 = null;
+        await api.get('/user/date').then(x=>data1 =x.data.data);
+        await api.get('/user/routine').then(x=>data2 =x.data.data);
+        for (let i = 0; i < data1.length;i++) {
+            let end = new Date(data1[i].end);
+            if (data1[i].allDay === 1) end.setDate(end.getDate() +1);
+            this.calendarOptions.events.push({
+                id: data1[i].id,
+                title:data1[i].name,
+                start: data1[i].start,
+                end: end,
+                allDay: data1[i].allDay === 1,
+                date_type: "date"
+            });
+        }
+        for (let i = 0; i < data2.length;i++) {
+            this.calendarOptions.events.push({
+                id: data2[i].id,
+                groupId: data2[i].id,
+                title:data2[i].name,
+                allDay: data2[i].allDay === 1,
+                rrule: {
+                    freq: data2[i].repeat_time,
+                    dtstart: data2[i].start,
+                    until: data2[i].end,
+                },
+                date_type: "routine"
+            });
+        }
     }
 })
 

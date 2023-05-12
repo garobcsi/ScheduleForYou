@@ -32,7 +32,7 @@ import {ref} from "vue";
 
 const { t, te } = useI18n();
 const companies = ref({});
-console.log(companies.value);
+//console.log(companies.value);
 (async () => {
     await api.get('/company').then(x=>companies.value =x.data.data)
 })();
