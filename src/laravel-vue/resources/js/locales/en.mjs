@@ -206,13 +206,13 @@ export default {
             txt1: "Set reminders and notifications for upcoming events",
             txt2: "View your schedule in daily, weekly, or monthly formats",
             txt3: "Intuitive and user-friendly interface",
-        }
+        },
         getStarted: {
             title: "Get Started",
-            txt: "To get started, simply create an account and log in to Schedule For You. From there, you can start adding appointments and events to your schedule. You can also customize your settings and preferences to best suit your needs."
+            txt: "To get started, simply create an account and log in to Schedule For You. From there, you can start adding appointments and events to your schedule. You can also customize your settings and preferences to best suit your needs.",
             button: {
                 register:"Register",
-                logIn:"Login"
+                logIn:"Login",
             }
         }
     }

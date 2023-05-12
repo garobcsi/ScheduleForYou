@@ -205,10 +205,10 @@ export default {
             txt1: "Állítson be emlékeztetőket és értesítéseket a közelgő eseményekről",
             txt2: "Tekintse meg menetrendjét napi, heti vagy havi formátumban",
             txt3: "Intuitív és felhasználóbarát felület",
-        }
+        },
         getStarted: {
             title: "Elindulás",
-            txt: "A kezdéshez egyszerűen hozzon létre egy fiókot, és jelentkezzen be a Schedule For You szolgáltatásba. Innentől kezdve hozzáadhat találkozókat és eseményeket az ütemtervéhez. A beállításait és preferenciáit is testreszabhatja az igényeinek leginkább megfelelő módon."
+            txt: "A kezdéshez egyszerűen hozzon létre egy fiókot, és jelentkezzen be a Schedule For You szolgáltatásba. Innentől kezdve hozzáadhat találkozókat és eseményeket az ütemtervéhez. A beállításait és preferenciáit is testreszabhatja az igényeinek leginkább megfelelő módon.",
             button: {
                 register:"Regisztráció",
                 logIn:"Bejelentkezés"
