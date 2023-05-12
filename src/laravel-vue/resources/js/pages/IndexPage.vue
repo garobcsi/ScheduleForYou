@@ -29,11 +29,11 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" v-show="!authStore.isLogedIn">
                     <div class="col-lg-8 col-md-10 text-center">
                         <h2 class="mb-4">Get Started</h2>
                         <p class="lead mb-5">To get started, simply create an account and log in to Schedule For You. From there, you can start adding appointments and events to your schedule. You can also customize your settings and preferences to best suit your needs.</p>
-                        <router-link to="/signup" class="btn btn-primary me-3">Sign Up</router-link>
+                        <router-link to="/register" class="btn btn-primary me-3">Sign Up</router-link>
                         <router-link to="/login" class="btn btn-outline-primary">Log In</router-link>
                     </div>
                 </div>
@@ -43,6 +43,9 @@
 </template>
 
 <script setup>
+import {useAuthStore} from "../stores/AuthStore";
+
+const authStore = useAuthStore();
 
 </script>
 
