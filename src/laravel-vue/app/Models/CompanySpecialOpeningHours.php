@@ -9,7 +9,7 @@ class CompanySpecialOpeningHours extends Model
 {
     protected $table = "company_special_opening_hours";
     public $timestamps = false;
-    protected $fillable = ['start','end','open_or_close'];
+    protected $fillable = ['companies_id','start','end','open_or_close'];
 
     public function CompanyOpeningHours(){
         return $this->belongsTo(CompanyOpeningHours::class,'opening_hours_id','id');
