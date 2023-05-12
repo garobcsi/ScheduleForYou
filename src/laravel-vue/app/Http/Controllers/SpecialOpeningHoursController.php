@@ -32,7 +32,6 @@ class SpecialOpeningHoursController extends Controller
     public function destroy(Company $company, CompanySpecialOpeningHours $SpecialOHID): JsonResponse
     {
         $this->authorize('onlyOwnerCoOwner',$company);
-        dd($company->OpeningHours->CompanySpecialOpeningHours);
         $SpecialOHID->delete();
         return response()->json(["message" => "Deleted successfully."],200);
     }
