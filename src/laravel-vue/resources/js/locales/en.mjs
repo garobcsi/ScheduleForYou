@@ -201,5 +201,26 @@ export default {
         button: {
             txt: "Go back to Home",
         }
+    },
+    index: {
+        title: {
+            title:"Welcome to Schedule For You!",
+            txt: "Schedule For You is a versatile and user-friendly application designed to simplify your daily scheduling needs. The application is built to provide users with an easy-to-use platform to manage their schedules effectively. With Schedule For You, you can easily organize your personal and professional appointments in one convenient location.",
+        },
+        feature: {
+            title: "Features",
+            txt: "Easily manage personal and professional appointments",
+            txt1: "Set reminders and notifications for upcoming events",
+            txt2: "View your schedule in daily, weekly, or monthly formats",
+            txt3: "Intuitive and user-friendly interface",
+        },
+        getStarted: {
+            title: "Get Started",
+            txt: "To get started, simply create an account and log in to Schedule For You. From there, you can start adding appointments and events to your schedule. You can also customize your settings and preferences to best suit your needs.",
+            button: {
+                register:"Register",
+                logIn:"Login",
+            }
+        }
     }
 }
