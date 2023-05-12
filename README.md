@@ -1,4 +1,14 @@
-<h1 align="center">Schedule For You</h1>
+<h1 align="center">
+Budapesti Műszaki Szakképzési Centrum <br>
+Neumann János Informatikai Technikum <br>
+Szakképesítés neve: Szoftverfejlesztő és -tesztelő <br>
+Száma: 5-0613-12-03
+</h1>
+<h1 align="center">
+  VIZSGAREMEK <br><br>
+  Schedule For You
+
+</h1>
 <p align="center">
   <a href="https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml">
     <img alt="Click to see the source" src="https://github.com/garobcsi/ScheduleForYou/actions/workflows/laravel.yml/badge.svg" />
