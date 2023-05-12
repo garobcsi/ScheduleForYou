@@ -143,16 +143,18 @@ Route::prefix('company')->name('company.')->group(function () {
     });
     Route::prefix('openingHours')->name('openingHours.')->group(function (){
         Route::get('',[OpeningHoursController::class,'index'])->name('index');
-        Route::get('/show',[OpeningHoursController::class,'show'])->name('show');
+        Route::get('/{openingHours}',[OpeningHoursController::class,'show'])->name('show')->whereNumber('openingHours');
         Route::prefix('specialOpeningHours')->name('specialOpeningHours.')->group(function (){
-            Route::get('',[SpecialOpeningHoursController::class,'index'])->name('index');
-            Route::get('/show',[SpecialOpeningHoursController::class,'show'])->name('show');
+            Route::get('/{company}',[SpecialOpeningHoursController::class,'index'])->name('index')->whereNumber('company');
+            Route::get('/{id}',[SpecialOpeningHoursController::class,'show'])->name('show')->whereNumber('id');
             Route::middleware(['auth:sanctum'])->group(function () {
-                Route::post('update/{id}',[SpecialOpeningHoursController::class,'update'])->name('update')->whereNumber('id');
+                Route::post('/store',[SpecialOpeningHoursController::class,'store'])->name('store');
+                Route::post('/update/{SpecialOH}',[SpecialOpeningHoursController::class,'update'])->name('update')->whereNumber('SpecialOH');
+                Route::delete('/delete/{company}/{SpecialOHID}',[SpecialOpeningHoursController::class,'destroy'])->name('delete')->whereNumber('company')->whereNumber('SpecialOHID');
             });
         });
         Route::middleware(['auth:sanctum'])->group(function () {
-            Route::post('update/{company}',[OpeningHoursController::class,'update'])->name('update')->whereNumber('company');
+            Route::post('/update/{company}',[OpeningHoursController::class,'update'])->name('update')->whereNumber('company');
         });
     });
 });
