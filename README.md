@@ -221,6 +221,9 @@ Options:
 - PhpMyAdmin: `5001`
 - DB (MySql): `33061`
 
+> **Warning** <br>
+> If these ports already in use on your machine then change them in [.env](https://github.com/garobcsi/ScheduleForYou/blob/main/src/laravel-vue/.env.example#L2..L5) file
+
 ## :bust_in_silhouette: PhpMyAdmin Users
 
 ### Root user
@@ -279,12 +282,13 @@ For example, when we used [wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 ### Functional specification (WIP)
 
 [Open Docs](./documentation/Functional%20specification.docx)
+> Download and view file.
 
 ### Swagger (API Docs)(WIP)
 
 1. Initialize the project
 2. Build swagger docs `docker-compose exec -u root app php artisan l5-swagger:generate`
-3. Navigate to site `<your ip>:80/api/docs` <br> Example `localhost/api/docs`
+3. Navigate to site `<your ip>:<WEB_PORT>/api/docs` <br> Example `localhost:80/api/docs`
 
 ## :hammer_and_wrench: Development Tools Used
 
