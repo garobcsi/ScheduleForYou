@@ -57,6 +57,8 @@ Száma: 5-0613-12-03
 * **[:open_book: Documentation](#open_book-documentation)**
   * [Functional specification (WIP)](#functional-specification-wip)
   * [Swagger (API Docs)(WIP)](#swagger-api-docswip)
+  * [Database Dump](#database-dump)
+  * [Database Diagram](#database-diagram)
 * **[:hammer_and_wrench: Development Tools Used](#hammer_and_wrench-development-tools-used)**
   * [Idea's](#ideas)
   * [Programs](#programs)
