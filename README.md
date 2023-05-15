@@ -290,6 +290,10 @@ For example, when we used [wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 2. Build swagger docs `docker-compose exec -u root app php artisan l5-swagger:generate`
 3. Navigate to site `<your ip>:<WEB_PORT>/api/docs` <br> Example `localhost:80/api/docs`
 
+### Database Diagram
+
+![Database Diagram](./documentation/database%20diagram.png)
+
 ## :hammer_and_wrench: Development Tools Used
 
 ### Idea's
