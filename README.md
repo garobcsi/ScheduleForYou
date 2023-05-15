@@ -278,7 +278,7 @@ For example, when we used [wsl](https://learn.microsoft.com/en-us/windows/wsl/in
 
 ### Functional specification (WIP)
 
-[Open Google Docs](https://docs.google.com/document/d/1ShLbxv7K0FDphoZtEsumG2i_mhR7eEySRCVUruQ7b8s/edit?usp=sharing)
+[Open Docs](./documentation/Functional%20specification.docx)
 
 ### Swagger (API Docs)(WIP)
 
